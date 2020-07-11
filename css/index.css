@@ -97,7 +97,7 @@ article.post-view__article .article__content code:not(.hljs) {
   line-height: 2.2rem;
   color: #fff;
   font-weight: bold;
-  background: #ff4484;
+  background: #1ed373;
   border-radius: 4px;
   padding: 0.1em 0.4em;
   margin: 0 0.4em;
@@ -181,7 +181,7 @@ article.post-view__article .article__content table th:first-child {
 }
 .head__inner a {
   text-decoration: none;
-  color: #ff4484;
+  color: #1ed373;
 }
 .head__inner h1 {
   font-size: 6.4rem;
@@ -276,7 +276,7 @@ article.post-view__article .article__content table th:first-child {
   font-size: 1.4rem;
   line-height: 2.2rem;
   margin: 2rem 0 0 0;
-  color: #ff4484;
+  color: #1ed373;
 }
 .post__tags,
 .post__date {
