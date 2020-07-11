@@ -68,7 +68,7 @@ article.post-view__article .article__content a {
   text-decoration: none;
 }
 article.post-view__article .article__content a:hover {
-  box-shadow: inset 0 -0.8em 0 #ffccce;
+  box-shadow: inset 0 -0.8em 0 #ffe0e1;
 }
 article.post-view__article .article__content blockquote {
   border-left: 2px solid #ff6e9f;
@@ -161,7 +161,7 @@ article.post-view__article .article__content table th:first-child {
 .footer {
   text-align: center;
   padding: 3rem 0;
-  background: #ffccce;
+  background: #ffe0e1;
   font-size: 1.4rem;
   line-height: 2.2rem;
 }
@@ -220,7 +220,7 @@ article.post-view__article .article__content table th:first-child {
 .posts-item {
   padding: 1.4rem 1rem;
   margin: 1rem 0;
-  border-bottom: 1px solid #dedede;
+  border-bottom: 1px solid #ffdee9;
   position: relative;
   background: #fff;
 }
@@ -249,7 +249,7 @@ article.post-view__article .article__content table th:first-child {
   background-position: center;
 }
 .posts-item:hover h2 a {
-  box-shadow: inset 0 -0.8em 0 #ffccce;
+  box-shadow: inset 0 -0.8em 0 #ffe0e1;
 }
 .posts-item__title {
   font-size: 5.2rem;
@@ -258,7 +258,7 @@ article.post-view__article .article__content table th:first-child {
 }
 .posts-item__title a {
   text-decoration: none;
-  box-shadow: inset 0 -0.3em 0 #ffccce;
+  box-shadow: inset 0 -0.3em 0 #ffe0e1;
   transition: box-shadow 0.5s cubic-bezier(0.71, 0, 0, 0.99);
 }
 .posts-item__title--image {
@@ -349,7 +349,7 @@ article.post-view__article .article__content table th:first-child {
   line-height: 2.2rem;
   padding: 2rem;
   margin: 2rem;
-  border-left: 1px solid #d3d3d3;
+  border-left: 1px solid #ffd3e2;
   height: calc(100% - 4rem);
 }
 .sidebar h2 {
@@ -365,7 +365,8 @@ article.post-view__article .article__content table th:first-child {
 .sidebar__link,
 .sidebar__archives,
 .sidebar__categories,
-.sidebar__tags {
+.sidebar__tags,
+.sidebar__friend {
   padding: 0 0 0 1em;
   border-left: 1px solid #ff6e9f;
   margin: 1.6rem 0 1.6rem 1rem;
@@ -373,7 +374,8 @@ article.post-view__article .article__content table th:first-child {
 .sidebar__link a,
 .sidebar__archives a,
 .sidebar__categories a,
-.sidebar__tags a {
+.sidebar__tags a,
+.sidebar__friend a {
   box-shadow: inset 0 -0.1em 0 #ff6e9f;
   transition: all 0.3s cubic-bezier(0.71, 0, 0, 0.99);
   text-decoration: none;
@@ -381,8 +383,9 @@ article.post-view__article .article__content table th:first-child {
 .sidebar__link a:hover,
 .sidebar__archives a:hover,
 .sidebar__categories a:hover,
-.sidebar__tags a:hover {
-  box-shadow: inset 0 -0.8em 0 #ffccce;
+.sidebar__tags a:hover,
+.sidebar__friend a:hover {
+  box-shadow: inset 0 -0.8em 0 #ffe0e1;
 }
 .sidebar__tags li {
   display: inline-block;
@@ -414,7 +417,7 @@ article.post-view__article .article__content table th:first-child {
     display: block;
     width: 3rem;
     height: 3rem;
-    background: #ffccce;
+    background: #ffe0e1;
     background-image: url("../../img/icon-expend.svg");
     background-position: center;
     background-size: contain;
@@ -441,7 +444,7 @@ article.post-view__article .article__content table th:first-child {
   text-decoration: none;
   padding: 1.5rem 5rem;
   border: 2px solid #ff6e9f;
-  background: #ffccce;
+  background: #ffe0e1;
 }
 .paginator .prev,
 .paginator .next {
@@ -629,7 +632,7 @@ article.post-view__article .article__content table th:first-child {
   left: 1rem;
 }
 .tocbot .is-active-link::before {
-  background: #ffccce;
+  background: #ffe0e1;
 }
 @media screen and (max-width: 780px) {
   .tocbot {
@@ -650,7 +653,7 @@ article.post-view__article .article__content table th:first-child {
   content: '';
   width: 100%;
   height: 100vh;
-  border: 1rem #ffccce solid;
+  border: 2rem #ffe0e1 solid;
   position: fixed;
   top: 0;
   left: 0;
@@ -674,10 +677,10 @@ article.post-view__article .article__content table th:first-child {
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #929292;
+  background: #ff91b6;
 }
 @media screen and (max-width: 1080px) {
   .mask-border::before {
-    border: 0.8rem #ffccce solid;
+    border: 0.8rem #ffe0e1 solid;
   }
 }
