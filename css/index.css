@@ -13,7 +13,7 @@ body {
   height: 100%;
   font-family: "Noto Serif SC", "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   background: #fff;
-  color: #ff6e9f;
+  color: #333;
   -webkit-font-smoothing: antialiased;
 }
 a {
@@ -63,22 +63,22 @@ article.post-view__article .article__content small {
   font-size: 1rem;
 }
 article.post-view__article .article__content a {
-  box-shadow: inset 0 -0.1em 0 #ff6e9f;
+  box-shadow: inset 0 -0.1em 0 #333;
   transition: all 0.3s cubic-bezier(0.71, 0, 0, 0.99);
   text-decoration: none;
 }
 article.post-view__article .article__content a:hover {
-  box-shadow: inset 0 -0.8em 0 #d2f4b7;
+  box-shadow: inset 0 -0.8em 0 #f8a1b9;
 }
 article.post-view__article .article__content blockquote {
-  border-left: 2px solid #ff6e9f;
+  border-left: 2px solid #333;
   padding: 0em 2rem;
 }
 article.post-view__article .article__content .gutter {
   width: 3em;
   text-align: center;
   background: #f8f8f8;
-  border-right: 1px solid #ffdada !important;
+  border-right: 1px solid #cae8ca !important;
 }
 article.post-view__article .article__content code.hljs {
   font-size: 1.4rem;
@@ -97,7 +97,7 @@ article.post-view__article .article__content code:not(.hljs) {
   line-height: 2.2rem;
   color: #fff;
   font-weight: bold;
-  background: #ff4484;
+  background: #444;
   border-radius: 4px;
   padding: 0.1em 0.4em;
   margin: 0 0.4em;
@@ -134,16 +134,16 @@ article.post-view__article .article__content table {
   margin: 2rem 0;
   border-spacing: 0;
   border-collapse: collapse;
-  border-top: 2px #ff6e9f solid;
-  border-bottom: 2px #ff6e9f solid;
+  border-top: 2px #333 solid;
+  border-bottom: 2px #333 solid;
 }
 article.post-view__article .article__content table th,
 article.post-view__article .article__content table td {
-  border: 1px #ffdada solid;
+  border: 1px #cae8ca solid;
   padding: 0.3em 1em;
 }
 article.post-view__article .article__content table th {
-  border-bottom: 2px #ff6e9f solid;
+  border-bottom: 2px #333 solid;
 }
 article.post-view__article .article__content table td:last-child,
 article.post-view__article .article__content table th:last-child {
@@ -161,7 +161,7 @@ article.post-view__article .article__content table th:first-child {
 .footer {
   text-align: center;
   padding: 3rem 0;
-  background: #d2f4b7;
+  background: #f8a1b9;
   font-size: 1.4rem;
   line-height: 2.2rem;
 }
@@ -181,7 +181,7 @@ article.post-view__article .article__content table th:first-child {
 }
 .head__inner a {
   text-decoration: none;
-  color: #ff4484;
+  color: #444;
 }
 .head__inner h1 {
   font-size: 6.4rem;
@@ -195,13 +195,13 @@ article.post-view__article .article__content table th:first-child {
 .bottom-line-1 {
   height: 3px;
   width: 100%;
-  background: #ff6e9f;
+  background: #333;
   margin-bottom: 3px;
 }
 .bottom-line-2 {
   height: 6px;
   width: 100%;
-  background: #ff6e9f;
+  background: #333;
 }
 @media screen and (max-width: 780px) {
   .head__inner h1 {
@@ -212,7 +212,7 @@ article.post-view__article .article__content table th:first-child {
 .horizontal-line {
   width: 100%;
   height: 2px;
-  background: #62cf92;
+  background: #444;
 }
 .posts {
   padding: 2rem;
@@ -220,7 +220,7 @@ article.post-view__article .article__content table th:first-child {
 .posts-item {
   padding: 1.4rem 1rem;
   margin: 1rem 0;
-  border-bottom: 1px solid #bff2d7;
+  border-bottom: 1px solid #dedede;
   position: relative;
   background: #fff;
 }
@@ -249,7 +249,7 @@ article.post-view__article .article__content table th:first-child {
   background-position: center;
 }
 .posts-item:hover h2 a {
-  box-shadow: inset 0 -0.8em 0 #d2f4b7;
+  box-shadow: inset 0 -0.8em 0 #f8a1b9;
 }
 .posts-item__title {
   font-size: 5.2rem;
@@ -258,7 +258,7 @@ article.post-view__article .article__content table th:first-child {
 }
 .posts-item__title a {
   text-decoration: none;
-  box-shadow: inset 0 -0.3em 0 #d2f4b7;
+  box-shadow: inset 0 -0.3em 0 #f8a1b9;
   transition: box-shadow 0.5s cubic-bezier(0.71, 0, 0, 0.99);
 }
 .posts-item__title--image {
@@ -276,7 +276,7 @@ article.post-view__article .article__content table th:first-child {
   font-size: 1.4rem;
   line-height: 2.2rem;
   margin: 2rem 0 0 0;
-  color: #ff4484;
+  color: #444;
 }
 .post__tags,
 .post__date {
@@ -349,7 +349,7 @@ article.post-view__article .article__content table th:first-child {
   line-height: 2.2rem;
   padding: 2rem;
   margin: 2rem;
-  border-left: 1px solid #aaedca;
+  border-left: 1px solid #d3d3d3;
   height: calc(100% - 4rem);
 }
 .sidebar h2 {
@@ -357,7 +357,7 @@ article.post-view__article .article__content table th:first-child {
   line-height: 3rem;
   display: inline-block;
   padding: 0 0.2em;
-  box-shadow: inset 0 -0.8em 0 #ffdada;
+  box-shadow: inset 0 -0.8em 0 #cae8ca;
 }
 .sidebar li {
   list-style-type: none;
@@ -368,7 +368,7 @@ article.post-view__article .article__content table th:first-child {
 .sidebar__tags,
 .sidebar__friend {
   padding: 0 0 0 1em;
-  border-left: 1px solid #ff6e9f;
+  border-left: 1px solid #333;
   margin: 1.6rem 0 1.6rem 1rem;
 }
 .sidebar__link a,
@@ -376,7 +376,7 @@ article.post-view__article .article__content table th:first-child {
 .sidebar__categories a,
 .sidebar__tags a,
 .sidebar__friend a {
-  box-shadow: inset 0 -0.1em 0 #ff6e9f;
+  box-shadow: inset 0 -0.1em 0 #333;
   transition: all 0.3s cubic-bezier(0.71, 0, 0, 0.99);
   text-decoration: none;
 }
@@ -385,7 +385,7 @@ article.post-view__article .article__content table th:first-child {
 .sidebar__categories a:hover,
 .sidebar__tags a:hover,
 .sidebar__friend a:hover {
-  box-shadow: inset 0 -0.8em 0 #d2f4b7;
+  box-shadow: inset 0 -0.8em 0 #f8a1b9;
 }
 .sidebar__tags li {
   display: inline-block;
@@ -417,7 +417,7 @@ article.post-view__article .article__content table th:first-child {
     display: block;
     width: 3rem;
     height: 3rem;
-    background: #d2f4b7;
+    background: #f8a1b9;
     background-image: url("../../img/icon-expend.svg");
     background-position: center;
     background-size: contain;
@@ -443,8 +443,8 @@ article.post-view__article .article__content table th:first-child {
 .paginator .extend {
   text-decoration: none;
   padding: 1.5rem 5rem;
-  border: 2px solid #ff6e9f;
-  background: #d2f4b7;
+  border: 2px solid #333;
+  background: #f8a1b9;
 }
 .paginator .prev,
 .paginator .next {
@@ -543,7 +543,7 @@ article.post-view__article .article__content table th:first-child {
 .location-bar .line-1,
 .location-bar .line-2,
 .location-bar .line-3 {
-  background: #ff6e9f;
+  background: #333;
 }
 .switch-button {
   height: 0;
@@ -558,7 +558,7 @@ article.post-view__article .article__content table th:first-child {
   text-indent: -9999px;
   width: 3rem;
   height: 2rem;
-  background: #62cf92;
+  background: #444;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -632,7 +632,7 @@ article.post-view__article .article__content table th:first-child {
   left: 1rem;
 }
 .tocbot .is-active-link::before {
-  background: #d2f4b7;
+  background: #f8a1b9;
 }
 @media screen and (max-width: 780px) {
   .tocbot {
@@ -653,14 +653,14 @@ article.post-view__article .article__content table th:first-child {
   content: '';
   width: 100%;
   height: 100vh;
-  border: 1.5rem #d2f4b7 solid;
+  border: 1.5rem #f8a1b9 solid;
   position: fixed;
   top: 0;
   left: 0;
 }
 ::selection {
   color: #fff;
-  background: #ff6e9f;
+  background: #333;
 }
 /* width */
 ::-webkit-scrollbar {
@@ -673,14 +673,14 @@ article.post-view__article .article__content table th:first-child {
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #ffdada;
+  background: #cae8ca;
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #2cd17a;
+  background: #929292;
 }
 @media screen and (max-width: 1080px) {
   .mask-border::before {
-    border: 0.8rem #d2f4b7 solid;
+    border: 0.8rem #f8a1b9 solid;
   }
 }
