@@ -25,13 +25,13 @@ gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valin
     collapseDepth: 2,
   });
 })</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">PEACH</a></h1><p>equne</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">在Mac上使用 Microsoft Remote Desktop 连接到windows计算机</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">在Mac上使用 Microsoft Remote Desktop 连接到windows计算机</a></h2><span class="post__date">2022-04-12</span><a href="/tags/windows/"><span class="post__tags">#windows</span></a><a href="/tags/Mac/"><span class="post__tags">#Mac</span></a></div></div><div class="article__content"><blockquote>
-<p><strong>摘要</strong>: 同时带两台电脑出门很麻烦，于是选择在Mac上使用 Microsoft Remote Desktop 远程连接使用不带出门的 Windows，从此只需要把Windows连接电源和wifi一直放着就行！顺便整理了一些别人遇到的错误和解决方法。</p>
+<p><strong>摘要</strong>: 同时带两台电脑出门很麻烦，于是选择在Mac上使用 Microsoft Remote Desktop 远程连接使用不带出门的 Windows，从此只需要把Windows放在家里连接电源和wifi一直放着就行！顺便整理了一些别人遇到的错误和解决方法。</p>
 <p><strong>参考:</strong>  <a target="_blank" rel="noopener" href="https://www.v2ex.com/t/629651"><strong>参考1</strong></a> 、<a target="_blank" rel="noopener" href="https://blog.csdn.net/javanbme/article/details/114988821"><strong>参考2</strong></a></p>
 <p>*<em>日期 *</em>: 2021/3/25 </p>
 <p><strong>环境</strong> : MacOS 11.2.2 + Windows10 <em>（ 本文介绍 mac 控制 windows, 其他系统同理**）</em></p>
 </blockquote>
 <hr>
-<h1 id="一、下载和安装"><a href="#一、下载和安装" class="headerlink" title="一、下载和安装"></a>一、下载和安装</h1><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h3><blockquote>
+<h1 id="一、下载和安装"><a href="#一、下载和安装" class="headerlink" title="一、下载和安装"></a>一、下载和安装</h1><h3 id="1-1-下载"><a href="#1-1-下载" class="headerlink" title="1.1 下载"></a>1.1 下载</h3><blockquote>
 <p>下载 Microsoft Remote Desktop，根据情况下载对应版本的app：</p>
 </blockquote>
 <ol>
@@ -42,39 +42,49 @@ gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valin
 </ul>
 </li>
 </ol>
-<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><p>过程略。</p>
+<h3 id="1-2-安装"><a href="#1-2-安装" class="headerlink" title="1.2 安装"></a>1.2 安装</h3><p>过程略。</p>
 <hr>
-<h1 id="二、连接"><a href="#二、连接" class="headerlink" title="二、连接"></a>二、连接</h1><h3 id="1-Windows-配置"><a href="#1-Windows-配置" class="headerlink" title="1. Windows 配置"></a>1. Windows 配置</h3><blockquote>
+<h1 id="二、创建连接"><a href="#二、创建连接" class="headerlink" title="二、创建连接"></a>二、创建连接</h1><h3 id="2-1-Windows-配置"><a href="#2-1-Windows-配置" class="headerlink" title="2.1 Windows 配置"></a>2.1 Windows 配置</h3><blockquote>
 <p>首先确保将被控制的 Windows 开启了远程桌面连接配置：</p>
 </blockquote>
-<h4 id="1-1-设置了系统属性为允许远程桌面连接"><a href="#1-1-设置了系统属性为允许远程桌面连接" class="headerlink" title="1.1 设置了系统属性为允许远程桌面连接"></a>1.1 <strong>设置了系统属性为允许远程桌面连接</strong></h4><p>若选项都是灰色无法允许远程连接，<a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/windows/forum/all/win10专业版远程/55314ea4-0198-4df2-9378-7130b62d80b9">参考这里</a>。</p>
-<h4 id="1-2-设置了防火墙允许远程桌面通过防火墙通信"><a href="#1-2-设置了防火墙允许远程桌面通过防火墙通信" class="headerlink" title="1.2 设置了防火墙允许远程桌面通过防火墙通信"></a>1.2 <strong>设置了防火墙允许远程桌面通过防火墙通信</strong></h4><h4 id="1-3-开启了用于远程桌面连接的服务端口"><a href="#1-3-开启了用于远程桌面连接的服务端口" class="headerlink" title="1.3 开启了用于远程桌面连接的服务端口"></a>1.3 <strong>开启了用于远程桌面连接的服务端口</strong></h4><ul>
-<li>查看默认端口号3389是否开启：cmd中输入 <code>netstat -aon|findstr 3389</code></li>
+<h4 id="2-1-1-设置了系统属性为允许远程桌面连接"><a href="#2-1-1-设置了系统属性为允许远程桌面连接" class="headerlink" title="2.1.1 设置了系统属性为允许远程桌面连接"></a>2.1.1 <strong>设置了系统属性为允许远程桌面连接</strong></h4><ul>
+<li><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19lu45hdfj20mq0ucac0.jpg" alt="img" style="zoom: 30%;" /> </li>
+<li><p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19lubuwcuj20ge0c60tp.jpg" alt="image.png"></p>
+</li>
+<li><p>若选项都是灰色无法允许远程连接，&gt; <a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/windows/forum/all/win10专业版远程/55314ea4-0198-4df2-9378-7130b62d80b9">参考这里</a>。</p>
+<blockquote>
+<p>运行 gpedit.msc 回车打开本地组策略编辑器,在左侧的列表中依次展开：<strong>计算机配置&gt;管理模板&gt;Windows组件&gt;远程桌面会话主机&gt;连接</strong></p>
+<p>双击打开右侧的”<strong>允许用户通过使用远程桌面服务进行远程连接</strong>“,看一下之前是否有配置,如果有的话改成”未配置”,如果之前就是未配置,那可以改成已启用,然后您再看一下系统属性&gt;远程桌面中的相关设置区域是否恢复正常.</p>
+</blockquote>
+</li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1300106/1617099886709-c74312d0-4cba-426e-b36a-2806e5a3575f.png" alt="img"></p>
-<ul>
-<li>若端口号未开启，则打开服务，开启下面两项服务。（第三个可播放声音)</li>
+<h4 id="2-1-2-设置了防火墙允许远程桌面通过防火墙通信"><a href="#2-1-2-设置了防火墙允许远程桌面通过防火墙通信" class="headerlink" title="2.1.2 设置了防火墙允许远程桌面通过防火墙通信"></a>2.1.2 <strong>设置了防火墙允许远程桌面通过防火墙通信</strong></h4><ul>
+<li><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19lx8x3soj20qo0go40q.jpg" alt="image.png"></li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1300106/1616606429680-5b49936f-40ba-489f-81aa-c45d8e24c4d5.png" alt="img"></p>
-<ul>
-<li>​    （若修改过或无法查询到3389端口，<a target="_blank" rel="noopener" href="https://my.oschina.net/xxxasec/blog/4837755">参考这里</a>。）</li>
+<h4 id="2-1-3-开启了用于远程桌面连接的服务端口"><a href="#2-1-3-开启了用于远程桌面连接的服务端口" class="headerlink" title="2.1.3 开启了用于远程桌面连接的服务端口"></a>2.1.3 <strong>开启了用于远程桌面连接的服务端口</strong></h4><ul>
+<li><p>在cmd中输入<code>netstat -aon|findstr 3389</code>，查看默认端口号3389是否开启。</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19ish5vl3j210m07smyf.jpg" alt="img"></p>
+</li>
+<li><p>若端口号未开启，则打开任务管理器，开启下面两项服务。（第三个可播放声音)<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19leknfrzj21cs0c0wh6.jpg" alt="img"></p>
+</li>
+<li><p>若修改过或无法查询到3389端口，&gt; <a target="_blank" rel="noopener" href="https://my.oschina.net/xxxasec/blog/4837755">参考这里</a>。</p>
+</li>
 </ul>
-<ol start="4">
-<li><strong>设置本地策略非来宾</strong></li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">*gpedit.msc*<br></code></pre></td></tr></table></figure>
+<h4 id="2-1-4-设置本地策略非来宾"><a href="#2-1-4-设置本地策略非来宾" class="headerlink" title="2.1.4 设置本地策略非来宾"></a>2.1.4 设置本地策略非来宾</h4><ul>
+<li><p>打开运行，输入：<code>gpedit.msc</code></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19m1bo2bwj21650u0jy9.jpg" alt="img"></p>
+</li>
+</ul>
+<h4 id="2-1-5-确保关闭了设置内-仅允许-Windows-hello-登录"><a href="#2-1-5-确保关闭了设置内-仅允许-Windows-hello-登录" class="headerlink" title="2.1.5 确保关闭了设置内 仅允许 Windows hello 登录"></a>2.1.5 确保关闭了设置内 仅允许 Windows hello 登录</h4><ul>
+<li>(未设置可忽略。) Windows Hello：使您可以使用脸部，虹膜，指纹或PIN登录设备，应用程序，在线服务和网络。<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19md6jlmpj218i0qcdic.jpg" alt="img"></li>
+</ul>
+<h4 id="2-1-6-确保不是通过-Microsoft-Authenticator-，而是通过手动输入密码进行验证登录的"><a href="#2-1-6-确保不是通过-Microsoft-Authenticator-，而是通过手动输入密码进行验证登录的" class="headerlink" title="2.1.6 确保不是通过 Microsoft Authenticator ，而是通过手动输入密码进行验证登录的"></a>2.1.6 <strong>确保不是通过</strong> <strong>Microsoft Authenticator ，而是通过手动输入密码进行验证登录的</strong></h4><ul>
+<li><p>因为 Microsoft Authenticator 登录使用的认证方式与其他域不互通，就不能直接开启连接啦。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19md4mg8zj20ta0t4goi.jpg" alt="img" style="zoom: 40%;" />
 
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1300106/1616612670866-7ae21008-7851-4f4c-8681-51fcea3be2b2.png" alt="img"></p>
-<ol start="5">
-<li><p><strong>关闭了设置内 仅允许 Windows hello 登录</strong></p>
-<p>(未设置可忽略。) Windows Hello：使您可以使用脸部，虹膜，指纹或PIN登录设备，应用程序，在线服务和网络。<img src="https://cdn.nlark.com/yuque/0/2021/png/1300106/1616608073990-ba76da08-c50e-4066-b486-1150ee16d177.png" alt="img"></p>
 </li>
-<li><p><strong>确保不是通过</strong> <strong>Microsoft Authenticator ，而是通过手动输入密码进行验证登录的</strong></p>
-<p>因为 Microsoft Authenticator 登录使用的认证方式与其他域不互通，就不能直接开启连接啦。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1300106/1617098381888-06a4fd88-6d57-429a-9129-68e15a23da35.png" alt="img"></p>
-</li>
-</ol>
-<h3 id="2-添加计算机"><a href="#2-添加计算机" class="headerlink" title="2. 添加计算机"></a>2. 添加计算机</h3><blockquote>
+</ul>
+<h2 id="2-2-添加计算机"><a href="#2-2-添加计算机" class="headerlink" title="2.2 添加计算机"></a>2.2 添加计算机</h2><blockquote>
 <p>配置Windows允许远程桌面连接后，使用Mac准备开始连接，在Microsoft Remote Desktop中添加PC，输入主机名 + 用户账号信息。</p>
 </blockquote>
 <ul>
@@ -82,6 +92,78 @@ gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valin
 <p>查看方法：在 Windows 的命令提示符(win+R 键打开的运行窗口输入cmd) 输入命令 <code>ipconfig</code>，可查看ipv4地址。</p>
 </li>
 <li><p><strong>User account</strong>：登录该PC的账号密码。建议选择 Ask when required，先不输入账号密码，在连接时输入，确保能连接成功后再添加记录，防止这里保存的账号密码有误，后面怎么都连不上。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19md0d779j20q40toac1.jpg" alt="img" style="zoom:40%;" />
+
 </li>
 </ul>
+<h2 id="2-3-填写账户信息"><a href="#2-3-填写账户信息" class="headerlink" title="2.3 填写账户信息"></a>2.3 填写账户信息</h2><h4 id="2-3-1-使用本地用户登录："><a href="#2-3-1-使用本地用户登录：" class="headerlink" title="2.3.1 使用本地用户登录："></a>2.3.1 使用本地用户登录：</h4><ul>
+<li><strong>本地用户名</strong>(cmd输入 <code>whoami</code> 查看) + <strong>本地解锁密码</strong>。</li>
+</ul>
+<h4 id="2-3-2-使用微软账户登录："><a href="#2-3-2-使用微软账户登录：" class="headerlink" title="2.3.2 使用微软账户登录："></a>2.3.2 使用微软账户登录：</h4><ul>
+<li><p>本地创建的英文账户若关联了微软账号，可使用该微软账号邮箱进行远程登录，用户名为邮箱格式的<strong>微软账号</strong>(<em><a href="mailto:username@outlook.com">username@outlook.com</a></em>) + 对应的<strong>微软账号密码。</strong>    </p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19mcx3ntnj20oi0dcaat.jpg" alt="img" style="zoom:50%;" />
+
+
+
+</li>
+</ul>
+<h4 id="2-3-3-或使用空密码进行远程桌面连接：在-windows-中设置"><a href="#2-3-3-或使用空密码进行远程桌面连接：在-windows-中设置" class="headerlink" title="2.3.3 或使用空密码进行远程桌面连接：在 windows 中设置"></a><strong>2.3.3 或使用空密码进行远程桌面连接：</strong>在 windows 中设置</h4><ul>
+<li><p>打开运行，输入<code>gpedit.msc</code>，打开本地组策略编辑器</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19meahj2bj21cf0u045i.jpg" alt="img"></p>
+</li>
+</ul>
+<h2 id="2-4-报错解决"><a href="#2-4-报错解决" class="headerlink" title="2.4 报错解决"></a>2.4 报错解决</h2><h4 id="2-4-1-The-User-Account-Did-Not-work"><a href="#2-4-1-The-User-Account-Did-Not-work" class="headerlink" title="2.4.1  The User Account Did Not work"></a>2.4.1  The User Account Did Not work</h4><blockquote>
+<p>🔒 <strong>提示</strong>：The User Account Did Not Work.The user account used to connect to xx.xx.xx.xx (remote PC) did not work. Try again.（–&gt; 你输的这个账户信息连不上。）</p>
+</blockquote>
+<ul>
+<li>🔑 <strong>解决方法</strong>：需要输入正确的账号密码。<ol>
+<li><strong>微软账号登录</strong>：邮箱格式的微软账号(<a href="mailto:username@outlook.com">username@outlook.com</a>) + 对应的微软账号密码</li>
+<li><strong>本地用户登录</strong>：本地主机名或本地账户名 + 本地账户解锁密码</li>
+<li><strong>以前可以，现在突然连不上了</strong>：检查上面两个密码是不是改过了，如果改过记得同步修改。</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-4-2-0x204"><a href="#2-4-2-0x204" class="headerlink" title="2.4.2  0x204"></a>2.4.2  0x204</h3><blockquote>
+<p>🔒 连接时提示：We couldn’t connect to the remote PC.Make sure the PC is turned on and connected to the network, and thar remote access is enabled. Error code:0x204（–&gt; 我们无法连接到远程电脑，确保电脑已打开并连接到网络，并且已启用远程访问。）</p>
+</blockquote>
+<ul>
+<li><strong>🔑 解决方法：</strong><ol>
+<li><strong>开电脑。</strong>检查是否打开windows电源，确保非关机或睡眠状态，开启电源解锁屏幕就可以啦。</li>
+<li><strong>连Wi-Fi。</strong></li>
+<li><strong>开服务</strong>。确保已开启 Windows 的远程桌面连接配置。</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-4-3-0x207"><a href="#2-4-3-0x207" class="headerlink" title="2.4.3  0x207"></a>2.4.3  0x207</h3><blockquote>
+<p><strong>🔒 提示：</strong></p>
+</blockquote>
+<ul>
+<li>🔑：确保windows的本地组策略不是 <strong>仅来宾</strong> 状态。</li>
+</ul>
+<h3 id="2-4-4-0x300005f"><a href="#2-4-4-0x300005f" class="headerlink" title="2.4.4  0x300005f"></a>2.4.4  0x300005f</h3><blockquote>
+<p><strong>🔒</strong> An error occurred while communicating with the Remote Desktop Gateway. If this keeps happening, contact your network administrator for assistance.（Error code: 0x300005f</p>
+</blockquote>
+<hr>
+<h1 id="三、配置"><a href="#三、配置" class="headerlink" title="三、配置"></a>三、配置</h1><h2 id="3-1-创建目录"><a href="#3-1-创建目录" class="headerlink" title="3.1 创建目录"></a>3.1 创建目录</h2><ul>
+<li>在mac电脑上，根据需要创建用于文件传输的目录。</li>
+</ul>
+<h2 id="3-2-编辑配置"><a href="#3-2-编辑配置" class="headerlink" title="3.2 编辑配置"></a>3.2 编辑配置</h2><ul>
+<li><p>开启Microsoft Remote Desktop 软件，点击编辑。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19mi6yf9jj20xa0rgta0.jpg" alt="img" style="zoom: 40%;" />
+</li>
+<li><p>如图所示，添加重定向刚创建的文件夹对应的路径</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19mi7zz3bj20q40to769.jpg" alt="img" style="zoom:40%;" />
+
+</li>
+</ul>
+<h2 id="3-3-完成"><a href="#3-3-完成" class="headerlink" title="3.3 完成"></a>3.3 完成</h2><ul>
+<li><p>可查看windows上的文件夹映射，没出现的话重新连接试试。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h19ml6axhyj210w0u0din.jpg" alt="img" style="zoom:40%;" />
+
+
+
+</li>
+</ul>
+<hr>
+<h1 id="四、结尾"><a href="#四、结尾" class="headerlink" title="四、结尾"></a>四、结尾</h1><p>第一次完成mac和windows之间远程桌面的配置，回头看感觉写得有些复杂，因为多记录了一些自己也没遇到过的问题和情况。如果各位还遇到了文中没提到的情况，欢迎评论留言，我会继续补充～</p>
 </div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a target="_blank" rel="noopener" href="https://github.com/equnee">Github</a></li><li><a target="_blank" rel="noopener" href="http://equne.zcool.com.cn/">ZCool</a></li><li><a target="_blank" rel="noopener" href="https://codepen.io/equne">Codepen</a></li><li><a target="_blank" rel="noopener" href="https://dribbble.com/equnee">Dribbble</a></li><li><a target="_blank" rel="noopener" href="https://juejin.im/user/4051036080446142">掘金</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"><ul><li><a target="_blank" rel="noopener" href="http://wh1te.fun/">white</a></li><li><a target="_blank" rel="noopener" href="https://tujiaoblog.com/">tujiao</a></li></ul></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/wp/">wp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/wp/Java/Java_Notebook/">Java_Notebook</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2022  equne</span></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
