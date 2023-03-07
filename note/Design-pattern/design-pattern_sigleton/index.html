@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="🌷 设计模式 - 单例模式 [ 🍧 Peach ] "><meta name="theme-color"><title>🌷 设计模式 - 单例模式 [ 🍧 Peach ] </title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=G-5GZQ6P3RMX" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valine/dist/Valine.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  new Valine({
+    el: '#comments',
+    appId: 'MJAdR7lH7cWVJLyn1Tgnw5Sj-gzGzoHsz',
+    appKey: 'de2VP0VpE5bWgR2aA8wkwxn2',
+    notify: false,
+    verify: false,
+    avatar: 'mp',
+    placeholder: 'say something',
+  })
+})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  tocbot.init({
+    // Where to render the table of contents.
+    tocSelector: '.toc__content',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: '.article__content',
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    // For headings inside relative or absolute positioned containers within content.
+    hasInnerContainers: true,
+    orderedList: false,
+    collapseDepth: 2,
+  });
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃想学打代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">🌷 设计模式 - 单例模式</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">🌷 设计模式 - 单例模式</a></h2><span class="post__date">2023-03-08</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/singleton/"><span class="post__tags">#singleton</span></a></div></div><div class="article__content"><ul>
+<li>来自<a href="https://book.douban.com/subject/35525040/">《秒懂设计模式》</a></li>
+</ul>
+<h1 id="一-单例模式"><a href="#一-单例模式" class="headerlink" title="一. 单例模式"></a>一. 单例模式</h1><hr>
+<h1 id="二-饿汉式"><a href="#二-饿汉式" class="headerlink" title="二. 饿汉式"></a>二. 饿汉式</h1><pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+      'fontSize': '22px',
+      'fontFamily': 'Noto Serif SC'
+    }
+  }
+}%%
+graph LR
+
+T(("<b>饿汉造日</b><br>")):::b
+T --> A(["1. <b>开始</b>"]):::p
+T --> B(["2. <b>构造方法<br>私有化</b>"]):::p
+T --> C(["3. <b>自有永有</b>"]):::p
+T --> D(["4. <b>公开访问</b>"]):::p
+T --> E(["5. <b>总结</b>"]):::b
+
+A --> a("既然太阳系里只有一个太阳，<br>我们就需要严格把控太阳实例化的过程。"):::lp
+a -.-> at(["Public class Sun {}  // 一个最简单的Sun类"]):::lg
+
+B --> b("太阳只有一个，不能随意创建实例。<br>但由于Java会自动生成一个无参构造器，<br>因此必须<b><i>禁止外部调用构造器</b></i>*。"):::lp
+b -.-> bt(["<b><i>private</i></b> Sun(){}"]):::lg
+b -.- b2t["*实例化工作完全归属于内部事务，任何外部类都无权干预"]:::info
+C --> c("让它在类加载时就自己创建自己，并使其自有永有"):::lp
+c -.-> ct(["private <b><i>static</b></i> <u>final Sun sun = new Sun();</u>"]):::lg
+D --> d("使用<i><b>静态方法*</b></i>getInstance()来获取太阳的单例<br>对象并将其设置为“public”以暴露给外部使用"):::lp
+d -.- dt(["<i><b>public static</i></b> Sun <u>getInstance()</u>{ return sun; }"]):::lg
+d -.- d2t["*static: 如同程序入口的静态方法main(),<br> 不需要任何对象引用就能被访问"]:::info
+
+T -..-> e("（还可以添加其他功能方法，如发光和发热等）"):::info
+d --> et("最后，不管谁得到或得到几次，得到的都是同<br>一个太阳实例，这样就确保了整个太阳系中<br>恒星太阳的唯一合法性，他人无法伪造。"):::lb
+E --> e2t("这就是<b>“饿汉模式”</b>(eager initialization)：即在<br><i><b>初始阶段(static)</b></i>就主动进行实例化，并时刻保持<br>一种<i><b>渴求的状态(public)</i></b>，无论此单例是否有人使用。"):::lb
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#cde2da
+classDef info fill:#f6f6f7,color:#5a5a5f,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+<ol>
+<li><p><strong>开始</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>构造方法私有化</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Sun</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 构造方法私有化</span><br>  &#125;	<br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>自有永有</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br>  <br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Sun sun = <span class="hljs-keyword">new</span> Sun(); <span class="hljs-comment">// 自有永有的太阳单例</span><br>  <br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Sun</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 构造方法私有化</span><br>  &#125;<br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>公开访问</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br>  <br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Sun sun = <span class="hljs-keyword">new</span> Sun(); <span class="hljs-comment">// 自有永有的太阳单例</span><br>  <br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Sun</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 构造方法私有化</span><br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Sun <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 阳光普照，方法公开化</span><br>		<span class="hljs-keyword">return</span> sun;<br>  &#125;<br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<hr>
+<h1 id="三-懒汉式"><a href="#三-懒汉式" class="headerlink" title="三. 懒汉式"></a>三. 懒汉式</h1></div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/guide/mac_mrd_windows/">Mac远程连接Windows（Microsoft Remote Desktop）</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize({
+    securityLevel: 'loose',
+    theme: 'neutral',
+  });
+}</script></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
