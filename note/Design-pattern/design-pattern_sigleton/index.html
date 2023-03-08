@@ -27,8 +27,12 @@ gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valin
 })</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃想学打代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">🌷 设计模式 - 单例模式</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">🌷 设计模式 - 单例模式</a></h2><span class="post__date">2023-03-08</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/singleton/"><span class="post__tags">#singleton</span></a></div></div><div class="article__content"><ul>
 <li>来自<a href="https://book.douban.com/subject/35525040/">《秒懂设计模式》</a></li>
 </ul>
-<h1 id="一-单例模式"><a href="#一-单例模式" class="headerlink" title="一. 单例模式"></a>一. 单例模式</h1><hr>
-<h1 id="二-饿汉式"><a href="#二-饿汉式" class="headerlink" title="二. 饿汉式"></a>二. 饿汉式</h1><pre class="mermaid">%%{
+<h1 id="一-孤独的太阳"><a href="#一-孤独的太阳" class="headerlink" title="一. 孤独的太阳"></a>一. 孤独的太阳</h1><p>我们可以把太阳系看作一个庞大的系统，其中有各种各样的对象存在，丰富多彩的实例造就了系统的美好。这个系统里的某些<strong>实例是唯一的</strong>，如我们赖以生存的恒星<code>太阳</code>。</p>
+<p>与其他行星或卫星不同的是，太阳是太阳系内唯一的恒星实例。但倘若天上有9个太阳，那么将会带来一场灾难。<strong>太阳不多不少仅此一例</strong>。</p>
+<br>
+
+<hr>
+<h1 id="二-饿汉造日"><a href="#二-饿汉造日" class="headerlink" title="二. 饿汉造日"></a>二. 饿汉造日</h1><pre class="mermaid">%%{
   init: {
     'themeVariables': {
       'fontSize': '22px',
@@ -45,21 +49,21 @@ T --> C(["3. <b>自有永有</b>"]):::p
 T --> D(["4. <b>公开访问</b>"]):::p
 T --> E(["5. <b>总结</b>"]):::b
 
-A --> a("既然太阳系里只有一个太阳，<br>我们就需要严格把控太阳实例化的过程。"):::lp
+A --> a("既然太阳系里只有一个太阳，就需要<br>严格把控太阳实例化的过程。"):::lp
 a -.-> at(["Public class Sun {}  // 一个最简单的Sun类"]):::lg
 
 B --> b("太阳只有一个，不能随意创建实例。<br>但由于Java会自动生成一个无参构造器，<br>因此必须<b><i>禁止外部调用构造器</b></i>*。"):::lp
 b -.-> bt(["<b><i>private</i></b> Sun(){}"]):::lg
-b -.- b2t["*实例化工作完全归属于内部事务，任何外部类都无权干预"]:::info
+
 C --> c("让它在类加载时就自己创建自己，并使其自有永有"):::lp
 c -.-> ct(["private <b><i>static</b></i> <u>final Sun sun = new Sun();</u>"]):::lg
 D --> d("使用<i><b>静态方法*</b></i>getInstance()来获取太阳的单例<br>对象并将其设置为“public”以暴露给外部使用"):::lp
 d -.- dt(["<i><b>public static</i></b> Sun <u>getInstance()</u>{ return sun; }"]):::lg
-d -.- d2t["*static: 如同程序入口的静态方法main(),<br> 不需要任何对象引用就能被访问"]:::info
+d -.- d2t["*如同程序入口的静态方法main(),<br> 不需要任何对象引用就能被访问"]:::info
 
 T -..-> e("（还可以添加其他功能方法，如发光和发热等）"):::info
 d --> et("最后，不管谁得到或得到几次，得到的都是同<br>一个太阳实例，这样就确保了整个太阳系中<br>恒星太阳的唯一合法性，他人无法伪造。"):::lb
-E --> e2t("这就是<b>“饿汉模式”</b>(eager initialization)：即在<br><i><b>初始阶段(static)</b></i>就主动进行实例化，并时刻保持<br>一种<i><b>渴求的状态(public)</i></b>，无论此单例是否有人使用。"):::lb
+E --> e2t("这就是<b>“饿汉模式”</b>(eager initialization)：<br>即在<i><b>初始阶段(static)</b></i>就主动进行实例化，并时刻保持<br>一种<i><b>渴求的状态(public)</i></b>，无论此单例是否有人使用。"):::lb
 
 classDef p fill:#ddaebd
 classDef b fill:#aab7d2
@@ -67,25 +71,168 @@ classDef lp fill:#f4e4e9
 classDef lb fill:#d9dfeb
 classDef lg fill:#cde2da
 classDef info fill:#f6f6f7,color:#5a5a5f,stroke-dasharray: 3 3, stroke-width: 2px</pre>
-<ol>
-<li><p><strong>开始</strong></p>
-  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br><br>&#125;<br></code></pre></td></tr></table></figure>
-</li>
-<li><p><strong>构造方法私有化</strong></p>
-  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Sun</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 构造方法私有化</span><br>  &#125;	<br>  <br>&#125;<br></code></pre></td></tr></table></figure>
-</li>
-<li><p><strong>自有永有</strong></p>
-  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br>  <br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Sun sun = <span class="hljs-keyword">new</span> Sun(); <span class="hljs-comment">// 自有永有的太阳单例</span><br>  <br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Sun</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 构造方法私有化</span><br>  &#125;<br>  <br>&#125;<br></code></pre></td></tr></table></figure>
-</li>
-<li><p><strong>公开访问</strong></p>
-  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br>  <br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Sun sun = <span class="hljs-keyword">new</span> Sun(); <span class="hljs-comment">// 自有永有的太阳单例</span><br>  <br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Sun</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 构造方法私有化</span><br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Sun <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 阳光普照，方法公开化</span><br>		<span class="hljs-keyword">return</span> sun;<br>  &#125;<br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong><p style="font-size:24px;color:#d13a69">1. 开始</p></strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><br><strong><p style="font-size:24px;color:#d13a69">2. 构造方法私有化</p></strong></p>
+<p>接下来我们得确保任何人都不能创建太阳的实例，否则一旦程序员调用代码“new Sun()”，天空就会出现多个太阳，便又需要“后羿”去解决了。</p>
+<p>实例化工作完全归属于内部事务，任何外部类都无权干预</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Sun</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 构造方法私有化</span><br>  &#125;	<br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p><br><strong><p style="font-size:24px;color:#d13a69">3. 自有永有</p></strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br>  <br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Sun sun = <span class="hljs-keyword">new</span> Sun(); <span class="hljs-comment">// 自有永有的太阳单例</span><br>  <br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Sun</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 构造方法私有化</span><br>  &#125;<br>  <br>&#125;     <br></code></pre></td></tr></table></figure>
 
 
-
-</li>
-</ol>
+<table>
+<thead>
+<tr>
+<th align="right">关键字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right"><strong>private</strong></td>
+<td>确保太阳实例的私有性、不可见性和不可访问性；</td>
+</tr>
+<tr>
+<td align="right"><strong>static</strong></td>
+<td>确保太阳的<code>静态性</code>，将太阳放入内存里的静态区，在类加载的时候就初始化了，它与类同在，也就是说它是与类同时期且早于内存堆中的对象实例化的，该实例在内存中永生，内存垃圾收集器(Garbage Collector, GC)也不会对其进行回收；</td>
+</tr>
+<tr>
+<td align="right"><strong>final</strong></td>
+<td>确保这个太阳是<code>常量、恒量</code>，它是一颗终极的恒星，引用一旦被赋值就不能再修改；</td>
+</tr>
+<tr>
+<td align="right"><strong>new</strong></td>
+<td><code>初始化</code>太阳类的静态实例，并赋予静态常量sun。</td>
+</tr>
+</tbody></table>
+<p><strong><br><p style="font-size:24px;color:#d13a69">4. 公开访问</p></strong></p>
+<p>单例的太阳对象写好了，可一切皆是私有的，外部如何访问？——  使用<strong>静态方法</strong><u>getInstance()</u>来获取太阳的单例对象。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br>  <br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Sun sun = <span class="hljs-keyword">new</span> Sun(); <span class="hljs-comment">// 自有永有的太阳单例</span><br>  <br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Sun</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 构造方法私有化</span><br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Sun <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 阳光普照，方法公开化</span><br>		<span class="hljs-keyword">return</span> sun;<br>  &#125;<br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p><br><br></p>
 <hr>
-<h1 id="三-懒汉式"><a href="#三-懒汉式" class="headerlink" title="三. 懒汉式"></a>三. 懒汉式</h1></div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/guide/mac_mrd_windows/">Mac远程连接Windows（Microsoft Remote Desktop）</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+<h1 id="三-懒汉的队伍"><a href="#三-懒汉的队伍" class="headerlink" title="三. 懒汉的队伍"></a>三. 懒汉的队伍</h1><pre class="mermaid">%%{
+    init: {
+    'themeVariables': {
+      'fontFamily': 'Noto Serif SC'
+    }
+  }
+}%%
+graph LR
+T((<b>懒汉的队伍</b>)):::b
+T --> A(["1. <b>用时才创建</b>"]):::p
+T --> B(["2. <b>排队</b><br><i>（同步锁）</i>"]):::p
+T --> C(["3. <b>需要时再排队</b><br><i>（双检锁）</i>"]):::p
+
+A --> a("若无请求就不实例化，<br>节省内存空间"):::lp
+a -.-> at(["去掉 final<br><b><i>if(sun == null)</b></i>"]):::lg
+
+B --> b("由于多线程时的缺陷：<br>请求方法加上同步锁<br><b><i>synchronized</b></i>"):::lp
+b -.- bt2(["public static <b><i>synchronized</b></i> Sun getInstance() "]):::lg
+b -.-> bt3("加锁后某线程调用前必须获取同步锁，调用完<br>会释放锁给其他线程用，也就是<b><i>给请求排队。</b></i>"):::info
+
+C --> c("为了解决线程阻塞：<br>使用2个<b><i>嵌套的判空逻辑</i></b>"):::lp
+c -.- ct(["private <b><i>volatile</b></i> static Sun sun;<br>if(sun = null){ <b><i>synchronized</i></b>(){<br>if(sun == null){sun = new Sun();}"]):::lg
+c -.- ct2["1. 外层放宽入口，保证线程并发的高效性<br>2. 内层加锁同步，保证实例化的单次运行"]:::info
+
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#cde2da
+classDef info fill:#f6f6f7,color:#433f40,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+<p><strong><p style="font-size:24px;color:#d13a69">1. 用时才创建</p></strong></p>
+<p>单例的“饿汉模式”，让太阳一开始就准备就绪，随时供应免费日光。</p>
+<p>然而，如果始终没人获取日光，那就白造了太阳，白白浪费一块内存区域。类似于商家货品滞销的情况，货架上堆放着商品却没人买，白白浪费空间。因此，商家为了降低风险，规定有些商品必须提前预订，这就是“<code>懒汉模式</code>”(lazy initialization)。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br><br>		<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Sun sun; <span class="hljs-comment">// 这里不进行实例化</span><br><br>		<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Sun</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 构造方法私有化</span><br><br>		&#125;<br><br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Sun <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123;<br>				<span class="hljs-keyword">if</span>(sun == <span class="hljs-keyword">null</span>) &#123;  <span class="hljs-comment">// 如果无日才造日</span><br>						sun = <span class="hljs-keyword">new</span> Sun();<br>				&#125;<br>				<span class="hljs-keyword">return</span> sun;<br>		&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>去掉 <strong>final</strong></td>
+<td>一开始并没有造太阳，所以去掉了关键字final。</td>
+</tr>
+<tr>
+<td>用时才实例化</td>
+<td>仅在某线程第一次调用第9行的getInstance()方法时才会运行对太阳进行<br/>实例化的逻辑代码，之后再请求就直接返回此实例了。<br><p style="font-size:13px;color:#757575"><em>❗️<strong><u>缺点</u></strong>：初次请求时速度较之前的饿汉初始化模式慢，因为要消耗CPU资源去临时造这个太阳。</em></p></td>
+</tr>
+</tbody></table>
+<br>
+
+<p><strong><p style="font-size:24px;color:#d13a69">2. 排队</p></strong></p>
+<p>因为上述程序在多线程模式下有缺陷：并发请求时判空逻辑会同时成立，导致多次实例化太阳、多次赋值，违背单例理念。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br><br>		<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Sun sun; <span class="hljs-comment">// 这里不进行实例化</span><br><br>		<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Sun</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// 构造方法私有化</span><br><br>		&#125;<br><br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> Sun <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-comment">// 此处加入同步锁</span><br>				<span class="hljs-keyword">if</span>(sun == <span class="hljs-keyword">null</span>) &#123;  <span class="hljs-comment">// 如果无日才造日</span><br>						sun = <span class="hljs-keyword">new</span> Sun();<br>				&#125;<br>				<span class="hljs-keyword">return</span> sun;<br>		&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>synchronized</strong></td>
+<td>将太阳类Sun中第9行的getInstance()改成了同步方法，如此可避免多线程陷阱。</td>
+</tr>
+</tbody></table>
+<p><br><strong><p style="font-size:24px;color:#d13a69">3.  需要时再排队</p></strong></p>
+<p>如果仅为了实例化一个单例对象，直接加锁排队,使用synchronized让所有请求排队等候：会造成线程阻塞，资源与时间被白白浪费。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> </span>&#123;<br><br>		<span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">static</span> Sun sun;<br>		<br>		<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Sun</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-comment">// 构造方法私有化</span><br>	<br>		&#125;<br><br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Sun <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-comment">// 华山入口</span><br>				<span class="hljs-keyword">if</span>(sun = <span class="hljs-keyword">null</span>)&#123;<br>						<span class="hljs-keyword">synchronized</span>(Sun.class)&#123; <span class="hljs-comment">// 观日者进行排队</span><br>								<span class="hljs-keyword">if</span>(sun == <span class="hljs-keyword">null</span>)&#123;<br>										sun = <span class="hljs-keyword">new</span> Sun(); <span class="hljs-comment">// 只有排头兵造了太阳，旭日东升</span><br>								&#125;<br>						&#125;<br>				&#125;<br>				<span class="hljs-keyword">return</span> sun; <span class="hljs-comment">// ……阳光普照，其余人不必再造日</span><br>		&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>去掉 <strong>final</strong></td>
+<td>第3行对sun变量的定义不再使用final关键字，说明它不再是常量，而是需要后续赋值的变量；</td>
+</tr>
+<tr>
+<td><strong>volatile</strong></td>
+<td>关键字volatile对静态变量的修饰则能保证sun变量值在各线程访问时的同步性、唯一性。</td>
+</tr>
+<tr>
+<td>去掉入口的同步锁</td>
+<td>对于第9行的getInstance()方法，去掉方法上的关键字<em>synchronized</em>，使大家都能同时进入方法并对其进行开发。</td>
+</tr>
+<tr>
+<td>判空逻辑1</td>
+<td>有些人（线程）起早就是为了观看日出，那么这些人会通过第10行的判空逻辑进入观日台。</td>
+</tr>
+<tr>
+<td>判空逻辑2</td>
+<td>在第12行我们又进行一次判空逻辑，这就意味着只有队伍中的第一个人造了太阳，有幸看到了日出的第一缕阳光，而后面的人则统统离开，直到第17行得到已经造好的太阳。</td>
+</tr>
+</tbody></table>
+<p>最后：太阳高高升起，实例化操作完毕，起晚的人们都无须再进入观日台，直接获取太阳实例即可，温暖阳光普照大地。</p>
+<img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/Untitled.png" alt="懒汉的队伍" style="zoom: 25%;" />
+
+<br>
+
+<hr>
+<h1 id="四-大道至简"><a href="#四-大道至简" class="headerlink" title="四. 大道至简"></a>四. 大道至简</h1><p>相比“懒汉模式”，其实在大多数情况下我们通常会更多地使用“<code>饿汉模式</code>”，原因在于<u>这个单例迟早是要被实例化占用内存的，延迟懒加载的意义并不大，加锁解锁反而是一种资源浪费，同步更是会降低CPU的利用率，使用不当的话反而会带来不必要的风险</u>。<strong>越简单的包容性越强，而越复杂的反而越容易出错。</strong><br><br></p>
+<p style="font-size:18px;color:#d13a69"><b>单例模式的类结构：</b></p>
+
+  <pre class="mermaid">  classDiagram
+  class Singleton{
+    - instance : singleton
+    - Sigleton()
+    + getInstance() Singleton
+  }
+  Singleton --> Singleton</pre>
+<p>  <strong>Singleton（单例）</strong>：包含一个自己的类实例的属性，并把构造方法用privat关键字隐藏起来，对外只提getInstance()方法以获得这个单例对象。</p>
+</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/guide/mac_mrd_windows/">Mac远程连接Windows（Microsoft Remote Desktop）</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
   var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
   mermaid.initialize({
     securityLevel: 'loose',
