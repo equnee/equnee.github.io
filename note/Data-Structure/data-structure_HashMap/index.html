@@ -98,7 +98,7 @@ gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valin
 <ul>
 <li>将容量保持为偶数进行hash计算时，经过(length-1)后，计算出的索引值为奇数和偶数的概率相同（取决于随机生成的hash值）；</li>
 <li>而使用奇数容量进行hash计算时，经过(length-1)后，最终结果均为偶数，这样任何 hash 值都只会被散列到数组的偶数下标位置上，这浪费了近一半的空间。</li>
-<li>因此双倍扩容机制使容量保持在偶数值，可以使添加的元素在HashMap的数组中均匀分布，减少hash碰撞。</li>
+<li>因此2的n次幂容量、双倍扩容机制可以使容量保持在偶数值，可以使添加的元素在HashMap的数组中均匀分布，减少hash碰撞。</li>
 </ul>
 </blockquote>
 </li>
