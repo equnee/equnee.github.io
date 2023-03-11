@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="🦋 HashMap [ 🍧 Peach ] "><meta name="theme-color"><title>🦋 HashMap [ 🍧 Peach ] </title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=G-5GZQ6P3RMX" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valine/dist/Valine.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  new Valine({
+    el: '#comments',
+    appId: 'MJAdR7lH7cWVJLyn1Tgnw5Sj-gzGzoHsz',
+    appKey: 'de2VP0VpE5bWgR2aA8wkwxn2',
+    notify: false,
+    verify: false,
+    avatar: 'mp',
+    placeholder: 'say something',
+  })
+})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  tocbot.init({
+    // Where to render the table of contents.
+    tocSelector: '.toc__content',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: '.article__content',
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    // For headings inside relative or absolute positioned containers within content.
+    hasInnerContainers: true,
+    orderedList: false,
+    collapseDepth: 2,
+  });
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃想写可爱的代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">🦋 HashMap</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">🦋 HashMap</a></h2><span class="post__date">2023-03-09</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/HashMap/"><span class="post__tags">#HashMap</span></a><a href="/tags/TreeNode/"><span class="post__tags">#TreeNode</span></a></div></div><div class="article__content"><blockquote>
+<p>注：本文制作的流程图仅为个人理解，仅供参考。</p>
+</blockquote>
+<h1 id="一、Hash算法"><a href="#一、Hash算法" class="headerlink" title="一、Hash算法"></a>一、Hash算法</h1><h2 id="1-HashMap原理"><a href="#1-HashMap原理" class="headerlink" title="1. HashMap原理"></a>1. HashMap原理</h2><h3 id="（1）HashMap怎么存取"><a href="#（1）HashMap怎么存取" class="headerlink" title="（1）HashMap怎么存取"></a>（1）HashMap怎么存取</h3><ul>
+<li><p>使用数组保存、通过数组索引获取：</p>
+  <pre class="mermaid">    %%{
+      init: {
+          'themeVariables': {
+              'fontFamily': 'Noto Serif SC',
+              'edgeLabelBackground': '#ddebe6'
+          }
+      }
+  }%%
+  graph TD
+
+  T(("<b>HashMap<br>怎么存取值</b>")):::p
+  T --> |"数据以键值对形式存储"| A["<i>key — value</i>"]
+  A --> |"包装为Node数组对象"| B["<i>Node { key, value }</i>"]
+  B --> |"通过node数组下标保存对应数据"| C["<i>node[0] = new Node { key, value }<br>node[1] = new Node { key, value }<br>node[2] = new Node { key, value }<br> ...</i>"]
+  C -.-> |"[ <b>保存</b> ] <br>遍历数组，对应key和value"| D["<i>for (Node node : nodes)</i>"]
+  C --> |"<b>[ 获取 ] <br>通过<u> 数组索引 </u>获取<i>（key的hash值）</i></b>"|E["<i><b>node[ <u>hash(key)</u> ] = value</b></i>"]:::lb
+
+  classDef p fill:#ddaebd
+  style E fill:#d9dfeb, stroke:#657eae,stroke-width:2px,stroke-dasharray: 5 3</pre>
+
+</li>
+</ul>
+<h3 id="（2）Hash算法怎么写"><a href="#（2）Hash算法怎么写" class="headerlink" title="（2）Hash算法怎么写"></a>（2）Hash算法怎么写</h3><ul>
+<li><p>计算数组索引值：</p>
+  <pre class="mermaid">    %%{
+      init: {
+          'themeVariables': {
+          'fontFamily': 'Noto Serif SC',
+          'clusterBorder': 'none',
+          'clusterBkg': '#f0f2f7'
+      }
+  }
+  }%%
+  graph TD
+  T(("<b>Hash算法<br>怎么写？</b>")):::p
+  T --> |"<i>如何计算出数组索引？hash(key)</i>"| A["* 因为Node数组有固定的初始化默认长度（length）<br>* 索引值需限定在数组长度范围内（0～length-1）<br>* 索引值还要尽可能平衡、分布均匀"]
+  A --> B(["取模运算：<i>hash % length</i>"])
+  B ==> |"（更好的方案：<br>使用位运算效率更高）"| C(["<b>位运算：<i>hash & (length - 1)</i></b>"])
+  C -.- c("<b><i>length必须是2的n次幂</i></b>"):::b
+  subgraph "前置条件"
+  c -.- c2["<i>假如 key = 20, length = 16, hash & (length-1):</i><br>0001 0100  // 20  <br>0000 1111 // 15<br >0000 0100 // =4"]:::c2
+  end
+  classDef p fill:#ddaebd
+  classDef b fill:#d2d9e7, stroke-width: 0px
+
+  style c2 color: #86868b, fill:#ebedf3, stroke-dasharray: 3 3
+  %% 取模运算
+  style B fill: #f4e4e9
+  %% "位运算"
+  style C fill:#b8c3d9, stroke:#657eae,stroke-width:2px</pre>
+</li>
+<li><p><strong>为了解决取模的效率问题，采用了位运算的方法：<code>index = hash值 &amp; (length -1)</code></strong><br>此时需要一个前置条件：<strong><em>length的长度必须是2的n次幂</em></strong>。<br>当length的长度是<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mi mathvariant="normal">n</mi></msup></math>时，有以下公式成立： <b><i>num%<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mi mathvariant="normal">n</mi></msup></math> = num&amp;(<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mi mathvariant="normal">n</mi></msup></math>-1) </i>。</b></p>
+<blockquote>
+<p>🦋 因为就像十进制取余一样，若除以10或10的整次幂数，余数刚好是取低位上的数字。同理，二进制取余数只要除以2的n次幂数，低位上的数字就是我们需要的余数。而(<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mi mathvariant="normal">n</mi></msup></math> - 1)的二进制有效位都是1，和n位的1作与运算相当于取低n位的值。</p>
+</blockquote>
+</li>
+<li><p><strong>length的长度刚好是2的n次幂，扩容也是按原来的2倍容量进行扩容，可以加快hash计算、减少hash冲突。</strong></p>
+<blockquote>
+<p>🦋 <strong>加快hash计算</strong>：</p>
+<ol>
+<li>两倍扩容机制使容量一直保持在2的n次幂数，就可以使用位运算代替取模运算，提升hash计算效率。</li>
+<li>当容量保持为2的n次幂时，每次扩容时位运算计算得出的余数不变，数据存放的<u>索引位置也保持不变</u>。而使用%计算时，结果会因为容量的变化而改变（模运算会产生小数点），每次扩容时数据在数组中存放的位置会发生改变（数据漂移），影响性能。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>🦋 <strong>减少hash冲突</strong>：</p>
+<ul>
+<li>将容量保持为偶数进行hash计算时，经过(length-1)后，计算出的索引值为奇数和偶数的概率相同（取决于随机生成的hash值）；</li>
+<li>而使用奇数容量进行hash计算时，经过(length-1)后，最终结果均为偶数，这样任何 hash 值都只会被散列到数组的偶数下标位置上，这浪费了近一半的空间。</li>
+<li>因此双倍扩容机制使容量保持在偶数值，可以使添加的元素在HashMap的数组中均匀分布，减少hash碰撞。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="（3）Hash冲突怎么办"><a href="#（3）Hash冲突怎么办" class="headerlink" title="（3）Hash冲突怎么办"></a>（3）Hash冲突怎么办</h3><ul>
+<li><p>Hash冲突</p>
+  <pre class="mermaid">    %%{
+      init: {
+      'themeVariables': {
+          'fontFamily': 'Noto Serif SC',
+          'edgeLabelBackground': '#ddebe6'
+      }
+  }
+  }%%
+  graph TD
+
+  T(("1. <b>Hash冲突<br>怎么优化</b>")):::p
+  --> T1("hash表里可以存储元素的位置<br>被称为“<b>桶（bucket）</b>”")
+  T1 --> |"<b>通常情况</b>"| A("单个“桶”里存储一个元素，<br>此时性能最佳"):::g
+  A -.-> |"<i><b>O(1)</b></i>"| a["hash算法可以根据hashCode值<br>计算出“桶”的存储位置，<br>接着从“桶”中取出元素。"]
+  T1 --> |"<b>哈希冲突的情况</b>"| B("单个桶会存储多个元素<i><br>（hash值相同）</i>"):::g
+  B -.-> |"<b><i>O(n)</b></i>"|b(["多个元素以 <b><i>链表</i></b> 形式存储<br>"]):::B
+  b --> 2T(("2.<b> Hash冲突<br>很大怎么优化</b>")):::p
+  subgraph "<i>（链表必须按顺序搜索，存取性能差）</i>"
+  2T --> C(["将链表结构转为<b><i>红黑树</i></b>"]):::B
+  C -.- |"<i><b>O(logn)</b></i>"|c["以树的高度为最差查询性能，永远不会出现O(n)的情况。"]:::info
+  end
+
+  classDef p fill:#ddaebd
+  classDef g fill:#f4e4e9
+  classDef B fill:#d9dfeb, stroke:#657eae,stroke-width:2px
+  classDef info fill:#f6f6f7,color:#737379stroke-width: 2px, stroke-dasharray: 5 5</pre></li>
+<li><p>Hash冲突示意图</p>
+  <pre class="mermaid">    %%{
+      init: {
+          'themeVariables': {
+              'fontFamily': 'Noto Serif SC',
+              'edgeLabelBackground': '#cde2da',
+              'clusterBorder': 'none',
+              'clusterBkg': '#ececee'
+          }
+      }
+  }%%
+  %% 链表超过8时树化成红黑树
+  graph TD
+
+  subgraph "Entry[]"
+  Entry0["Entry0<br><i><b>Node＜K,V></b></i>"] -.- Entry1 -.- Entry2 -.- Entry3 -.- Entry4 -.- Entry5 -.- Entry6
+  end
+
+  subgraph 链表
+  Entry1 --> A[Entry] --> B[Entry] --> C[Entry] --> D[Entry] --> E[Entry] --> F[Entry]  --> G[Entry]
+  end
+
+  subgraph 红黑树
+  Entry4 --> a[Entry]
+  a[Entry] --> b[Entry]
+  b --> b1[Entry]
+  b --> b2[Entry]
+  a --> c[Entry]
+  c --> c1[Entry]
+  c --> c2[Entry]
+  b1 --> d[Entry]
+  b1 --> d2[Entry]
+  end
+
+  style 链表 fill:#ddebe6
+  style 红黑树 fill:#f4e4e9</pre>
+
+</li>
+</ul>
+<h3 id="（4）Hash冲突时"><a href="#（4）Hash冲突时" class="headerlink" title="（4）Hash冲突时"></a>（4）Hash冲突时</h3><ul>
+<li><p>Hash冲突时删除元素：</p>
+  <pre class="mermaid">    %%{
+      init: {
+      'themeVariables': {
+          'fontFamily': 'Noto Serif SC',
+          'edgeLabelBackground': '#cde2da'
+      }
+  }   
+  }%%
+  graph TD
+  T(("<b>Hash冲突时怎<br>么删除元素？</b>")):::p
+  T --> B["先根据key找到桶位"]
+  B --> A("判断为红黑树或链表，<br>根据不同结构从当前位置移除")
+  A -.-> |"链表"|a["将上个位置指空"]:::b
+  A -.-> |"红黑树"|b["去掉当前节点后自平衡"]:::b
+
+  classDef p fill:#ddaebd
+  classDef b fill:#d9dfeb</pre>
+
+
+</li>
+</ul>
+<hr>
+<h1 id="二、HashMap源码"><a href="#二、HashMap源码" class="headerlink" title="二、HashMap源码"></a>二、HashMap源码</h1><h2 id="1-构造方法"><a href="#1-构造方法" class="headerlink" title="1. 构造方法"></a>1. 构造方法</h2><pre class="mermaid">%%{
+    init: {
+    'themeVariables': {
+      'fontFamily': 'Noto Serif SC',
+            'edgeLabelBackground': '#ddebe6'
+        }
+  }
+}%%
+graph LR
+
+T(("<b>HashMap<br>构造方法</b>")):::p
+T --> A(["<i>HashMap map1 = new HashMap();</i>"]):::lp
+T --> B(["<i>HashMap map2 = new HashMap(30);</i>"]):::lp
+T --> C(["<i>HashMap map3 = new HashMap(30, 0.5f);</i>"]):::lp
+T --> D(["<i>HashMap map4 = new HashMap(map);</i>"]):::lp
+
+A --- |"无参构造方法"|a("不指定容量，默认:16")
+B --- |"<i>initialCapacoty</i>"| b("指定初始化容量：30")
+C --- |"<i>initialCapacoty<br>loadFactor</i>"| c("指定初始化容量、负载率")
+D --- |"<i>Map map</i>"| d("以指定map构造新map</i>")
+
+D -.- ci("* 注意：<br>与上述仅创建空HashMap不同，<br>此方法内部调用了put()存值<br>真正进行了初始化。"):::info
+
+classDef p fill:#ddaebd
+classDef lp fill: #f4e4e9
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+<h3 id="（1）HashMap"><a href="#（1）HashMap" class="headerlink" title="（1）HashMap()"></a>（1）HashMap()</h3><ul>
+<li>无参数的构造方法<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Constructs an empty HashMap with the default initial capacity(16) and the default load factor (0.75).</span><br><span class="hljs-comment"> * 以默认初始容量(16)和默认负载率(0.75)，构造一个空的HashMap。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HashMap</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// 🔻 将负载率赋为默认值。</span><br>    <span class="hljs-keyword">this</span>.loadFactor = DEFAULT_LOAD_FACTOR; <span class="hljs-comment">// all other fields defaulted</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="（2）HashMap-20"><a href="#（2）HashMap-20" class="headerlink" title="（2）HashMap(20)"></a>（2）HashMap(20)</h3><ul>
+<li>带初始容量的构造方法：<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Constructs an empty HashMap with the specified initial capacity and the default load factor (0.75).</span><br><span class="hljs-comment"> * 以特定的初始容量和默认的负载率(0.75)，构造一个空的HashMap</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span>  initialCapacity 初始容量</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> IllegalArgumentException 初始容量为负值时抛出非法数据异常。</span><br><span class="hljs-comment"> */</span><br> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HashMap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> initialCapacity)</span> </span>&#123;<br>    <span class="hljs-comment">// 🔻 调用了带初始容量、负载率的构造方法（详见下文(3)）</span><br>    <span class="hljs-keyword">this</span>(initialCapacity, DEFAULT_LOAD_FACTOR);<br> &#125;<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="（3）HashMap-20-0-5f"><a href="#（3）HashMap-20-0-5f" class="headerlink" title="（3）HashMap(20, 0.5f)"></a>（3）HashMap(20, 0.5f)</h3><h4 id="HashMap"><a href="#HashMap" class="headerlink" title="- HashMap()"></a>- HashMap()</h4><ul>
+<li>带初始容量、负载率的构造方法<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Constructs an empty HashMap with the specified initial capacity and load factor.</span><br><span class="hljs-comment"> * 以特定的初始容量和负载率构造一个空的HashMap。</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span>  initialCapacity 初始化容量</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span>  loadFactor      负载率</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> IllegalArgumentException if the initial capacity is negative</span><br><span class="hljs-comment"> *         or the load factor is nonpositive</span><br><span class="hljs-comment"> *         当初始容量为负值、或负载率为非正时抛出非法数据异常。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HashMap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> initialCapacity, <span class="hljs-keyword">float</span> loadFactor)</span> </span>&#123;<br>    <span class="hljs-comment">// 🔴 一、判断传入参数的合法性</span><br>    <span class="hljs-comment">// 🔹 初始容量值非负数</span><br>    <span class="hljs-keyword">if</span> (initialCapacity &lt; <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;Illegal initial capacity: &quot;</span> +<br>                                           initialCapacity);       <br>    <span class="hljs-comment">// 🔹 初始容量值不超过最大容量</span><br>    <span class="hljs-keyword">if</span> (initialCapacity &gt; MAXIMUM_CAPACITY)<br>        initialCapacity = MAXIMUM_CAPACITY;<br>    <span class="hljs-comment">// 🔹 负载率大于0且为数字</span><br>    <span class="hljs-keyword">if</span> (loadFactor &lt;= <span class="hljs-number">0</span> || Float.isNaN(loadFactor))<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;Illegal load factor: &quot;</span> +<br>                                         loadFactor);<br><br>    <span class="hljs-comment">// 🔴 二、开始赋值</span><br>    <span class="hljs-comment">// 🔹 为负载率赋值</span><br>    <span class="hljs-keyword">this</span>.loadFactor = loadFactor;<br>    <span class="hljs-comment">// 🔹 为临界值赋值：使用tableSizeFor()将给定数值调整为2的次幂数。</span><br>    <span class="hljs-keyword">this</span>.threshold = tableSizeFor(initialCapacity);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="tableSizeFor"><a href="#tableSizeFor" class="headerlink" title="- tableSizeFor()"></a>- tableSizeFor()</h4><ul>
+<li>返回最接近给定目标容量的二次幂数值。<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Returns a power of two size for the given target capacity.</span><br><span class="hljs-comment"> * 返回给定目标容量的二次幂数。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">tableSizeFor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> cap)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> n = cap - <span class="hljs-number">1</span>;<br>    n |= n &gt;&gt;&gt; <span class="hljs-number">1</span>;<br>    n |= n &gt;&gt;&gt; <span class="hljs-number">2</span>;<br>    n |= n &gt;&gt;&gt; <span class="hljs-number">4</span>;<br>    n |= n &gt;&gt;&gt; <span class="hljs-number">8</span>;<br>    n |= n &gt;&gt;&gt; <span class="hljs-number">16</span>;<br>    <span class="hljs-keyword">return</span> (n &lt; <span class="hljs-number">0</span>) ? <span class="hljs-number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="hljs-number">1</span>;<br>&#125;<br><br><br><span class="hljs-comment">/* 以下为备注：</span><br><span class="hljs-comment">    -------------------------------------------------</span><br><span class="hljs-comment">      * 该位运算用于求出高位1之后每位都为1的结果。</span><br><span class="hljs-comment">        因为将每位变为1，则加上1后刚好是一个二次幂数。</span><br><span class="hljs-comment">        如(0000 1000)，使其第一位1后面都为1，即(0000 1111)</span><br><span class="hljs-comment">    ------------------------------------------------- */</span><br><br>        <span class="hljs-comment">// 如，initialCapacity = 9</span><br>        <span class="hljs-comment">// 🔴 将 n - 1</span><br>        <span class="hljs-comment">/* 🔸 原因：为了处理n刚好是二次幂数的情况。</span><br><span class="hljs-comment">                   若n已经是2的N次方了，按照逻辑变1之后再加1，结果就会变成n的2倍了，与应有的结果不一致。如 n=16（0001 0000），位运算后 n=31（0001 1111）*/</span><br>	<span class="hljs-keyword">int</span> n = cap -<span class="hljs-number">1</span>; <span class="hljs-comment">// n = 8	</span><br><br>        <span class="hljs-comment">// 🔴 作位运算：1. 无符号位移 2. 与n作或的位运算。</span><br>	n |= n &gt;&gt;&gt; <span class="hljs-number">1</span>; <br>	n = <span class="hljs-number">0000</span> <span class="hljs-number">1000</span><br>	n = <span class="hljs-number">0000</span> <span class="hljs-number">0100</span><br>	n = <span class="hljs-number">0000</span> <span class="hljs-number">1100</span>  <br><br>	n |= n &gt;&gt;&gt; <span class="hljs-number">2</span>;<br>	n = <span class="hljs-number">0000</span> <span class="hljs-number">1100</span><br>	n = <span class="hljs-number">0000</span> <span class="hljs-number">0011</span><br>	n = <span class="hljs-number">0000</span> <span class="hljs-number">1111</span>  <span class="hljs-comment">// =15</span><br><br>	n |= n &gt;&gt;&gt; <span class="hljs-number">4</span>;<br>	n = <span class="hljs-number">0000</span> <span class="hljs-number">1111</span><br>	n = <span class="hljs-number">0000</span> <span class="hljs-number">0000</span>  <br>	n = <span class="hljs-number">0000</span> <span class="hljs-number">1111</span>  <br><br>	n |= n &gt;&gt;&gt; <span class="hljs-number">8</span>;<br>	n = <span class="hljs-number">0000</span> <span class="hljs-number">1111</span><br>	n = <span class="hljs-number">0000</span> <span class="hljs-number">0000</span><br>	n = <span class="hljs-number">0000</span> <span class="hljs-number">1111</span>  <br><br>	n |= n &gt;&gt;&gt; <span class="hljs-number">16</span>;	<br>        <span class="hljs-comment">// 🔸 因为int是32位的，所以执行到16即可.</span><br><br><br>        <span class="hljs-comment">// 🔴 返回位移结果n + 1</span><br>	<span class="hljs-keyword">return</span> (n &lt; <span class="hljs-number">0</span>) ? <span class="hljs-number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUN_CAPACITY : n + <span class="hljs-number">1</span>;<br>	 n &lt; <span class="hljs-number">0</span>, 则返回 n = <span class="hljs-number">1</span> <br>	 n &gt;= <span class="hljs-number">0</span>, 且 n &gt;= 最大容量, 则返回最大容量 <br>	 n &gt;= <span class="hljs-number">0</span>, 且 n &lt; 最大容量, 则返回 n + <span class="hljs-number">1</span> （=<span class="hljs-number">16</span>）<br><br>     <br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="（3）HashMap-map"><a href="#（3）HashMap-map" class="headerlink" title="（3）HashMap(map)"></a>（3）HashMap(map)</h3><h4 id="HashMap-1"><a href="#HashMap-1" class="headerlink" title="- HashMap()"></a>- HashMap()</h4><ul>
+<li>带map的构造方法  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Constructs a new HashMap with the same mappings as the specified Map.</span><br><span class="hljs-comment"> * The HashMap is created with default load factor (0.75) and an initial capacity sufficient to hold the mappings in the specified Map.</span><br><span class="hljs-comment"> * 使用与指定Map相同的映射构造新的HashMap。</span><br><span class="hljs-comment"> * 此HashMap由：默认负载率(0.75)、足够的初始容量（足以存下指定Map）创建。</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span>   m the map whose mappings are to be placed in this map</span><br><span class="hljs-comment"> * @参数：   m，原map</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span>  NullPointerException if the specified map is null</span><br><span class="hljs-comment"> * @异常：   当原map为空时抛出空指针异常。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HashMap</span><span class="hljs-params">(Map&lt;? extends K, ? extends V&gt; m)</span> </span>&#123;<br>    <span class="hljs-comment">// 🔻 将负载率赋为默认值。</span><br>    <span class="hljs-keyword">this</span>.loadFactor = DEFAULT_LOAD_FACTOR;<br>    <span class="hljs-comment">// 🔻 调用putMapEntries()，将原有map存入新map。</span><br>    putMapEntries(m, <span class="hljs-keyword">false</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="putMapEntries"><a href="#putMapEntries" class="headerlink" title="- putMapEntries()"></a>- putMapEntries()</h4><ul>
+<li>赋值并初始化函数<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Implements Map.putAll and Map constructor.</span><br><span class="hljs-comment"> * 赋值并构造函数。</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> m the map</span><br><span class="hljs-comment"> * @参数： m，传入的map</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> evict false when initially constructing this map, else true (relayed to method afterNodeInsertion).</span><br><span class="hljs-comment"> * @参数： evict，首次创建此map时返回false，非首次创建返回true。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">putMapEntries</span><span class="hljs-params">(Map&lt;? extends K, ? extends V&gt; m, <span class="hljs-keyword">boolean</span> evict)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> s = m.size();<br>    <span class="hljs-keyword">if</span> (s &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">// 🔴 若原Map为空：为新Map设置初始容量、临界值。</span><br>        <span class="hljs-keyword">if</span> (table == <span class="hljs-keyword">null</span>) &#123; <span class="hljs-comment">// pre-size</span><br>            <span class="hljs-comment">// 🔹 </span><br>            <span class="hljs-keyword">float</span> ft = ((<span class="hljs-keyword">float</span>)s / loadFactor) + <span class="hljs-number">1.0F</span>;<br>            <span class="hljs-comment">// 🔹 </span><br>            <span class="hljs-keyword">int</span> t = ((ft &lt; (<span class="hljs-keyword">float</span>)MAXIMUM_CAPACITY) ?<br>                     (<span class="hljs-keyword">int</span>)ft : MAXIMUM_CAPACITY);<br>            <span class="hljs-comment">// 🔹 若初始容量 &gt; 临界值，调用tableSizeFor方法，将临界值重新设置为：最接近容量的2次幂数。</span><br>            <span class="hljs-keyword">if</span> (t &gt; threshold)<br>                threshold = tableSizeFor(t);<br>        &#125;<br>        <span class="hljs-comment">// 🔴 若原map不为空、且Map大小超过默认的临界值：扩容。</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (s &gt; threshold)<br>            resize();<br>        <span class="hljs-comment">// 🔴 赋值：遍历原Map的entry，逐个赋值。</span><br>        <span class="hljs-keyword">for</span> (Map.Entry&lt;? extends K, ? extends V&gt; e : m.entrySet()) &#123;<br>            K key = e.getKey();<br>            V value = e.getValue();<br>            <span class="hljs-comment">// 🔹 </span><br>            putVal(hash(key), key, value, <span class="hljs-keyword">false</span>, evict);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h4 id="HashMap-2"><a href="#HashMap-2" class="headerlink" title="- HashMap()"></a>- HashMap()</h4></div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeNode/" rel="tag">TreeNode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/note/Design-pattern/design-pattern_Chain/">🌷 设计模式 - 责任链</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize({
+    securityLevel: 'loose',
+    theme: 'neutral',
+  });
+}</script></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
