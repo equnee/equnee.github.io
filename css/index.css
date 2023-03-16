@@ -68,7 +68,7 @@ article.post-view__article .article__content a {
   text-decoration: none;
 }
 article.post-view__article .article__content a:hover {
-  box-shadow: inset 0 -0.8em 0 #f8a1b9;
+  box-shadow: inset 0 -0.8em 0 #eaa7b6;
 }
 article.post-view__article .article__content blockquote {
   border-left: 2px solid #333;
@@ -78,7 +78,7 @@ article.post-view__article .article__content .gutter {
   width: 3em;
   text-align: center;
   background: #f8f8f8;
-  border-right: 1px solid #cae8ca !important;
+  border-right: 1px solid #b3d8b3 !important;
 }
 article.post-view__article .article__content code.hljs {
   font-size: 1.4rem;
@@ -139,7 +139,7 @@ article.post-view__article .article__content table {
 }
 article.post-view__article .article__content table th,
 article.post-view__article .article__content table td {
-  border: 1px #cae8ca solid;
+  border: 1px #b3d8b3 solid;
   padding: 0.3em 1em;
 }
 article.post-view__article .article__content table th {
@@ -161,7 +161,7 @@ article.post-view__article .article__content table th:first-child {
 .footer {
   text-align: center;
   padding: 3rem 0;
-  background: #f8a1b9;
+  background: #eaa7b6;
   font-size: 1.4rem;
   line-height: 2.2rem;
 }
@@ -173,7 +173,7 @@ article.post-view__article .article__content table th:first-child {
 .head {
   padding: 8rem 0;
   text-align: center;
-  font-family: 'Abril Fatface', cursive, 'Alata', 'Noto Sans TC';
+  font-family: 'Abril Fatface', 'Noto Serif SC', cursive, 'Alata', 'Noto Sans TC';
   position: relative;
 }
 .head__inner {
@@ -249,7 +249,7 @@ article.post-view__article .article__content table th:first-child {
   background-position: center;
 }
 .posts-item:hover h2 a {
-  box-shadow: inset 0 -0.8em 0 #f8a1b9;
+  box-shadow: inset 0 -0.8em 0 #eaa7b6;
 }
 .posts-item__title {
   font-size: 5.2rem;
@@ -258,7 +258,7 @@ article.post-view__article .article__content table th:first-child {
 }
 .posts-item__title a {
   text-decoration: none;
-  box-shadow: inset 0 -0.3em 0 #f8a1b9;
+  box-shadow: inset 0 -0.3em 0 #eaa7b6;
   transition: box-shadow 0.5s cubic-bezier(0.71, 0, 0, 0.99);
 }
 .posts-item__title--image {
@@ -357,7 +357,7 @@ article.post-view__article .article__content table th:first-child {
   line-height: 3rem;
   display: inline-block;
   padding: 0 0.2em;
-  box-shadow: inset 0 -0.8em 0 #cae8ca;
+  box-shadow: inset 0 -0.8em 0 #b3d8b3;
 }
 .sidebar li {
   list-style-type: none;
@@ -385,7 +385,7 @@ article.post-view__article .article__content table th:first-child {
 .sidebar__categories a:hover,
 .sidebar__tags a:hover,
 .sidebar__friend a:hover {
-  box-shadow: inset 0 -0.8em 0 #f8a1b9;
+  box-shadow: inset 0 -0.8em 0 #eaa7b6;
 }
 .sidebar__tags li {
   display: inline-block;
@@ -417,7 +417,7 @@ article.post-view__article .article__content table th:first-child {
     display: block;
     width: 3rem;
     height: 3rem;
-    background: #f8a1b9;
+    background: #eaa7b6;
     background-image: url("../../img/icon-expend.svg");
     background-position: center;
     background-size: contain;
@@ -444,7 +444,7 @@ article.post-view__article .article__content table th:first-child {
   text-decoration: none;
   padding: 1.5rem 5rem;
   border: 2px solid #333;
-  background: #f8a1b9;
+  background: #eaa7b6;
 }
 .paginator .prev,
 .paginator .next {
@@ -632,7 +632,7 @@ article.post-view__article .article__content table th:first-child {
   left: 1rem;
 }
 .tocbot .is-active-link::before {
-  background: #f8a1b9;
+  background: #eaa7b6;
 }
 @media screen and (max-width: 780px) {
   .tocbot {
@@ -653,7 +653,7 @@ article.post-view__article .article__content table th:first-child {
   content: '';
   width: 100%;
   height: 100vh;
-  border: 1.5rem #f8a1b9 solid;
+  border: 1.5rem #eaa7b6 solid;
   position: fixed;
   top: 0;
   left: 0;
@@ -673,7 +673,7 @@ article.post-view__article .article__content table th:first-child {
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #cae8ca;
+  background: #b3d8b3;
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
@@ -681,6 +681,6 @@ article.post-view__article .article__content table th:first-child {
 }
 @media screen and (max-width: 1080px) {
   .mask-border::before {
-    border: 0.8rem #f8a1b9 solid;
+    border: 0.8rem #eaa7b6 solid;
   }
 }
