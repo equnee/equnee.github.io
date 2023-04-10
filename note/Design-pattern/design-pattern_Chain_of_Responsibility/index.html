@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="🌷 秒懂设计模式 - 责任链 [ 🍧 Peach ] "><meta name="theme-color"><title>🌷 秒懂设计模式 - 责任链 [ 🍧 Peach ] </title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/mermaid.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=G-5GZQ6P3RMX" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valine/dist/Valine.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  new Valine({
+    el: '#comments',
+    appId: 'MJAdR7lH7cWVJLyn1Tgnw5Sj-gzGzoHsz',
+    appKey: 'de2VP0VpE5bWgR2aA8wkwxn2',
+    notify: false,
+    verify: false,
+    avatar: 'mp',
+    placeholder: 'say something',
+  })
+})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  tocbot.init({
+    // Where to render the table of contents.
+    tocSelector: '.toc__content',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: '.article__content',
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    // For headings inside relative or absolute positioned containers within content.
+    hasInnerContainers: true,
+    orderedList: false,
+    collapseDepth: 2,
+  });
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃想写可爱的代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">🌷 秒懂设计模式 - 责任链</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">🌷 秒懂设计模式 - 责任链</a></h2><span class="post__date">2023-03-08</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/Chain/"><span class="post__tags">#Chain</span></a></div></div><div class="article__content"><ul>
+<li>来自<a href="https://book.douban.com/subject/35525040/">《秒懂设计模式》</a> <pre class="mermaid">%%{
+  init: {
+  'themeVariables': {
+      'fontSize': '13px'
+  }
+}
+}%%
+graph LR
+T(["<b>责任链<br>介绍</b>"]):::p
+T --> A(["<b>责任链</b>"]):::g
+T --> B(["<b>责任链模式</b>"]):::p
+T --> C(["<b>业务责任链</b>"]):::b
+A -.-> a("责任链是由很多<b>责任节点</b>串联起来的一条任务链条，<br>其中每一个责任节点都是一个业务处理环节。"):::lg
+B -.-> b("<b>责任链模式<i>(Chain of Responsibility)</i></b> 允许业务请求者<br><u>将责任链视为一个整体并对其发起请求</u>，而不必关心<br>链条内部具体的业务逻辑与流程走向。"):::lp
+B -.-> b2("请求者不必关心具体是哪个节点起了作用，<br>总之业务最终能得到相应的处理。"):::info
+C -.->c("在软件系统中，当一个业务需要经历一系列业务对象去处理时，<br>我们可以<b>把这些业务对象串联起来成为一条业务责任链</b>，<br><u>请求者可以直接通过访问业务责任链</u>来完成业务的处理，<br>最终实现请求者与响应者的解耦。"):::lb
+classDef p fill:#ddaebd
+classDef g fill:#9ac5bb
+classDef b fill:#aab7d2
+classDef lp fill:#f4e4e9
+classDef lg fill:#ddebe6
+classDef lb fill:#d9dfeb
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+,</li>
+</ul>
+<hr>
+<h2 id="一、简单的生产线"><a href="#一、简单的生产线" class="headerlink" title="一、简单的生产线"></a>一、简单的生产线</h2><ul>
+<li><p><strong>最简单的责任链模式例子：汽车生产线的制造流程。</strong></p>
+<pre class="mermaid">%%{
+  init: {
+  'themeVariables': {
+      'fontSize': '14px'
+  }
+}
+}%%
+graph LR
+T(["<b>汽车生产线<br>的制造流程</b>"]):::p
+T --- A("<b>劳动分工</b>"):::lp
+T --- B("<b>架构生产线</b>"):::lp
+a --> C("<b>最终</b> <br> 通过生产线的传递，汽车便<br>从零件到成品得以量产，<br>生产效率大大提升"):::B
+b --> C
+A -.- a("将汽车零件的安装工作<br>拆分并分配给各安装节点")
+B -.-b("将安装节点组织起来，<br>首尾相接，规划操作流程")
+classDef p fill:#ddaebd
+classDef lp fill:#f4e4e9
+classDef B fill:#d9dfeb, stroke:#657eae,stroke-width:2px
+classDef lb fill: #d9dfeb
+classDef info fill:#f6f6f7,color:#737379, stroke-width: 2px, stroke-dasharray: 3 3</pre>
+</li>
+<li><p><strong>我们将汽车生产线从左至右分为3个功能节点</strong>：<br>这样将产品逐级传递，每经过一个节点就完成一部分工作，最终完成产品交付。</p>
+  <pre class="mermaid">    %%{
+      init: {
+      'themeVariables': {
+          'fontSize': '12px'
+      }
+  }
+  }%%
+  graph LR
+  T(["<b>汽车生产线<br>节点</b>"]):::p
+  T --> A("A节点"):::lp
+  T --> B("B节点"):::lp 
+  T --> C("C节点"):::lp 
+  A -.- a["负责组装车架、安装车轮"]
+  B -.- b["负责安装发动机、油箱、传动轴等内部机件"]
+  C -.- c["负责组装外壳、喷漆等操作"]
+  classDef p fill:#ddaebd
+  classDef lp fill:#f4e4e9
+  classDef B fill:#d9dfeb, stroke:#657eae,stroke-width:2px
+  classDef lb fill: #d9dfeb
+  classDef info fill:#f6f6f7,color:#737379, stroke-width: 2px, stroke-dasharray: 3 3</pre>
+<p><img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E8%8A%82%E7%82%B9.jpg" alt="节点"></p>
+</li>
+</ul>
+<hr>
+<h2 id="二、工作流程拆分"><a href="#二、工作流程拆分" class="headerlink" title="二、工作流程拆分"></a>二、工作流程拆分</h2><ul>
+<li><p><strong>带有一些逻辑的责任链：报销审批流程。</strong><br>  <img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E6%8A%A5%E9%94%80%E5%AE%A1%E6%89%B9%E6%B5%81%E7%A8%8B.png" alt="报销审批流程">  </p>
+<blockquote>
+<p>审批流程按负责人或者工作职责进行拆分：需要依次通过财务专员、财务经理、财务总监的审批。如果申请金额在审批人的审批职权范围内则审批通过并终止流程，反之则会升级至更高层级的上级去继续审批，直至最终的财务总监，如果仍旧超出财务总监的审批金额则驳回申请，流程终止。</p>
+</blockquote>
+</li>
+<li><p><strong>如何设计这个审批流程：</strong><br>首先<u>按角色对业务进行拆分</u>，将不同的业务代码放在不同的角色类中，如此达到职权分拆的目的，可扩展性、可维护性也能得到提高。</p>
+<br>
+.
+
+</li>
+</ul>
+<hr>
+<h2 id="三、踢皮球"><a href="#三、踢皮球" class="headerlink" title="三、踢皮球"></a>三、踢皮球</h2><h3 id="1-实例"><a href="#1-实例" class="headerlink" title="1. 实例"></a>1. 实例</h3><ul>
+<li>基于上述审批流程，来做一个简单的实例：假设某公司的报销审批流程有3个审批角色<pre class="mermaid">%%{
+  init: {
+  'themeVariables': {
+      'fontSize': '12px'
+  }
+}
+}%%
+%% 假设某公司的报销审批流程有3个审批角色
+graph LR
+T(["<b>报销审批流程</b><br>（3个角色）"]):::p
+T --> A("财务专员"):::lp
+T --> B("财务经理"):::lp 
+T --> C("财务总监"):::lp 
+A -.- a["1000元审批权限"]
+B -.- b["5000元审批权限"]
+C -.- c["10000元审批权限"]
+classDef p fill:#ddaebd
+classDef lp fill:#f4e4e9
+classDef B fill:#d9dfeb, stroke:#657eae,stroke-width:2px
+classDef lb fill: #d9dfeb
+classDef info fill:#f6f6f7,color:#737379, stroke-width: 2px, stroke-dasharray: 3 3</pre>
+
+</li>
+</ul>
+<h3 id="2-代码"><a href="#2-代码" class="headerlink" title="2. 代码"></a>2. 代码</h3><ul>
+<li><p><strong>Staff</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 财务专员类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Staff</span> </span>&#123;<br>	<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Staff</span><span class="hljs-params">(String name)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">approve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> amount)</span> </span>&#123;<br>    	<span class="hljs-keyword">if</span> (amount &lt;= <span class="hljs-number">1000</span>) &#123; <br>    		System.out.println(<span class="hljs-string">&quot;审批通过。【专员：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>    		<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    	&#125; <span class="hljs-keyword">else</span> &#123;<br>    		System.out.println(<span class="hljs-string">&quot;无权审批，请找上级。【专员：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>    		<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    	&#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p><strong>Manager</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 财务经理类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Manager</span> </span>&#123;<br>	<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Manager</span><span class="hljs-params">(String name)</span></span>&#123;<br>    	<span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">approve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> amount)</span> </span>&#123;<br>    	<span class="hljs-keyword">if</span> (amount &lt;= <span class="hljs-number">5000</span>) &#123; <br>    		System.out.println(<span class="hljs-string">&quot;审批通过。【经理：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>    		<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    	&#125; <span class="hljs-keyword">else</span> &#123;<br>    		System.out.println(<span class="hljs-string">&quot;无权审批，请找上级。【经理：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>    		<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    	&#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p><strong>CFO</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 财务总监类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CFO</span> </span>&#123;<br>	<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Manager</span><span class="hljs-params">(String name)</span></span>&#123;<br>		<span class="hljs-keyword">this</span>.name = name;<br>	&#125;<br><br>    <span class="hljs-comment">/* 定义了财务总监类CFO的审批方法approve()并接受要审批的金额，</span><br><span class="hljs-comment">     如果金额在10000元以内则审批通过，否则驳回此申请。 */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">approve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> amount)</span> </span>&#123;<br>    	<span class="hljs-keyword">if</span> (amount &lt;= <span class="hljs-number">10000</span>) &#123; <br>    		System.out.println(<span class="hljs-string">&quot;审批通过。【总监：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>    		<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    	&#125; <span class="hljs-keyword">else</span> &#123;<br>    		System.out.println(<span class="hljs-string">&quot;驳回申请。【总监：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>    		<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    	&#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>3个审批角色的代码都比较类似，只要超过其审批金额的权限就驳回申请，反之则审批通过。</p>
+</li>
+<li><p><strong>接下来，客户端开始提交申请了：Client</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 客户端类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>        <span class="hljs-keyword">int</span> amount = <span class="hljs-number">10000</span>; <span class="hljs-comment">// 出差花费10000元</span><br>        <span class="hljs-comment">// 先找专员张飞审批</span><br>        Staff staff = <span class="hljs-keyword">new</span> Staff(<span class="hljs-string">&quot;张飞&quot;</span>);<br>        <span class="hljs-keyword">if</span> (!staff.approve(amount)) &#123;<br>            <span class="hljs-comment">// 被驳回，找关二爷问问</span><br>            Manager manager = <span class="hljs-keyword">new</span> Manager(<span class="hljs-string">&quot;关羽&quot;</span>);<br>            <span class="hljs-keyword">if</span> (!manager.approve(amount))&#123;<br>                <span class="hljs-comment">// 还是被驳回，只能找老大了</span><br>                CFO cfo = <span class="hljs-keyword">new</span> CFO(<span class="hljs-string">&quot;刘备&quot;</span>);<br>                cfo.approve(amount);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>&#125;<br><br><span class="hljs-comment">/*******************************</span><br><span class="hljs-comment">  无权审批，请找上级。【专员：张飞】</span><br><span class="hljs-comment">  无权审批，请找上级。【经理：关羽】</span><br><span class="hljs-comment">  审批通过。【总监：刘备】</span><br><span class="hljs-comment"> *******************************/</span><br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="3-问题"><a href="#3-问题" class="headerlink" title="3. 问题"></a>3. 问题</h3><pre class="mermaid">graph LR
+T(["<b>问题出在<br>哪里？</b>"]):::p
+T --> A("<b>流程繁琐</b>"):::lp
+T --> B("<b>维护困难</b>"):::lp
+T --> C("<b>职权限制</b>"):::lp
+A -.- a("办事效率低，审批流程太过烦琐，<br>有种被踢皮球的感觉。"):::info
+B -.- b("若后期优化业务流程而添加新的审批角色，<br>或增加更复杂的逻辑，申请人就不得不<br>学习新流程，不停修改自己的申请逻辑，<br>增加了维护成本。"):::info
+C -.- c("审批人的业务之间有环环相扣的关联，<br>对于超出审批人职权范围的申请会传递<br>给上级，直到解决问题为止。"):::info
+a --> D(["<b>工作流架构设计不合理</b><br><i>申请人终将被淹没在一堆<br>复杂的审批流程中。</i>"]):::B
+b --> D
+c --> D
+classDef p fill:#ddaebd
+classDef lp fill:#f4e4e9
+classDef B fill:#d9dfeb, stroke:#657eae,stroke-width:2px
+classDef lb fill: #d9dfeb
+classDef info fill:#f6f6f7,color:#737379, stroke-width: 2px, stroke-dasharray: 3 3</pre>
+
+<p>类似如上环环相扣的传递机制，就需要我们搭建一个链式结构的工作流，这也是责任链模式的精髓之所在。</p>
+<br>
+.
+
+<hr>
+<h2 id="四、架构工作流"><a href="#四、架构工作流" class="headerlink" title="四、架构工作流"></a>四、架构工作流</h2><p>我们用抽象类来定义审批人：</p>
+<ul>
+<li><strong>审批人 Approver</strong><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Approver</span> </span>&#123;<br>	<br>    <span class="hljs-keyword">protected</span> String name; <span class="hljs-comment">// 抽象出审批人的姓名</span><br>    <span class="hljs-keyword">protected</span> Approver nextApprover; <span class="hljs-comment">// 下一位审批人，更高级别的领导</span><br>	<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Approver</span><span class="hljs-params">(String name)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br>	<br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> Approver <span class="hljs-title">setNextApprover</span><span class="hljs-params">(Approver nextApprover)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.nextApprover = nextApprover;   <br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.nextApprover; <span class="hljs-comment">// 返回下一位审批人，使其支持链式编程</span><br>    &#125;<br>	<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">approve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> amount)</span></span>; <span class="hljs-comment">// 抽象审批方法由具体审批人子类实现</span><br><br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">     * 由于审批人在无权审批时需要传递业务给其上级领导，因此我们在第4行定义上级领导的引用nextApprover，与下一位审批人串联起来，同时将其注入第10行。</span><br><span class="hljs-comment">     * 当然，每位审批人的角色不同，其审批逻辑也有所区别，所以我们在第15行对审批方法进行抽象，交由具体的子类审批角色去继承和实现。</span><br><span class="hljs-comment">     */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>接着对3个审批角色的代码进行重构：</p>
+<ul>
+<li><p><strong>Staff</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 财务专员类</span><br><span class="hljs-comment"> */</span> <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Staff</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Approver</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Staff</span><span class="hljs-params">(String name)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>(name);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">approve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> amount)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(amount &lt;= <span class="hljs-number">1000</span>) &#123;<br>            System.out.println(<span class="hljs-string">&quot;审批通过。【专员：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;无权审批，升级处理。【专员：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>            <span class="hljs-keyword">this</span>.nextApprover.approve(amount);<br>        &#125;<br>    &#125;<br><br>&#125;<br><br><span class="hljs-comment">/*  财务专员类继承了审批人抽象类并实现了审批方法approve()，</span><br><span class="hljs-comment">    接收到报销申请金额后自第9行开始申明自己的审批权限为1000元，</span><br><span class="hljs-comment">    若超出则调用自己上级领导的审批方法nextApprover() ，将审批业务传递下去。*/</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Manager</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 财务经理类</span><br><span class="hljs-comment"> */</span> <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Manager</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Approver</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Manager</span><span class="hljs-params">(String name)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>(name);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">approve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> amount)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(amount &lt;= <span class="hljs-number">5000</span>) &#123;<br>            System.out.println(<span class="hljs-string">&quot;审批通过。【经理：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;无权审批，升级处理。【经理&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>            <span class="hljs-keyword">this</span>.nextApprover.approve(amount);<br>        &#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>CFO</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 财务专员类</span><br><span class="hljs-comment"> */</span> <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CFO</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Approver</span> </span>&#123;<br><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CFO</span><span class="hljs-params">(String name)</span> </span>&#123;<br>		<span class="hljs-keyword">super</span>(name);<br>	&#125;<br><br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">approve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> amount)</span> </span>&#123;<br>		<span class="hljs-keyword">if</span>(amount &lt;= <span class="hljs-number">1000</span>) &#123;<br>			System.out.println(<span class="hljs-string">&quot;审批通过。【财务总监：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			System.out.println(<span class="hljs-string">&quot;驳回申请。【财务总监：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>		&#125;<br>	&#125;<br><br>&#125;<br><span class="hljs-comment">/* 比较特殊的审批人是责任链末节点的财务总监类，最高职级的财务总监CFO的审批逻辑略有不同，</span><br><span class="hljs-comment">   当申请金额超出10000元后就再有下一个审批人了，所以此时就会驳回报销申请。*/</span><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 财务专员类</span><br><span class="hljs-comment"> */</span> <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CFO</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Approver</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CFO</span><span class="hljs-params">(String name)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>(name);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">approve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> amount)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(amount &lt;= <span class="hljs-number">1000</span>) &#123;<br>            System.out.println(<span class="hljs-string">&quot;审批通过。【财务总监：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;驳回申请。【财务总监：&quot;</span> + name + <span class="hljs-string">&quot;】&quot;</span>);<br>        &#125;<br>    &#125;<br><br>&#125;<br><span class="hljs-comment">/* 比较特殊的审批人是责任链末节点的财务总监类，最高职级的财务总监CFO的审批逻辑略有不同，</span><br><span class="hljs-comment">   当申请金额超出10000元后就再有下一个审批人了，所以此时就会驳回报销申请。*/</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Client</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 客户端类</span><br><span class="hljs-comment"> */</span> <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;<br>	<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>        Aprrovrt flightJohn = <span class="hljs-keyword">new</span> Staff(<span class="hljs-string">&quot;张飞&quot;</span>);<br>        <span class="hljs-comment">// 此处使用链式编程配置责任链</span><br>        flightJogn.setNextApprover(<span class="hljs-keyword">new</span> Manager(<span class="hljs-string">&quot;关羽&quot;</span>)).setNextApprover(<span class="hljs-keyword">new</span> CFO(<span class="hljs-string">&quot;刘备&quot;</span>));<br>		<br>        <span class="hljs-comment">// 直接找专员张飞审批</span><br>        flightJohn.approve(<span class="hljs-number">1000</span>);<br>        <span class="hljs-comment">/************************</span><br><span class="hljs-comment">            审批通过。【专员：张飞】</span><br><span class="hljs-comment">         ************************/</span><br>	<br>        flightJohn.approve(<span class="hljs-number">4000</span>);<br>        <span class="hljs-comment">/************************</span><br><span class="hljs-comment">            无权审批，升级处理。【专员：张飞】			</span><br><span class="hljs-comment">            审批通过。【经理：关羽】</span><br><span class="hljs-comment">         ************************/</span><br>	<br>        flightJohn.approve(<span class="hljs-number">9000</span>);<br>        <span class="hljs-comment">/************************</span><br><span class="hljs-comment">            无权审批，升级处理。【专员：张飞】</span><br><span class="hljs-comment">            无权审批，升级处理。【专员：关羽】				</span><br><span class="hljs-comment">            审批通过。【CEO：刘备】</span><br><span class="hljs-comment">         ************************/</span><br><br>        flightJohn.approve(<span class="hljs-number">9000</span>);<br>        <span class="hljs-comment">/************************</span><br><span class="hljs-comment">            无权审批，升级处理。【专员：张飞】</span><br><span class="hljs-comment">            无权审批，升级处理。【专员：关羽】				</span><br><span class="hljs-comment">            驳回申请。【CEO：刘备】</span><br><span class="hljs-comment">         ************************/</span><br>		<br>    &#125;<br>	<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p><strong>至此，以责任链模式为基础架构的工作流搭建完成：</strong></p>
+<ul>
+<li><strong>各审批角色</strong>：只需要定义其职权范围内的工作，再依靠高层抽象实现角色责任的链式结构，审批逻辑得以拆分、串联，让业务申请在责任链上逐级传递。</li>
+<li><strong>申请人</strong>：再也不必关心业务处理细节与结果了，彻底将工作流或业务逻辑抛开，轻松地将申请递交给责任链入口即可得到最终结果。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="五、让业务飞一会儿"><a href="#五、让业务飞一会儿" class="headerlink" title="五、让业务飞一会儿"></a>五、让业务飞一会儿</h2><h3 id="1-类结构"><a href="#1-类结构" class="headerlink" title="1. 类结构"></a>1. 类结构</h3><ul>
+<li><p><strong>责任链模式的类结构：</strong></p>
+  <pre class="mermaid">    %%{
+      init: {
+          'themeVariables': {
+              'fontSize': '14px'
+          }
+      }
+  }%%
+  classDiagram
+  Handler --o Handler
+  Handler <-- Client
+  Handler <|-- ConcreteHandler1 : Extends
+  Handler <|-- ConcreteHandler2 : Extends
+  Handler : -Handler successor
+  Handler : +setSuccessor(Handler) void
+  Handler : + handle(Request) void
+  ConcreteHandler1 : + handle(Request) void
+  ConcreteHandler2 : + handle(Request) void</pre>
+
+</li>
+</ul>
+<h3 id="2-角色定义"><a href="#2-角色定义" class="headerlink" title="2. 角色定义"></a>2. 角色定义</h3><pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+         'fontSize': '14px'
+       }
+    }
+}%%
+graph LR
+T(["<b>责任链模式<br>角色定义</b>"]):::p
+T --> A("<b><i>Handler</i></b><br>业务处理者"):::lp
+T --> B("<b><i>ConcreteHandler</i></b><br>业务处理者实现类"):::lp
+T --> C("<b><i>Client</i></b><br>客户端"):::lp
+A -.- |"<i>审批人<br>Approver</i>"| a["<b>所有业务处理节点的顶层抽象</b><br>* 定义了抽象业务处理方法 <b><i>handle()</i></b> 并留给子类实现<br>* 实体方法 <b><i>setSuccessor()-注入继任者 </i></b>：构建责任链"]
+B -.- |"<i>Staff<br>Manager<br>CFO</i>"| b["<b>实际业务处理的实现类，可以有任意多个</b>，<br>每个都实现了 <b><i>handle()</i></b> 方法以处理自己职权范围内<br>的业务，职权范围之外的事则传递给下一位继任者"]
+C -.- c["业务申请人，只需对业务链条的第一个入口节点<br>发起请求即可得到最终响应。"]
+classDef p fill:#ddaebd
+classDef lp fill:#f4e4e9</pre>
+
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+         'fontSize': '14px'
+       }
+    }
+}%%
+graph LR
+T(["<b>责任链模式<br>总结</b>"]):::p
+T --> A(["<b>本质</b>"]):::g
+T --> C(["<b>优点</b>"]):::p
+A ---> a["<b>处理某种连续的工作流，并确保业务能够被传递<br>至相应的责任节点上得到处理。</b>"]:::lg
+C --> c1(["<b>可扩展</b>"]):::lp
+C --> c2(["<b>低耦合</b>"]):::lp
+c1 -.- c1t["对责任链模式的应用让我们可以泰然自若地<b>应对<br>业务需求的变更</b>，<u>方便地对业务链条进行拆分、<br>重组，以及对单独节点的增、删、改</u>。"]:::lp
+c1 -.- c1t2["结构松散的业务处理节点让系统具备更加灵活的<br>可伸缩性、可扩展性。"]:::info
+c2 -.- c2t["<b>责任链模式让申请方与处理方解耦，申请人能<br>彻底从业务细节中解脱出来，</b>无论审批流程多<br>么复杂，都只需要简单的等待，<u>让业务在责任<br>链上飞一会儿</u>。"]:::lp
+classDef p fill:#ddaebd
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre></div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button" href="/note/Data-Structure/data-structure_HashMap/">🦋 HashMap</a><a class="next-button" href="/note/Design-pattern/design-pattern_Singleton/">🌷 秒懂设计模式 - 单例</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize({
+    theme: 'neutral',
+    fontFamily: 'Noto Serif SC',
+    startOnLoad: 'true'
+  });
+}</script></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>

@@ -1,0 +1,1032 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="I/O [ 🍧 Peach ] "><meta name="theme-color"><title>I/O [ 🍧 Peach ] </title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/mermaid.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=G-5GZQ6P3RMX" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valine/dist/Valine.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  new Valine({
+    el: '#comments',
+    appId: 'MJAdR7lH7cWVJLyn1Tgnw5Sj-gzGzoHsz',
+    appKey: 'de2VP0VpE5bWgR2aA8wkwxn2',
+    notify: false,
+    verify: false,
+    avatar: 'mp',
+    placeholder: 'say something',
+  })
+})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  tocbot.init({
+    // Where to render the table of contents.
+    tocSelector: '.toc__content',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: '.article__content',
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    // For headings inside relative or absolute positioned containers within content.
+    hasInnerContainers: true,
+    orderedList: false,
+    collapseDepth: 2,
+  });
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃想写可爱的代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">I/O</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">I/O</a></h2><span class="post__date">2023-03-23</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><h1 id="一、I-O流"><a href="#一、I-O流" class="headerlink" title="一、I/O流"></a>一、I/O流</h1><p>Java中把不同的输入/输出源（键盘、文件、网络连接等）抽象表述为“流”（stream），通过流的方式允许Java程序使用相同的方式来访问不同的输入/输出源。stream是从起源（source）到接收（sink）的有序数据。</p>
+<h2 id="1-分类"><a href="#1-分类" class="headerlink" title="1. 分类"></a>1. 分类</h2><pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+       'fontSize': '13px'
+     }
+  }
+}%%
+graph LR
+T(["<b>IO流分类</b><br>可操作文件中的内容"])
+T --> A(["按照(读/写)<br>方向分类"])
+T --> B(["按照(读/写)<br>字节数大小分类"])
+T --> C(["按照流的<br>角色分类"])
+A -.-> |"<i><b>in</b></i>（读取）"| a("<b>文件输入流</b><br><i>字节型文件输入流<br>字符型文件输入流</i>")
+A -.-> |"<i><b>out</b></i>（写入）"| a2("<b>文件输出流</b><br><i>字节型文件输出流<br>字符型文件输出流</i>")
+B -.-> |"<i><b>1字节</b></i>"| b("<b>字节型文件流</b>（二进制内容）<br><i>FileInputStream<br>FileOUtputStream</i>")
+B -.-> |"<i><b>1字符</b><br>（2字节）</i>"| b2("<b>字符型文件流</b>（文本内容）<br><i>FileReader<br>FileWriter</i>")
+C --> |"<i><b>直接连接</b><br>到数据源</i>"| c("底层节点流（<b>低级流</b>）")
+C --> |"<i><b>封装</b>已存<br>在的流</i>"| c2("上层处理流（<b>高级流</b>）")</pre>
+
+<h2 id="2-模型"><a href="#2-模型" class="headerlink" title="2. 模型"></a>2. 模型</h2><h3 id="（1）流的基本概念模型"><a href="#（1）流的基本概念模型" class="headerlink" title="（1）流的基本概念模型"></a>（1）流的基本概念模型</h3><pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+       'fontSize': '13px'
+     }
+  }
+}%%
+graph TD
+T(["<b>流的模型</b>"]) --> t("<b>4个抽象基类</b><br><i>Java IO流40多个类都由它们派生</i>")
+t --> |"输入流"| A("<i><b>InputStrean</b>（字节输入流）<br><b>Reader</b>（字符输入流）</i>")
+t --> |"输出流"| B("<i><b>OutputStream</b>（字节输出流）<br><b>Writer</b>（字符输出流）</i>")
+A -.-> a("把输入设备抽象成“水管”，<br>水管里的每个“水滴”依次排列")
+B -.-> b("把输出设备抽象成“水管”，<br>水管里没有任何水滴")</pre>
+
+<ul>
+<li><p><strong>输入流：</strong></p>
+<p>输入流使用隐式的记录指针来表示当前正准备从哪个“水滴”开始读取，每当程序从InputStream或Reader里取出一个或多个“水滴”后，记录指针自动向后移动。</p>
+<img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/input.jpg" alt="input" style="zoom: 20%;" />
+</li>
+<li><p><strong>输出流：</strong></p>
+<p>当执行输出时，程序相当于依次把“水滴”放入到输出流的水管中，输出流同样采用隐式的记录指针来标识当前水滴即将放入的位置，每当程序向OutputStream或Writer里输出一个或多个水滴后，记录指针自动向后移动。</p>
+<img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/output.jpg" alt="output" style="zoom: 20%;" />
+
+<p>注：划分输入/输出流时是从<strong><em>程序运行所在内存</em></strong>的角度来考虑的，因此（内存 —&gt; 硬盘）应该是输出流。</p>
+</li>
+</ul>
+<h3 id="（2）处理流模型"><a href="#（2）处理流模型" class="headerlink" title="（2）处理流模型"></a>（2）处理流模型</h3><ul>
+<li><p><strong>节点流和处理流</strong></p>
+<p>使用节点流（低级流）进行输入/输出时，程序直接连接到实际的数据源，和实际的输入/输出节点连接。</p>
+<img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E8%8A%82%E7%82%B9%E6%B5%81.jpg" alt="节点流" style="zoom: 20%;" />
+
+<p>处理流（高级流）则用于对一个已存在的流进行连接或封装，通过封装后的流来实现数据读/写功能。</p>
+<img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E5%A4%84%E7%90%86%E6%B5%81.jpg" alt="处理流" style="zoom:20%;" />
+
+
+
+</li>
+</ul>
+<ul>
+<li><p><strong>处理流的功能</strong></p>
+<pre class="mermaid">  graph LR
+T(["<b>处理流模型</b>"])
+T --> t("<i>体现Java I/O流<br>设计的灵活性</i>")
+t --> A("① 性能提高")
+t --> B("② 操作简单")
+A -.-> a("以<b>增加缓冲</b>的方式来提高输入/输出的效率")
+B -.-> b("处理流可能提供了一系列便捷的方法来<br><b>一次输入/输出大批量的内容</b>，<br>而不是输入/输出一个或多个“水滴”。")</pre>
+</li>
+<li><p><strong>处理流模型图</strong></p>
+<p>使用处理流来包装节点流，程序通过处理流来执行输入/输出功能，让节点流与底层的I/O设备、文件交互。（<em>处理流可以“嫁接”在任何已存在的流的基础之上</em>）</p>
+<img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/buffered.jpg" alt="buffered" style="zoom: 20%" />
+
+<blockquote>
+<p>💡 Java使用处理流来包装节点流是一种典型的<b>装饰器设计模式</b>，通过使用处理流来包装不同的节点流，既可以消除不同节点流的实现差异，也可以提供更方便的方法来完成输入/输出功能。因此处理流也被称为包装流。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-字节流和字符流"><a href="#3-字节流和字符流" class="headerlink" title="3. 字节流和字符流"></a>3. 字节流和字符流</h2><h3 id="（1）InputStream和Reader"><a href="#（1）InputStream和Reader" class="headerlink" title="（1）InputStream和Reader"></a>（1）InputStream和Reader</h3><ul>
+<li><p><strong>InputStream包含的3个方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>int <strong>read</strong>()</em></td>
+<td>从输入流中读取单个字节，返回所读取的字节数据（字节数据可直接转换为int类型）。</td>
+</tr>
+<tr>
+<td><em>int <strong>read</strong>(byte[] b)</em></td>
+<td>从输入流中读取数据（最多b.length个字节），并将其存储在字节数组b中，返回实际读取的字节数。</td>
+</tr>
+<tr>
+<td><em>int <strong>read</strong>(byte[] b, int off, int len)</em></td>
+<td>从输入流中读取数据（最多len个字节），并将其存储在数组b中，放入数组b中时从off位置开始（并不是从数组起点开始），返回实际读取的字节数。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>reader包含的3个方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>int <strong>read</strong>()</em></td>
+<td>从输入流中读取单个字符，返回所读取的字符数据（字符数据可直接转换为int类型）。</td>
+</tr>
+<tr>
+<td><em>int <strong>read</strong>(char[] cbuf)</em></td>
+<td>从输入流中读取数据（最多cbuf.length个字符），并将其存储在字符数组cbuf中，返回实际读取的字符数。</td>
+</tr>
+<tr>
+<td><em>int <strong>read</strong>(char[] cbuf, int off, int len)</em></td>
+<td>从输入流中读取数据（最多len个字符），并将其存在字符数组cbuf中，从off位置开始，返回实际读取的字符数。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>模型</strong>：</p>
+<p>InputStream 和 Reader 都是将输入数据抽象成如图所示的水管：</p>
+<img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/read.jpg" alt="read" style="zoom:25%;" />
+
+<p>所以程序既可以通过 <strong><em>read()</em></strong> 方法每次读取一个“水滴”，也可以通过 <strong><em>read(char[] cbuf)</em></strong> 或 <strong><em>read(byte[] b)</em></strong> 方法来读取多个“水滴”。</p>
+<p>使用<strong>数组</strong>作为 read() 方法的参数时，可以理解为使用一个“竹筒”到水管中取水。直到<strong><em>read(char[] cbuf)</em></strong>或<strong><em>read(byte[] b)</em></strong>方法返回-1，即表明到了输入流的结束点。</p>
+</li>
+<li><p><strong>文件流</strong></p>
+<p><em>InputStream</em> 和 <em>Reader</em> 都是抽象类，本身不能创建实例，但它们分别有一个用于读取文件的输入流：<strong><em>FileInputStream</em></strong> 和 <strong><em>FileReader</em></strong>，它们都是<strong>节点流</strong>——会直接和指定文件关联。（见下文）</p>
+</li>
+</ul>
+<h3 id="（2）OutputStream和Writer"><a href="#（2）OutputStream和Writer" class="headerlink" title="（2）OutputStream和Writer"></a>（2）OutputStream和Writer</h3><ul>
+<li><p><strong>OutputStream包含的3个方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>void <strong>write</strong>(int c)</em></td>
+<td>将指定的字节/字符c输出到输出流中。</td>
+</tr>
+<tr>
+<td><em>int <strong>write</strong>(byte[]/char[] buf)</em></td>
+<td>将字节数组/字符数组中的数据输出到指定输出流中。</td>
+</tr>
+<tr>
+<td><em>int <strong>write</strong>(byte[]/char[] buf, int off, int len)</em></td>
+<td>从输入流中读取数据（最多len个字节），并将其存储在数组b中，放入数组b中时从off位置开始（并不是从数组起点开始），返回实际读取的字节数。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>Writer包含的2个方法：</strong></p>
+<p>Writer可以用字符串来代替字符数组，即以String对象作为参数</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>int <strong>write</strong>(String str)</em></td>
+<td>将str字符串里包含的字符输出到指定输出流中。</td>
+</tr>
+<tr>
+<td><em>int <strong>write</strong>(String str, int off, int len)</em></td>
+<td>将str字符串里从off位置开始，长度为len的字符输出到指定输出流中。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><em>Demo：直接输出字符串内容（FileWriter）</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileWriterTest</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br><br>          <span class="hljs-keyword">try</span>(FileWriter fw=<span class="hljs-keyword">new</span> FileWriter(<span class="hljs-string">&quot;poem.txt&quot;</span>))&#123;<br>                fw.write(<span class="hljs-string">&quot;锦瑟 - 李商隐\r\n&quot;</span>);<br>                fw.write(<span class="hljs-string">&quot;锦瑟无端五十弦，一弦一柱思华年。\r\n&quot;</span>);<br>                fw.write(<span class="hljs-string">&quot;庄生晓梦迷蝴蝶，望帝春心托杜鹃。\r\n&quot;</span>);<br>                fw.write(<span class="hljs-string">&quot;沧海月明珠有泪，蓝田日暖玉生烟。\r\n&quot;</span>);<br>                fw.write(<span class="hljs-string">&quot;此情可待成追忆，只是当时已惘然。\r\n&quot;</span>);<br>          &#125;<span class="hljs-keyword">catch</span> (IOException ioe)&#123;<br>                ioe.printStackTrace();<br>          &#125;<br><br>    &#125;<br><br>&#125;<br><span class="hljs-comment">// 运行上面程序，将会在当前目录下输出一个poem.txt文件，文件内容就是程序中输出的内容。</span><br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="4-流体系"><a href="#4-流体系" class="headerlink" title="4. *流体系"></a>4. *流体系</h2><p>Java把所有传统的流类型（类或抽象类）都放在 <strong><em>java.io</em></strong> 包中，以实现输入/输出功能。</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>字节输入流</th>
+<th>字节输出流</th>
+<th>字符输入流</th>
+<th>字符输出流</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>抽象基类</strong></td>
+<td><u><em>InputStream</em></u></td>
+<td><u><em>OutputStream</em></u></td>
+<td><u><em>Reader</em></u></td>
+<td><u><em>Writer</em></u></td>
+</tr>
+<tr>
+<td>访问文件</td>
+<td><strong><em>File-<br/>InputStrean</em></strong></td>
+<td><strong><em>File-<br/>OutputStream</em></strong></td>
+<td><strong><em>File-<br/>Reader</em></strong></td>
+<td><strong><em>File-<br/>Writer</em></strong></td>
+</tr>
+<tr>
+<td>访问数组</td>
+<td><strong><em>ByteArray-<br>InputStream</em></strong></td>
+<td><strong><em>ByteArray-<br/>OutputStream</em></strong></td>
+<td><strong><em>CharArray-<br/>Reader</em></strong></td>
+<td><strong><em>CharArray-<br/>Writer</em></strong></td>
+</tr>
+<tr>
+<td>访问管道</td>
+<td><strong><em>Pipe-<br/>InputStream</em></strong></td>
+<td><strong><em>Piped-<br/>OutputStream</em></strong></td>
+<td><strong><em>Piped-<br/>Reader</em></strong></td>
+<td><strong><em>Piped-<br/>Writer</em></strong></td>
+</tr>
+<tr>
+<td>访问字符串</td>
+<td></td>
+<td></td>
+<td><strong><em>String-<br/>Reader</em></strong></td>
+<td><strong><em>String-<br/>Writer</em></strong></td>
+</tr>
+<tr>
+<td>缓冲流</td>
+<td><em>Buffered-<br/>InputStream</em></td>
+<td><em>Buffered-<br/>OutputStream</em></td>
+<td><em>Buffered-<br/>Reader</em></td>
+<td><em>Buffered-<br/>Writer</em></td>
+</tr>
+<tr>
+<td>转换流</td>
+<td></td>
+<td></td>
+<td><em>InputStream-<br/>Reader</em></td>
+<td><em>OutputStream-<br/>Writer</em></td>
+</tr>
+<tr>
+<td>对象流</td>
+<td><em>Object-<br/>InputStream</em></td>
+<td><em>Object-<br/>OutputStream</em></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>抽象基类</strong></td>
+<td><u><em>Filter-<br/>InputStream</em></u></td>
+<td><u><em>Filter-<br/>OutputStream</em></u></td>
+<td><u><em>Filter-<br/>Reader</em></u></td>
+<td><u><em>Filter-<br/>Writer</em></u></td>
+</tr>
+<tr>
+<td>打印流</td>
+<td></td>
+<td><em>Print-<br/>Stream</em></td>
+<td></td>
+<td><em>Print-<br/>Writer</em></td>
+</tr>
+<tr>
+<td>推回输入流</td>
+<td><em>Pushback-<br/>InputStream</em></td>
+<td></td>
+<td><em>Pushback-<br/>Reader</em></td>
+<td></td>
+</tr>
+<tr>
+<td>特殊流</td>
+<td><em>Data-<br/>InputStream</em></td>
+<td><em>Data-<br/>OutputStream</em></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><p><strong>说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>抽象基类</strong><br>（下划线）</td>
+<td>无法直接创建实例。</td>
+</tr>
+<tr>
+<td><strong>节点流</strong>（粗体）</td>
+<td>必须与指定的物理节点关联。如，需传入数组或字符串。</td>
+</tr>
+<tr>
+<td><strong>管道流</strong></td>
+<td>用于实现进程之间通信功能。</td>
+</tr>
+<tr>
+<td><strong>缓冲流</strong></td>
+<td>增加缓冲功能，可以提高输入、输出的效率。（对流起缓冲装饰）<br>* <em>需要使用 flush() 才可以将缓冲区的内容写入实际的物理节点。</em></td>
+</tr>
+<tr>
+<td><strong>转换流</strong></td>
+<td>用于实现将字节流转换成字符流。</td>
+</tr>
+<tr>
+<td><strong>对象流</strong></td>
+<td>主要用于实现对象的序列化。</td>
+</tr>
+<tr>
+<td><strong>打印流</strong></td>
+<td>可以将基本类型、对象输出为其字符串表示。</td>
+</tr>
+<tr>
+<td><strong>推回输入流</strong></td>
+<td>将读取内容推回到推回缓冲区里以重复读取。</td>
+</tr>
+<tr>
+<td><strong>特殊流</strong></td>
+<td>可以按8种基本类型和字符串对流进行读写。</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<hr>
+<h1 id="二、文件流"><a href="#二、文件流" class="headerlink" title="二、文件流"></a>二、文件流</h1><h2 id="1-文件"><a href="#1-文件" class="headerlink" title="1. 文件"></a>1. 文件</h2><h3 id="（1）File-文件"><a href="#（1）File-文件" class="headerlink" title="（1）File - 文件"></a>（1）File - 文件</h3><pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+         'fontSize': '13px'
+       }
+    }
+}%%
+graph TD
+
+t(["<b>File<br>文件对象</b>"]) --> T
+T("file对象不是真正的文件，<br>而是堆内存中创建出来的一个对象空间")
+T --> A("File类能操作<b>文件本身的属性</b>")
+T --> B("File对象不能操作<b>文件中的内容</b>")
+A -.-> a("* 查看文件属性<br>* 创建新文件、文件夹<br>* 查看父级目录<br>* 遍历、删除文件夹")
+B --> b("需要通过 <i><b>I/O</b></i> 的方式来完成")</pre>
+
+<h4 id="①-所属的包"><a href="#①-所属的包" class="headerlink" title="① 所属的包"></a>① 所属的包</h4><p><em>java.io</em></p>
+<h4 id="②-实现的接口"><a href="#②-实现的接口" class="headerlink" title="② 实现的接口"></a>② 实现的接口</h4><p><em>Serializable， Comparable</em></p>
+<h4 id="③-构造方法"><a href="#③-构造方法" class="headerlink" title="③ 构造方法"></a>③ 构造方法</h4><table>
+<thead>
+<tr>
+<th>构造方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>（没有无参构造方法）</em></td>
+<td></td>
+</tr>
+<tr>
+<td><em>File(String pathname)</em></td>
+<td>创建一个File对象</td>
+</tr>
+<tr>
+<td><em>File(File parent, String child)</em></td>
+<td>在A文件夹里创建B文件</td>
+</tr>
+<tr>
+<td><em>File(String parent, String child)</em></td>
+<td>给A文件夹对象，再给B文件夹名字</td>
+</tr>
+<tr>
+<td><em>File(URI uri)</em></td>
+<td>通过网络路径创建</td>
+</tr>
+</tbody></table>
+<h4 id="④-常用方法"><a href="#④-常用方法" class="headerlink" title="④ 常用方法"></a>④ 常用方法</h4><ul>
+<li><p><strong>文件基本属性</strong></p>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>canExecute()</em></td>
+<td>可执行</td>
+</tr>
+<tr>
+<td><em>canRead()</em></td>
+<td>可读</td>
+</tr>
+<tr>
+<td><em>canWrite()</em></td>
+<td>可写</td>
+</tr>
+<tr>
+<td><em>exists()</em></td>
+<td>文件名或路径是否存在</td>
+</tr>
+<tr>
+<td><em>isHidden()</em></td>
+<td>是否隐藏</td>
+</tr>
+<tr>
+<td><em>isFile()</em></td>
+<td>判断当前file是否是一个文件</td>
+</tr>
+<tr>
+<td><em>isDirectory()</em></td>
+<td>判断当前file是否是一个目录</td>
+</tr>
+<tr>
+<td><em>isAbsolute()</em></td>
+<td>判断File对象所对应的文件或目录是否是绝对路径</td>
+</tr>
+<tr>
+<td><u><strong><em>length()</em></strong></u></td>
+<td>获取文件中字节的个数</td>
+</tr>
+<tr>
+<td><em>lastModified()</em></td>
+<td>获取文件最后的修改时间<em>（long类型：毫秒值）</em></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<ul>
+<li><p><strong>文件名</strong></p>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+<th>返回值类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><u><strong><em>getName()</em></strong></u></td>
+<td>获取文件名字（<em>Test.txt</em>）</td>
+<td>String name</td>
+</tr>
+<tr>
+<td><u><strong><em>getAbsolutePath()</em></strong></u></td>
+<td>获取文件的绝对路径（<em>D://test//Test.txt</em>）</td>
+<td>String path</td>
+</tr>
+<tr>
+<td><em>getPath()</em></td>
+<td>获取文件的完整路径</td>
+<td>String path</td>
+</tr>
+<tr>
+<td><em>renameTo()</em></td>
+<td>重命名，命名成功返回true</td>
+<td>Boolean true</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>创建</strong></p>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+<th>返回值类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><u><strong><em>createNewFile()</em></strong></u></td>
+<td>创建新的文件</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><u><strong><em>mkdir()</em></strong></u></td>
+<td>创建新的文件夹</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><em>mkdirs()</em></td>
+<td>同时创建外层新文件夹</td>
+<td>boolean</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>获取对象</strong></p>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+<th>返回值类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>getParent()</em></td>
+<td>获取当前file的父目录的完整路径</td>
+<td>String name</td>
+</tr>
+<tr>
+<td><u><strong><em>getParentFile()</em></strong></u></td>
+<td>获取当前file的父亲file对象</td>
+<td>File file</td>
+</tr>
+<tr>
+<td><em>getAbsoluteFile()</em></td>
+<td>返回此File对象所对应的绝对路径所对应的File对象</td>
+<td>File file</td>
+</tr>
+<tr>
+<td><em>list()</em></td>
+<td>获取当前file对象的所有儿子名字</td>
+<td>String[] names</td>
+</tr>
+<tr>
+<td><strong><em>listFiles()</em></strong></td>
+<td>获取当前file对象的所有儿子对象</td>
+<td>File[] files</td>
+</tr>
+<tr>
+<td><em>static listRoots()</em></td>
+<td>列出系统所有的根路径。</td>
+<td>File[] files</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>删除</strong></p>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+<th>返回值类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>delete()</em></td>
+<td>彻底删除文件或空目录，无法删除带元素的文件夹</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><em>deleteOnExit()</em></td>
+<td>删除文件或目录并关闭流操作</td>
+<td>boolean</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h5 id="Demo"><a href="#Demo" class="headerlink" title="- Demo"></a>- <em>Demo</em></h5><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.equne;<br><br><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileTest</span></span><br><span class="hljs-class"></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>        <span class="hljs-comment">// 以当前路径来创建一个File对象</span><br>        File file=<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;.&quot;</span>);<br>        <span class="hljs-comment">// 直接获取文件名，输出一点</span><br>        System.out.println(file.getName());<br>        <span class="hljs-comment">// 获取相对路径的父路径可能出错，下面代码输出null</span><br>        System.out.println(file.getParent());<br>        <span class="hljs-comment">// 获取绝对路径</span><br>        System.out.println(file.getAbsoluteFile());<br>        <span class="hljs-comment">// 获取上一级路径</span><br>        System.out.println(file.getAbsoluteFile().getParent());<br><br>        <span class="hljs-comment">// 在当前路径下创建一个临时文件</span><br>        File tmpFile=File.createTempFile(<span class="hljs-string">&quot;aaa&quot;</span>, <span class="hljs-string">&quot;.txt&quot;</span>, file);<br>        <span class="hljs-comment">// 指定当JVM退出时删除该文件</span><br>        tmpFile.deleteOnExit();<br><br>        <span class="hljs-comment">// 以系统当前时间作为新文件名来创建新文件</span><br>        File newFile=<span class="hljs-keyword">new</span> File(System.currentTimeMillis() + <span class="hljs-string">&quot;&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;newFile对象是否存在：&quot;</span> + newFile.exists());<br>        <span class="hljs-comment">// 以指定newFile对象来创建一个文件</span><br>        newFile.createNewFile();<br>        <span class="hljs-comment">// 以newFile对象来创建一个目录，因为newFile已经存在</span><br>        <span class="hljs-comment">// 所以下面方法返回false，即无法创建该目录</span><br>        newFile.mkdir();<br>        <span class="hljs-comment">// 使用list()方法列出当前路径下的所有文件和路径</span><br>        String[] fileList=file.list();<br>        System.out.println(<span class="hljs-string">&quot;====当前路径下所有文件和路径如下====&quot;</span>);<br>        <span class="hljs-keyword">for</span> (String fileName : fileList)<br>        &#123;<br>            System.out.println(fileName);<br>        &#125;<br>        <span class="hljs-comment">// listRoots()静态方法列出所有的磁盘根路径</span><br>        File[] roots=File.listRoots();<br>        System.out.println(<span class="hljs-string">&quot;====系统所有根路径如下====&quot;</span>);<br>        <span class="hljs-keyword">for</span> (File root : roots)<br>        &#123;<br>            System.out.println(root);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * .</span><br><span class="hljs-comment"> * null</span><br><span class="hljs-comment"> * /Users/equne/Desktop/testJava/Test2/.</span><br><span class="hljs-comment"> * /Users/equne/Desktop/testJava/Test2</span><br><span class="hljs-comment"> * newFile对象是否存在：false</span><br><span class="hljs-comment"> * ====当前路径下所有文件和路径如下====</span><br><span class="hljs-comment"> * Test2.iml</span><br><span class="hljs-comment"> * out</span><br><span class="hljs-comment"> * 1679734377738</span><br><span class="hljs-comment"> * aaa5603141847215609264.txt</span><br><span class="hljs-comment"> * .idea</span><br><span class="hljs-comment"> * src</span><br><span class="hljs-comment"> * ====系统所有根路径如下====</span><br><span class="hljs-comment"> * /</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<p><em>(摘自<a href="https://book.douban.com/subject/3246499/">《疯狂Java讲义》</a>)</em></p>
+<p>.</p>
+<h3 id="（2）-递归：遍历文件夹"><a href="#（2）-递归：遍历文件夹" class="headerlink" title="（2）*递归：遍历文件夹"></a>（2）*递归：遍历文件夹</h3><h4 id="①-递归"><a href="#①-递归" class="headerlink" title="① 递归"></a>① 递归</h4><ul>
+<li><p><strong>本质：方法的调用</strong> <em>（即自己调用自己，且每次传的参数都不一样）</em></p>
+<p><img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E9%80%92%E5%BD%92.png" alt="递归"></p>
+</li>
+<li><p><strong>方法：盖宝塔</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">newTestFile</span></span>&#123;<br>   <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildTower</span><span class="hljs-params">(<span class="hljs-keyword">int</span> floor)</span></span>&#123;    <span class="hljs-comment">// 设计一个方法，描述盖宝塔</span><br>        <span class="hljs-keyword">if</span>(floor&gt;<span class="hljs-number">1</span>)&#123;<br>            <span class="hljs-keyword">this</span>.buildTower(floor-<span class="hljs-number">1</span>);<br>        &#125;<br>        <br>        System.out.println(<span class="hljs-string">&quot;改到第&quot;</span>+ floor + <span class="hljs-string">&quot;层啦&quot;</span>);  <span class="hljs-comment">// 自己执行</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>内存结构图</strong></p>
+<p><img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E9%80%92%E5%BD%92%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="递归内存结构图"></p>
+</li>
+</ul>
+<h4 id="②-遍历文件夹"><a href="#②-遍历文件夹" class="headerlink" title="② 遍历文件夹"></a>② 遍历文件夹</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">newTestFile</span></span>&#123;<br>    <br>    <span class="hljs-comment">// 遍历文件夹。参数：file(代表文件或文件夹)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showFile</span><span class="hljs-params">(File file)</span></span>&#123;<br>        <br>        File[] files = File.listFiles();<br>        <span class="hljs-comment">// 如果在调用前输出，则相反输出</span><br>        <span class="hljs-keyword">if</span>(files!=<span class="hljs-keyword">null</span> &amp;&amp; files.length!=<span class="hljs-number">0</span>)&#123; <span class="hljs-comment">// 非文件 &amp;&amp; 非空文件夹</span><br>            <span class="hljs-keyword">for</span>(File f:files)&#123;  <span class="hljs-comment">// 遍历</span><br>                <span class="hljs-keyword">this</span>.showFile();<br>            &#125;<br>        &#125;<br>        System.out.println(file.getAbsolutePath());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>删除文件夹</strong>：<em>file.delete();  // 将上面的例子替换</em></li>
+</ul>
+<h2 id="2-文件流（低级文件流）"><a href="#2-文件流（低级文件流）" class="headerlink" title="2. 文件流（低级文件流）"></a>2. 文件流（低级文件流）</h2><pre class="mermaid">graph LR
+T(["<b>文件流</b><br>（低级文件流）"])
+T --> t("可操作文件<br>中的内容")
+t --> A(["按照(读/写)<br>方向分类"])
+t --> B(["按照(读/写)<br>字节数大小分类"])
+A -.-> |"<i><b>in</b></i>（读取）"| a("<b>文件输入流</b><br><i>字节型文件输入流<br>字符型文件输入流</i>")
+A -.-> |"<i><b>out</b></i>（写入）"| a2("<b>文件输出流</b><br><i>字节型文件输出流<br>字符型文件输出流</i>")
+B -.-> |"<i><b>1字节</b></i>"| b("<b>字节型文件流</b><br>FileInputStream<br>FileOUtputStream")
+B -.-> |"<i><b>1字符</b><br>（2字节）</i>"| b2("<b>字符型文件流</b><br>FileReader<br>FileWriter")</pre>
+
+
+
+<h3 id="（1）FileInputStram"><a href="#（1）FileInputStram" class="headerlink" title="（1）FileInputStram"></a>（1）FileInputStram</h3><p><code>字节型文件输入流</code></p>
+<h4 id="所属的包"><a href="#所属的包" class="headerlink" title="+ 所属的包"></a>+ 所属的包</h4><p>Java.io</p>
+<h4 id="继承关系"><a href="#继承关系" class="headerlink" title="+ 继承关系"></a>+ 继承关系</h4><p>继承于 <strong><em>InputStream</em></strong> 类（字节型输入流）</p>
+<h4 id="构造方法"><a href="#构造方法" class="headerlink" title="+ 构造方法"></a>+ 构造方法</h4><table>
+<thead>
+<tr>
+<th>构造方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>（没有无参构造方法）</em></td>
+<td></td>
+</tr>
+<tr>
+<td><em>FileInputStram(File file)</em></td>
+<td>利用File对象构造</td>
+</tr>
+<tr>
+<td><em>FileInputStram(String name)</em></td>
+<td>通过文件路径字符串构造</td>
+</tr>
+</tbody></table>
+<h4 id="常用方法"><a href="#常用方法" class="headerlink" title="+ 常用方法"></a>+ 常用方法</h4><table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+<th>返回值类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>finalize()</em></td>
+<td>GC对象回收</td>
+<td></td>
+</tr>
+<tr>
+<td><u><strong><em>available()</em></strong></u></td>
+<td>返回当前流管道中有多少缓存字节，每次读取一个字节对应的 Unicode 码<em>。（读得到返回 0–65536，读不到返回-1）</em></td>
+<td>int</td>
+</tr>
+<tr>
+<td>🔺 <strong><u><em>read</em>()</u></strong></td>
+<td>从输入流中读取单个字节，返回读取的字节数据（Unicode码）</td>
+<td>int</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><em>read(byte[])</em></strong>：将输入流内容写入数组里，返回实际读取的字节数。</td>
+<td>int</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><em>read(byte[] b, int off, int leng)</em></strong>：将输入流内容写入数组里，从off位置开始，放入len个字节（不是从数组起点开始），返回实际读取的字节数。</td>
+<td>int</td>
+</tr>
+<tr>
+<td><u><strong><em>skip()</em></strong></u></td>
+<td>跳过几个字节读取</td>
+<td>long n</td>
+</tr>
+<tr>
+<td><u><strong><em>close()</em></strong></u></td>
+<td>关闭流管道（⚠️ 必须要做，最好放在 <strong><em>finally{}</em></strong> 里）</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="read"><a href="#read" class="headerlink" title="- read()"></a>- <em>read</em>()</h5><p>创建一个字节型文件输入流，读取文件中的内容。 </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span>&#123;<br>    File file = <span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D://Test//test.txt&quot;</span>);<br>    FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStram(file);<br>    <span class="hljs-keyword">int</span> i = fis.read(); <span class="hljs-comment">// ← 每次读取一个字节</span><br>    <span class="hljs-keyword">while</span>(i!=-<span class="hljs-number">1</span>)&#123;<br>        System.out.ptinln(i); <span class="hljs-comment">// → 返回字节对应得Unicode码</span><br>        i = fis.read(); <br>    &#125;<br>&#125;<span class="hljs-keyword">catch</span>(IOException e)&#123;<br>    e.printStackTrace;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h5 id="read-byte-b"><a href="#read-byte-b" class="headerlink" title="- read(byte[] b)"></a>- <em>read(byte[] b)</em></h5><p>读取文件内容，装入数组内。返回读取的有效字符个数。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">  <span class="hljs-keyword">try</span>&#123;<br>      FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStram(<span class="hljs-string">&quot;D://Test//test.txt&quot;</span>);<br>      <span class="hljs-keyword">byte</span>[] b = <span class="hljs-keyword">new</span> bytep[<span class="hljs-number">5</span>];	<br>      <span class="hljs-keyword">int</span> count = fis.read(b); <span class="hljs-comment">// ← 读取文件内容，装进数组里</span><br>      <span class="hljs-keyword">while</span>(count!=-<span class="hljs-number">1</span>)&#123;	<span class="hljs-comment">// → 返回读取到的有效字节个数</span><br>          <span class="hljs-comment">// 🔸 String value = new String(b);</span><br>          String value = <span class="hljs-keyword">new</span> String(b, <span class="hljs-number">0</span>, count);  <span class="hljs-comment">// 使用偏移量构造字节型数组字符串</span><br>          System.out.ptint(value); <span class="hljs-comment">// </span><br>          count = fis.read(b); <br>      &#125;<br>  &#125;<span class="hljs-keyword">catch</span>(IOException e)&#123;<br>      e.printStackTrace;<br>  &#125;<br><br><span class="hljs-comment">/* 文件内容：</span><br><span class="hljs-comment"> *	abcdefg</span><br><span class="hljs-comment"> *	hijklmn</span><br><span class="hljs-comment"> *	opq</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">/* 🔸 直接使用String(b)读取内容：</span><br><span class="hljs-comment"> *	a  b  c  d  e</span><br><span class="hljs-comment"> *	f  g  \r \n h</span><br><span class="hljs-comment"> *	i  j  k  l  m </span><br><span class="hljs-comment"> *	n  \r \n o  p</span><br><span class="hljs-comment"> *	q  \r \n o  p  &lt;—— 到q结束，但是之前的没有被替换掉</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="skip"><a href="#skip" class="headerlink" title="- skip()"></a>- <em>skip()</em></h5><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> &#123;<br>    FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;D://Test//test.txt&quot;</span>);<br>    fis.skip(<span class="hljs-number">2</span>);<br>    <span class="hljs-keyword">int</span> code = fis.read();  <span class="hljs-comment">// c</span><br>    System.out.println((<span class="hljs-keyword">char</span>)code);<br>&#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>    e.printStackTrace();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="close"><a href="#close" class="headerlink" title="- close()"></a>- <em>close()</em></h5><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span>&#123;<br>    File file = <span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D://Test//test.txt&quot;</span>);<br>    FileOutStream fos = <span class="hljs-keyword">new</span> FileOutStram(file);<br>    fos.write(<span class="hljs-number">97</span>);	<span class="hljs-comment">// 写入code码</span><br>    fos.flush();	<span class="hljs-comment">// 刷新 将管道中的字节推入文件中</span><br>&#125;<span class="hljs-keyword">catch</span>(IOException e)&#123;<br>    e.printStackTrace;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="（2）FileOutputStream"><a href="#（2）FileOutputStream" class="headerlink" title="（2）FileOutputStream"></a>（2）FileOutputStream</h3><p><code>字节型文件输出流</code></p>
+<h4 id="所属的包-1"><a href="#所属的包-1" class="headerlink" title="+ 所属的包"></a>+ 所属的包</h4><p>Java.io</p>
+<h4 id="继承关系-1"><a href="#继承关系-1" class="headerlink" title="+ 继承关系"></a>+ 继承关系</h4><p>继承于 <strong><em>OutputStream</em></strong> 类</p>
+<h4 id="构造方法-1"><a href="#构造方法-1" class="headerlink" title="+ 构造方法"></a>+ 构造方法</h4><table>
+<thead>
+<tr>
+<th>构造方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>（没有无参构造方法）</em></td>
+<td></td>
+</tr>
+<tr>
+<td><em>FileOutputStram(File file)</em></td>
+<td>利用File对象构造<em>（默认覆盖原文）</em></td>
+</tr>
+<tr>
+<td><em>FileOutputStram(File file, Boolean append)</em></td>
+<td>利用File对象构造、是否将内容追加到文件末尾<em>（true：不覆盖）</em></td>
+</tr>
+<tr>
+<td><em>FileOutputStram(String name)</em></td>
+<td>通过文件路径字符串构造</td>
+</tr>
+<tr>
+<td><em>FileOutputStram(String name, Boolean append)</em></td>
+<td>通过文件路径构造、是否追加到文件末尾</td>
+</tr>
+</tbody></table>
+<h4 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="+ 常用方法"></a>+ 常用方法</h4><table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>*finalize</strong>()*</td>
+<td>GC对象回收</td>
+</tr>
+<tr>
+<td><strong><em>write()</em></strong></td>
+<td>写入到文件（与read()区别）</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><em>write(int code)</em></strong>：将给定code写入文件 <em>（’=’字符char也行,会自动转换）</em></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><em>write(byte[])</em></strong>： 将数组内容写入文件流里<em>（String—getByte()）</em></td>
+</tr>
+<tr>
+<td><strong><em>flush()</em></strong></td>
+<td>刷新：将管道内字节推入文件</td>
+</tr>
+<tr>
+<td><strong><em>close()</em></strong></td>
+<td><em>* 注意：在finally中关闭</em></td>
+</tr>
+</tbody></table>
+<h5 id="write"><a href="#write" class="headerlink" title="-write()"></a>-<em>write()</em></h5><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span>&#123;<br>    File file = <span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D://Test//test.txt&quot;</span>);<br>    FileOutStream fos = <span class="hljs-keyword">new</span> FileOutStram(file);<br>    fos.write(<span class="hljs-number">97</span>);	<span class="hljs-comment">// 写入code码</span><br>    fos.flush();	<span class="hljs-comment">// 刷新 将管道中的字节推入文件中</span><br>    &#125;<br>&#125;<span class="hljs-keyword">catch</span>(IOException e)&#123;<br>    e.printStackTrace;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="（3）FileReader"><a href="#（3）FileReader" class="headerlink" title="（3）FileReader"></a>（3）FileReader</h3><p><code>字符型文件输入流</code></p>
+<h4 id="所属的包-2"><a href="#所属的包-2" class="headerlink" title="+ 所属的包"></a>+ 所属的包</h4><p><em>Java.io</em></p>
+<h4 id="继承关系-2"><a href="#继承关系-2" class="headerlink" title="+ 继承关系"></a>+ 继承关系</h4><p>继承于<strong><em>InputStreamReader</em></strong> 类<em>（字节型输入流）</em></p>
+<h4 id="构造方法-2"><a href="#构造方法-2" class="headerlink" title="+ 构造方法"></a>+ 构造方法</h4><table>
+<thead>
+<tr>
+<th>构造方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>（没有无参构造方法）</em></td>
+<td></td>
+</tr>
+<tr>
+<td><em>FileReader(File file)</em></td>
+<td>通过File对象构造<em>（默认覆盖原文）</em></td>
+</tr>
+<tr>
+<td><em>FIleReader(String fileName)</em></td>
+<td>通过文件路径字符串构造</td>
+</tr>
+<tr>
+<td><em>FileReader(FileDescriptor fd)</em></td>
+<td>通过文件描述符构建<br>（<em>文件描述符的有效范围是 0 到 OPEN_MAX</em>）</td>
+</tr>
+</tbody></table>
+<h4 id="常用方法-2"><a href="#常用方法-2" class="headerlink" title="+ 常用方法"></a>+ 常用方法</h4><table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🔺 <strong><em>read</em>()</strong></td>
+<td>从输入流中读取单个字符，返回所读取的字符数据</td>
+</tr>
+<tr>
+<td><em>int read(char[] cbuf)</em></td>
+<td>从输入流中最多读取cbuf.length个字符的数据，并将其存储在字符数组cbuf中，返回实际读取的字符数。</td>
+</tr>
+<tr>
+<td><em>int read(char[] cbuf, int off, int len)</em></td>
+<td>从输入流中最多读取len个字符的数据，并将其存储在字符数组cbuf中，从off位置开始存储（并不是从数组起点开始），返回实际读取的字符数。</td>
+</tr>
+</tbody></table>
+<h3 id="（4）FileWriter"><a href="#（4）FileWriter" class="headerlink" title="（4）FileWriter"></a>（4）FileWriter</h3><p><code>字符型文件输出流</code></p>
+<h4 id="所属的包-3"><a href="#所属的包-3" class="headerlink" title="+ 所属的包"></a>+ 所属的包</h4><p><em>Java.io</em></p>
+<h4 id="继承关系-3"><a href="#继承关系-3" class="headerlink" title="+ 继承关系"></a>+ 继承关系</h4><p>继承于 <strong><em>OutputStreamWriter</em></strong> 类 <em>（字节型输出流）</em></p>
+<h4 id="构造方法-3"><a href="#构造方法-3" class="headerlink" title="+ 构造方法"></a>+ 构造方法</h4><table>
+<thead>
+<tr>
+<th>构造方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>（没有无参构造方法）</em></td>
+<td></td>
+</tr>
+<tr>
+<td><em>FileWriter(File file)</em></td>
+<td>利用File对象构建<em>（默认覆盖原文）</em></td>
+</tr>
+<tr>
+<td><em>FileWriter(File file, Boolean boolean)</em></td>
+<td>利用File对象构造、是否将内容追加到文件末尾<em>（true：不覆盖）</em></td>
+</tr>
+<tr>
+<td><em>FileWriter(String name)</em></td>
+<td>通过文件路径字符串构造</td>
+</tr>
+<tr>
+<td><em>FileWriter(String name, Boolean boolean)</em></td>
+<td>通过文件路径字符串构造、是否追加到文件末尾</td>
+</tr>
+</tbody></table>
+<h4 id="常用方法-3"><a href="#常用方法-3" class="headerlink" title="+ 常用方法"></a>+ 常用方法</h4><table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><em>write()</em></strong></td>
+<td>读取</td>
+</tr>
+<tr>
+<td><em>write(char)</em></td>
+<td></td>
+</tr>
+<tr>
+<td><em>write(String)</em></td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="write-1"><a href="#write-1" class="headerlink" title="- write()"></a>- <em>write()</em></h5><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">String str = <span class="hljs-string">&quot;abc&quot;</span>;<br><span class="hljs-keyword">char</span>[] c = str.toCharArray();<br>FileWriter fw = <span class="hljs-keyword">new</span> FileWriter(file);<br>fw.write(<span class="hljs-number">97</span>);<br>fw.write(c);<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="🔸-Demo"><a href="#🔸-Demo" class="headerlink" title="🔸 Demo"></a>🔸 Demo</h3><h4 id="1-文件的复制"><a href="#1-文件的复制" class="headerlink" title="1. 文件的复制"></a>1. 文件的复制</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OperateFile</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">copyFile</span><span class="hljs-params">(File file, String path)</span></span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 🔻 0 创建对象</span><br>            FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D://test.txt&quot;</span>));<br>            File newFile = <span class="hljs-keyword">new</span> File(path + <span class="hljs-string">&quot;//&quot;</span> + file.gsetName());<br>            FileOutputStream fos = <span class="hljs-keyword">new</span> FileOutputStream(newFile);<br>            <br>            <span class="hljs-comment">// 🔻 1 读取文件</span><br>            <span class="hljs-keyword">byte</span>[] b = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>]; <span class="hljs-comment">// 通常创建的数组：1kb-8kb之间</span><br>            <span class="hljs-keyword">int</span> count = fis.read(b); <span class="hljs-comment">// count记录读取的有效字节数，读取到byte数组b里</span><br>  <br>            <span class="hljs-comment">// 🔻 2 写入文件</span><br>            <span class="hljs-keyword">while</span>(count!=-<span class="hljs-number">1</span>)&#123; <span class="hljs-comment">// 当能读取到内容时</span><br>                          <br>            	<span class="hljs-comment">// 🔸（做点手脚）</span><br>                fos.write(b, <span class="hljs-number">0</span>, count); <span class="hljs-comment">// 写入有效字节数</span><br>                fos.flush();<br>                count = fis.read(b); <span class="hljs-comment">// 最后再次读取，读取不到内容时，count=-1时退出while循环</span><br>            &#125;<br>            System.out.println(<span class="hljs-string">&quot;复制完毕！&quot;</span>);<br>        <br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">// 关闭</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        OperateFile of = <span class="hljs-keyword">new</span> OperateFile();<br>        of.copyFile(<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D://test.txt&quot;</span>), <span class="hljs-string">&quot;D://test&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-文件的加密"><a href="#2-文件的加密" class="headerlink" title="2. 文件的加密"></a>2. 文件的加密</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 读取文件 -&gt; 做点手脚 -&gt; 写入文件</span><br><span class="hljs-keyword">byte</span> temp = b[<span class="hljs-number">0</span>];<br>b[<span class="hljs-number">0</span>] = b[<span class="hljs-number">1</span>];<br>b[<span class="hljs-number">1</span>] = temp;<br></code></pre></td></tr></table></figure>
+
+<h4 id="3-文件夹的复制"><a href="#3-文件夹的复制" class="headerlink" title="3. 文件夹的复制"></a>3. 文件夹的复制</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">superCopyFile</span><span class="hljs-params">(File file, String newPath)</span></span>&#123;<br><br>    String oldFilePath = file.getAbsolutePath();<br>    String newFilePath = newPath + oldFilePath.split(<span class="hljs-string">&quot;:&quot;</span>)[<span class="hljs-number">1</span>];<br><br>    File[] files = file.listFiles(); <span class="hljs-comment">// 获取当前传递进来的File对象的所有子元素</span><br>    File newFile = <span class="hljs-keyword">new</span> File(newFilePath);<br><br>    <span class="hljs-comment">// 判断当前传递进来的file是个文件还是个文件夹 （①isFile isDirectory  ②listFile)</span><br>    <span class="hljs-keyword">if</span>(files!=<span class="hljs-keyword">null</span>)&#123; <span class="hljs-comment">// 🔻 1. 文件夹（才能构成文件数组对象）</span><br>        newFile.mkdir();	<span class="hljs-comment">// 通过新的file对象操作 在硬盘上创建一个文件夹</span><br>        <span class="hljs-keyword">if</span>(files.length!=<span class="hljs-number">0</span>)&#123; <span class="hljs-comment">// 🔻 3. 文件夹内有文件              </span><br>            <span class="hljs-keyword">for</span>(File f:files)&#123;<br>                <span class="hljs-keyword">this</span>.superCopyFile(f, newPath); <span class="hljs-comment">// 👈 使用递归</span><br>            &#125;<br>        &#125;<br>        System.out.println(newFile.getName() + <span class="hljs-string">&quot;文件夹复制完成！&quot;</span>);<br><br>    &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// 🔻 2. 文件 （没有子文件了）</span><br><br>        FileInputStream fis = <span class="hljs-keyword">null</span>;<br>        FileOutputStream fos = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            fis = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-keyword">new</span> File(oldFilePath));<br>            fos = <span class="hljs-keyword">new</span> FileOutputStream(newFile);<br>            <span class="hljs-keyword">byte</span>[] b = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>];<br>            <span class="hljs-keyword">int</span> count = fis.read(b);<br>            <span class="hljs-keyword">while</span>(count!=-<span class="hljs-number">1</span>)&#123;<br>                fos.write(b,<span class="hljs-number">0</span>,count);<br>                fos.flush();<br>                count = fis.read(b);<br>            &#125;<br>            System.out.println(newFile.getName() + <span class="hljs-string">&quot;文件复制完成！&quot;</span>);<br><br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-keyword">if</span>(fis!=<span class="hljs-keyword">null</span>)&#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    fis.close();<br>                &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (fos!=<span class="hljs-keyword">null</span>)&#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    fos.close();<br>                &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br>        &#125;<br><br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="3-缓冲流（高级文件流）"><a href="#3-缓冲流（高级文件流）" class="headerlink" title="3. 缓冲流（高级文件流）"></a>3. 缓冲流（高级文件流）</h2><hr>
+<h1 id="三、缓冲流"><a href="#三、缓冲流" class="headerlink" title="三、缓冲流"></a>三、缓冲流</h1><hr>
+<h1 id="四、转换流"><a href="#四、转换流" class="headerlink" title="四、转换流"></a>四、转换流</h1><p>转换流（<em>InputStreamReader</em>、<em>OutputStreamWriter</em>）用于实现将<strong>字节流</strong>转换成<strong>字符流</strong>。</p>
+<p>🔸 只有字节转字符：因为字符流比字节流操作更方便</p>
+<ul>
+<li><p><strong><em>Demo</em></strong>：获取键盘输入</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/* 该程序将 System.in 包装成 BufferedReader，</span><br><span class="hljs-comment">    BufferedReader流具有缓冲功能，它可以一次读取一行文本——以换行符为标志，如果它没有读到换行符，则程序阻塞，等到读到换行符为止。*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">KeyinTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>          <span class="hljs-keyword">try</span>&#123;<br>                <span class="hljs-comment">// 将Sytem.in对象转换成Reader对象</span><br>                InputStreamReader reader=<span class="hljs-keyword">new</span> InputStreamReader(System.in);<br>                <span class="hljs-comment">// 将普通的Reader包装成BufferedReader</span><br>                BufferedReader br=<span class="hljs-keyword">new</span> BufferedReader(reader))<br>                String buffer=<span class="hljs-keyword">null</span>;<br>                <span class="hljs-comment">// 采用循环方式来逐行地读取</span><br>                <span class="hljs-keyword">while</span> ((buffer=br.readLine()) !=<span class="hljs-keyword">null</span>) &#123;<br>                    <span class="hljs-comment">//如果读取的字符串为&quot;exit&quot;，则程序退出</span><br>                    <span class="hljs-keyword">if</span> (buffer.equals(<span class="hljs-string">&quot;exit&quot;</span>)) &#123;<br>                          System.exit(<span class="hljs-number">1</span>);<br>                    &#125;<br>                    <span class="hljs-comment">//打印读取的内容</span><br>                    System.out.println(<span class="hljs-string">&quot;输入内容为:&quot;</span> + buffer);<br>                &#125;<br>          &#125; <span class="hljs-keyword">catch</span> (IOException ioe) &#123;<br>          		ioe.printStackTrace();<br>          &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// * InputStreamReader：</span><br><br></code></pre></td></tr></table></figure>
+
+<p><code>InputStreamReader</code></p>
+<blockquote>
+<p>Java使用 <strong><em>System.in</em></strong> 代表标准输入（即键盘输入），但这个标准输入流是 <em>InputStream</em> 类的实例，使用不太方便，且键盘输入内容都是文本内容，所以可用 <em>InputStreamReader</em> 将其转换成字符输入流。</p>
+</blockquote>
+<p><code>BufferedReader</code>：</p>
+<blockquote>
+<p>由于 <em>BufferedReader</em> 具有一个 <strong><em>readLine()</em></strong> 方法，可以非常方便地一次读入一行内容，所以经常把读取文本内容的输入流包装成 <em>BufferedReader</em>，用来方便地读取输入流的文本内容。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h1 id="五、推回输入流"><a href="#五、推回输入流" class="headerlink" title="五、推回输入流"></a>五、推回输入流</h1><ul>
+<li><p>PushbackInputStream 和 PushbackReader 的3个方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>void <strong>unread</strong>(int b)</em></td>
+<td>将一个字节/字符推回到推回缓冲区里，从而允许重复读取刚刚读取的内容。</td>
+</tr>
+<tr>
+<td><em>void <strong>unread</strong>(byte[]/char[] buf)</em></td>
+<td>将一个字节/字符数组内容推回到推回缓冲区里，从而允许重复读取刚刚读取的内容。</td>
+</tr>
+<tr>
+<td><em>void <strong>unread</strong>(byte[]/char[] b, int off, int len)</em></td>
+<td>将一个字节/字符数组里从off开始，长度为len字节/字符的内容推回到推回缓冲区里，从而允许重复读取刚刚读取的内容。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>推回输入流的处理示意图</strong></p>
+<img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/pushBack.jpg" alt="pushBack" style="zoom:25%;" />
+</li>
+<li><p><strong>异常：</strong></p>
+<p>当创建一个 <em>PushbackInputStream</em> 和 <em>PushbackReader</em> 时需要指定推回缓冲区的大小，默认的推回缓冲区的长度为1。</p>
+<p>若程序中推回到推回缓冲区的内容超出了推回缓冲区的大小，将会引发 <strong><em>Pushback buffer overflow</em></strong> 的 <em>IOException</em> 异常。</p>
+</li>
+</ul>
+<h1 id="六、打印流"><a href="#六、打印流" class="headerlink" title="六、打印流"></a>六、打印流</h1><p><em>参考：<a href="https://www.liaoxuefeng.com/wiki/1252599548343744/1302299230076961">《廖雪峰Java教程》</a></em></p>
+<h2 id="1-PrintStream"><a href="#1-PrintStream" class="headerlink" title="1. PrintStream"></a>1. PrintStream</h2><pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+         'fontSize': '13px'
+       }
+    }
+}%%
+graph LR
+A(["PrintStream<br><i>（与OutputStream相比）</i>"])
+A --> a("添加了一组 <i>print() / println()</i> 方法，<br>可以打印各种数据类型，比较方便。")
+A --> b("不会抛出<i>IOException</i>")
+A --> c("自动刷新机制：写入内容后自动调用flush()方法")</pre>
+
+
+
+<ul>
+<li><p>（字节型）<code>PrintStream</code> 是一种 <strong><em>FilterOutputStream</em></strong>，在 <em>OutputStream</em> 的接口上，额外提供了一些写入<strong>各种数据类型</strong>的方法。以及对应的一组 <em>println()</em> 方法（自动加上换行符）。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>void <strong>print</strong>(boolean)</em></td>
+<td>将boolean类型数据对应字符串写到PrintStream流中</td>
+</tr>
+<tr>
+<td><em>void <strong>print</strong>(char)</em></td>
+<td>将char类型数据对应字符串写到PrintStream流中</td>
+</tr>
+<tr>
+<td><em>void <strong>print</strong>(int)</em></td>
+<td>将int类型数据对应字符串写到PrintStream流中</td>
+</tr>
+<tr>
+<td><em>void <strong>print</strong>(long)</em></td>
+<td>将long类型数据对应字符串写到PrintStream流中</td>
+</tr>
+<tr>
+<td><em>void <strong>print</strong>(float)</em></td>
+<td>将float类型数据对应字符串写到PrintStream流中</td>
+</tr>
+<tr>
+<td><em>void <strong>print</strong>(double)</em></td>
+<td>将double类型数据对应字符串写到PrintStream流中</td>
+</tr>
+<tr>
+<td><em>void <strong>print</strong>(char[])</em></td>
+<td>将字符串数组写到PrintStream流中</td>
+</tr>
+<tr>
+<td><em>void <strong>print</strong>(String)</em></td>
+<td>将字符串写到PrintStream流中</td>
+</tr>
+<tr>
+<td><em>void <strong>print</strong>(Obj)</em></td>
+<td>将对象对应字符串写到PrintStream中</td>
+</tr>
+</tbody></table>
+<p>🔺 两方法写入数据时都会将数据转换成字符串，实际调用的方法：write(String s)。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">ptrint(<span class="hljs-number">0x61</span>) = write(String.valueOf(<span class="hljs-number">0x61</span>))<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="2-PrintWriter"><a href="#2-PrintWriter" class="headerlink" title="2. PrintWriter"></a>2. PrintWriter</h2><ul>
+<li>（字符型）<code>PrintWriter</code>扩展了 <strong><em>Writer</em></strong> 接口，它的 <em>print() / println()</em> 方法最终输出的是 <strong>char</strong> 数据。使用方法同 <em>PrintStream</em>。</li>
+</ul>
+<h2 id="3-重定向标准输入-输出"><a href="#3-重定向标准输入-输出" class="headerlink" title="3. 重定向标准输入/输出"></a>3. 重定向标准输入/输出</h2><ul>
+<li><p><strong>重定向标准输入/输出</strong></p>
+<p>Java的<strong>标准输入/输出</strong>分别通过 <strong><em>System.in</em></strong>（从键盘输入）和 <strong><em>System.out</em></strong>（输出到屏幕）来代表。而 <em>System</em> 类里提供了如下3个重定向标准输入/输出的方法。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>static void <strong><em>setErr</em></strong>(PrintStream err)</td>
+<td>重定向 “标准”错误输出流。</td>
+</tr>
+<tr>
+<td>static void <strong><em>setIn</em></strong>(InputStream in)</td>
+<td>重定向“标准”输入流。</td>
+</tr>
+<tr>
+<td>static void <strong><em>setOut</em></strong>(PrintStream out)</td>
+<td>重定向 “标准”输出流。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>demo：重定向标准输出</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 通过重定向标准输出流，将System.out的输出重定向到文件输出，而不是在屏幕上输出。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedirectOut</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>          <span class="hljs-keyword">try</span>(<br>                <span class="hljs-comment">// 一次性创建PrintStream输出流</span><br>                PrintStream ps=<span class="hljs-keyword">new</span> PrintStream(<span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-string">&quot;out.txt&quot;</span>)))<br>          &#123;<br>                <span class="hljs-comment">// 将系统的标准输出重定向到ps输出流</span><br>                System.setOut(ps);<br>                <span class="hljs-comment">// 向标准输出输出一个字符串</span><br>                System.out.println(<span class="hljs-string">&quot;普通字符串&quot;</span>);<br>                <span class="hljs-comment">// 向标准输出输出一个对象</span><br>                System.out.println(<span class="hljs-keyword">new</span> RedirectOut());<br>          &#125;<br>          <span class="hljs-keyword">catch</span> (IOException ex)<br>          &#123;<br>                ex.printStackTrace();<br>          &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>该代码创建了一个 <strong><em>PrintStream</em></strong> 输出流，并将系统的标准输出重定向到该 <em>Print Stream</em> 输出流。运行该程序无任何输出：因为标准输出不再输出到屏幕，而是输出到 <em>out.txt</em> 文件。</p>
+</li>
+<li><p><strong>demo：重定向标准输入</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 下面程序重定向标准输入，从而可以将System.in重定向到指定文件，而不是键盘输入。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedirectIn</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>          <span class="hljs-keyword">try</span>(<br>                FileInputStream fis=<span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;RedirectIn.java&quot;</span>))<br>          &#123;<br>                <span class="hljs-comment">// 将标准输入重定向到fis输入流</span><br>                System.setIn(fis);<br>                <span class="hljs-comment">// 使用System.in创建Scanner对象，用于获取标准输入</span><br>                Scanner sc=<span class="hljs-keyword">new</span> Scanner(System.in);<br>                <span class="hljs-comment">// 增加下面一行只把回车作为分隔符</span><br>                sc.useDelimiter(<span class="hljs-string">&quot;\n&quot;</span>);<br>                <span class="hljs-comment">// 判断是否还有下一个输入项</span><br>                <span class="hljs-keyword">while</span>(sc.hasNext())<br>                &#123;<br>                    <span class="hljs-comment">// 输出输入项</span><br>                    System.out.println(<span class="hljs-string">&quot;键盘输入的内容是：&quot;</span> + sc.next());<br>                &#125;<br>          &#125;<br>          <span class="hljs-keyword">catch</span> (IOException ex)<br>          &#123;<br>                ex.printStackTrace();<br>          &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>该代码创建了一个 <strong><em>FileInputStream</em></strong> 输入流，并使用 <em>System</em> 的 <strong><em>setIn</em>()</strong> 方法将系统标准输入重定向到该文件输入流。</p>
+<p>运行上面程序，程序不会等待用户输入，而是直接输出了 <em>RedirectIn.java</em> 文件的内容，这表明程序不再使用键盘作为标准输入，而是使用指定文件作为标准输入源。</p>
+</li>
+</ul>
+<h1 id="七、对象流"><a href="#七、对象流" class="headerlink" title="七、对象流"></a>七、对象流</h1><h2 id="1-对象的序列化"><a href="#1-对象的序列化" class="headerlink" title="1. 对象的序列化"></a>1. 对象的序列化</h2><h2 id="2-对象流"><a href="#2-对象流" class="headerlink" title="2. 对象流"></a>2. 对象流</h2><h2 id="3-对象引用的序列化"><a href="#3-对象引用的序列化" class="headerlink" title="3. 对象引用的序列化"></a>3. 对象引用的序列化</h2><hr>
+<p>参考：<a href="https://book.douban.com/subject/3246499/">《疯狂Java讲义》</a></p>
+</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/note/Data-Structure/data-structure_HashMap/">🦋 HashMap</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize({
+    theme: 'neutral',
+    fontFamily: 'Noto Serif SC',
+    startOnLoad: 'true'
+  });
+}</script></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
