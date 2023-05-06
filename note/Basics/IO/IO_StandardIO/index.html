@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="IO - 标准设备输入/输出 [ 🍧 Peach ] "><meta name="theme-color"><title>IO - 标准设备输入/输出 [ 🍧 Peach ] </title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/mermaid.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=G-5GZQ6P3RMX" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valine/dist/Valine.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  new Valine({
+    el: '#comments',
+    appId: 'MJAdR7lH7cWVJLyn1Tgnw5Sj-gzGzoHsz',
+    appKey: 'de2VP0VpE5bWgR2aA8wkwxn2',
+    notify: false,
+    verify: false,
+    avatar: 'mp',
+    placeholder: 'say something',
+  })
+})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  tocbot.init({
+    // Where to render the table of contents.
+    tocSelector: '.toc__content',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: '.article__content',
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    // For headings inside relative or absolute positioned containers within content.
+    hasInnerContainers: true,
+    orderedList: false,
+    collapseDepth: 2,
+  });
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">IO - 标准设备输入/输出</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">IO - 标准设备输入/输出</a></h2><span class="post__date">2023-05-06</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><pre class="mermaid">%%{
+    init: {
+        'themeVariables': {
+            'fontSize': '14px'
+        }
+    }
+}%%
+graph LR
+T(["标准设备输入/输出"]):::p
+T --> A("<b><i>System</i></b>"):::p
+T --> B("<b><i>Console</i></b>"):::b
+A -.- a("标准输出 <b><i>out</i></b> <br>标准输入 <b><i>in</i></b> <br>标准错误输出 <b><i>err</i></b>"):::lp
+B -.- b("读取一行内容 <b><i>readLine()</i></b> <br>输出信息 <b><i>printf()</i></b> <br>读取密码 <b><i>readPassword()</i></b>"):::lb
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+<hr>
+<h1 id="一、标准设备输入-输出类-System"><a href="#一、标准设备输入-输出类-System" class="headerlink" title="一、标准设备输入/输出类 - System"></a>一、标准设备输入/输出类 - System</h1><p>System是Java系统中一个最常使用的类：Java的系统类。</p>
+<pre class="mermaid">%%{
+    init: {
+        'themeVariables': {
+            'fontSize': '13px'
+        }
+    }
+}%%
+graph LR
+t(("<b>System</b><br><i>（系统类）</i>")):::p --> T
+subgraph 静态方法
+T([静态方法]):::p
+T --> 1("标准输出 <b><i>out</i></b> <br>标准输入 <b><i>in</i></b> <br>标准错误输出 <b><i>err</i></b>"):::lp
+T -.- 2("访问外部定义的属性和环境变量"):::info
+T -.- 3("加载文件和库"):::info
+T -.- 4("快速复制数组"):::info
+T -.- 5("取得系统时间：<br><b><i>System.currentTimeMillis()</i></b>"):::info
+T -.- 6("系统退出命令：<b><i>System.exit()</i></b>"):::info
+end
+
+t --> T2(["静态成员变量"]):::b
+
+subgraph "<b>静态成员变量</b><br><i>(用于连接到标准输入/输出控制设备（键盘和控制台）)</i><br>"
+T2 --> 7("<b>标准输出流</b>：<br><i>static PrintStream <b>out</i></b>"):::lb 
+T2 --> 8("<b>标准错误输出流</b>：<br><i>static PrintStream <b>err</i></b>"):::lb 
+T2 --> 9("<b>标准输入流</b>：<br><i>static PrintStream <b>in</i></b>"):::lb 
+end
+7 -.- 7t("<b><i>System.out.print()<br>System.out.println()</i></b>"):::lg
+8 -.- 8t("<b><i>System.err.print()</i></b>"):::lg
+9 -.- 9t("<b><i>System.in.read()<br>System.in.read(b)</i></b>"):::lg
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+<h2 id="①-out-标准输出流"><a href="#①-out-标准输出流" class="headerlink" title="① out 标准输出流"></a>① out 标准输出流</h2><p><code>输出消息到控制台</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// ------ * 编写一行输出数据 ----------------------------------</span><br>System.out.println(data);<br><br><span class="hljs-comment">// ------ 输出各种类型的数值 -----------------------------------</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> b)</span></span>;            <span class="hljs-comment">// 打印boolean值</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">char</span> c)</span></span>;               <span class="hljs-comment">// 打印字符</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">char</span>[]s)</span></span>;              <span class="hljs-comment">// 打印字符数组</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">double</span> d)</span></span>;             <span class="hljs-comment">// 打印双精度浮点数</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">float</span> f)</span></span>;              <span class="hljs-comment">// 打印浮点数</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;                <span class="hljs-comment">// 打印整数</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">long</span> l)</span></span>;               <span class="hljs-comment">// 打印long整数</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(Object obj)</span></span>;           <span class="hljs-comment">// 打印对象</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(String s)</span></span>;             <span class="hljs-comment">// 打印字符串</span><br><br><span class="hljs-comment">// ------ 输出各种类型的数值 + 换行 -------------------------------</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">println</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> x)</span></span>;          <span class="hljs-comment">// 打印boolean值，然后终止行</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">println</span><span class="hljs-params">(<span class="hljs-keyword">char</span> x)</span></span>;             <span class="hljs-comment">// 打印字符，然后终止该行</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">println</span><span class="hljs-params">(<span class="hljs-keyword">char</span>[]x)</span></span>;            <span class="hljs-comment">// 打印字符数组，然后终止该行</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">println</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x)</span></span>;           <span class="hljs-comment">// 打印double，然后终止该行</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">println</span><span class="hljs-params">(<span class="hljs-keyword">float</span> x)</span></span>;            <span class="hljs-comment">// 打印float，然后终止该行</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">println</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>;              <span class="hljs-comment">// 打印整数，然后终止该行</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">println</span><span class="hljs-params">(<span class="hljs-keyword">long</span> x)</span></span>;             <span class="hljs-comment">// 打印long，然后终止该行</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">println</span><span class="hljs-params">(Object x)</span></span>;           <span class="hljs-comment">// 打印Object，然后终止该行</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">println</span><span class="hljs-params">(String x)</span></span>;           <span class="hljs-comment">// 打印String，然后终止该行</span><br>  <br><span class="hljs-comment">// ------ 直接输出字节数据（字节流） --------------------------------</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-keyword">int</span> b)</span></span>;                        <span class="hljs-comment">// 将指定的字节写入此流</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-keyword">byte</span>[] buf, <span class="hljs-keyword">int</span> off, <span class="hljs-keyword">int</span> len)</span></span>; <span class="hljs-comment">// 将len字节从指定的初始偏移量为off的byte数组写入此流</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="②-err-标准错误输出流"><a href="#②-err-标准错误输出流" class="headerlink" title="② err 标准错误输出流"></a>② err 标准错误输出流</h2><p><code>输出错误消息到控制台</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">System.err.println(data);   <span class="hljs-comment">/* 此输出流用于显示错误消息，或者显示那些</span><br><span class="hljs-comment">即使用户输出流（变量out的值）已经重定向到通常不被连续监视的某一文件或其他目标，</span><br><span class="hljs-comment">也应该立刻引起用户注意的其他信息。 */</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="③-in-标准输入流"><a href="#③-in-标准输入流" class="headerlink" title="③ in 标准输入流"></a>③ in 标准输入流</h2><p><code>接收键盘输入</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">read()          <span class="hljs-comment">// 读取一个字节</span><br>read(<span class="hljs-keyword">byte</span>[] b)  <span class="hljs-comment">// 读取一个字节数组</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="1-read"><a href="#1-read" class="headerlink" title="1. read()"></a>1. read()</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestSystemInRead</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">int</span> c;<br>            <span class="hljs-keyword">while</span>((c=System.in.read())!=<span class="hljs-number">0</span>)&#123;      <span class="hljs-comment">// 从控制台读入一个字节（8bit）</span><br>                System.out.write(c);             <span class="hljs-comment">// 输出一个字节</span><br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 运行该程序，在控制台输入一段字符后按回车键，就会调用read()函数的循环，</span><br><span class="hljs-comment">// 每读到一个字节就会输出一个字节，因此回车前输入的字符串就会原样输出。</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="2-read-byte-b"><a href="#2-read-byte-b" class="headerlink" title="2. read(byte[] b)"></a>2. read(byte[] b)</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  首先创建了一个长度为100的字节数组，表示一次可以读取100个字节。</span><br><span class="hljs-comment"> *  然后使用read(byte[] b)读取100个字节到byte中，再调用write()函数输出这个字节数组到控制台中。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestSystemInReadByte</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">byte</span>[]b=<span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">100</span>];            <span class="hljs-comment">// 创建字节数组</span><br>            System.in.read(b);                <span class="hljs-comment">// 读取到数组中</span><br>            System.out.write(b,<span class="hljs-number">0</span>,<span class="hljs-number">100</span>);        <span class="hljs-comment">// 输出字节数组</span><br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 运行该程序，输入一个字符串，回车后就会输出回车前字符串的前100个字符。</span><br><span class="hljs-comment">// 如果你输入的字符串长度小于100，那么为了补全100个字节，剩余的字节将会使用方框“□”表示，实际上是这个字节没有数据。</span><br><span class="hljs-comment">// 如果输入的字符串长度大于100，多余的字节就会被抛弃。</span><br></code></pre></td></tr></table></figure>
+
+<br>
+
+<hr>
+<h1 id="二、控制台读写类-Console"><a href="#二、控制台读写类-Console" class="headerlink" title="二、控制台读写类 - Console"></a>二、控制台读写类 - Console</h1><ul>
+<li><p><strong>Console类优点：</strong></p>
+<pre class="mermaid">  %%{
+    init: {
+        'themeVariables': {
+            'fontSize': '13px'
+        }
+    }
+}%%
+graph LR
+A(["<b>System 缺点</b>"]):::g
+B(["<b>Console 优点</b>"]):::p
+A -.- 1("读入的<b>字节数组长度</b>有<b><i>100</i></b>的限制：若字符串长度<br>小于100将会使用方框代替，若大于100将会被抛弃。"):::lg
+B -.- 2("不需要捕捉异常，该函数<b>没有抛出异常</b>"):::lp
+B -.- 3("不需要将字节数组转化为字符串，直接读入即<b>字符串</b>"):::lp
+B -.- 4("可以<b>完整读取一行</b>输入并完整输出，没有抛弃和填充"):::lp
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+</li>
+<li><p>Console类方法<strong>可访问与当前Java虚拟机关联的基于字符的控制台设备(若有)</strong>，常指键盘。</p>
+<p>虚拟机是否具有控制台取决于底层平台，还取决于调用虚拟机的方式：</p>
+<pre class="mermaid">  %%{
+    init: {
+        'themeVariables': {
+            'fontSize': '14px'
+        }
+    }
+}%%
+graph 
+T(["<b>访问与虚拟机关联的控制台设备</b>"]):::p
+T --> A("① 虚拟机从<b>交互式命令行</b>启动，<br>且没有重定向标准输入和输出流"):::lp
+T --> B("② 虚拟机<b>自动启动</b> <br>（如，由后台作业调度程序启动）"):::lg
+A -.- a(["<b>控制台存在</b>"]):::p
+B -.- b(["<b>无控制台</b>"]):::g
+a -.- |"连接到设备<br>（键盘）"|1("由此类唯一的实例表示<br>（调用 <b><i>System.console()</i></b> 获得）"):::lp
+a -.- |"无可用设备"|2("对该方法的调用返回null"):::info
+%% 将由此类唯一的<b>实例</b>表示<br><i>（可通过调用 System.console() 获得）</i>")
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+</li>
+</ul>
+<h2 id="①-读取信息"><a href="#①-读取信息" class="headerlink" title="① 读取信息"></a>① 读取信息</h2><p><strong>从控制台读取输入的字符串</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** </span><br><span class="hljs-comment"> * 使用了System.console()函数取得了Console对象，</span><br><span class="hljs-comment"> * 然后使用readLine()函数即可读取一行字符串的输入。该函数在用户执行回车时调用。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestConsole</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>            String str = System.console().readLine();  <span class="hljs-comment">// 取得输入字符串</span><br>            System.out.println(str);                   <span class="hljs-comment">// 输出字符串</span><br>        &#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="②-输出信息"><a href="#②-输出信息" class="headerlink" title="② 输出信息"></a>② 输出信息</h2><p><strong>从控制台输出消息</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">System.console().printf(str);<br></code></pre></td></tr></table></figure>
+
+<p style="font-size:13px;color:#666666">注：其读写操作是同步的，以保证关键操作能完整完成。因此调用readLine()、printf()时可能阻塞。</p>
+
+<h2 id="③-读取密码"><a href="#③-读取密码" class="headerlink" title="③ 读取密码"></a>③ 读取密码</h2><blockquote>
+<p>应用程序需要读取密码或其他安全数据，则应使用 <strong><em>readPassword()</em></strong> 或 <strong><em>readPassword(String, Object…)</em></strong>，并在执行后手工将返回的字符数组归零，以最大限度地缩短内存中敏感数据的生存期。</p>
+</blockquote>
+<p><strong>读取密码</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestConsolePassword</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>            <span class="hljs-keyword">char</span> password[] = System.console().readPassword(); <span class="hljs-comment">// 取得密码</span><br>            System.out.println(password);                    <span class="hljs-comment">// 输出字符串</span><br>        &#125;<br>    &#125;<br><br>&#125;<br><br><span class="hljs-comment">// 它直接监控键盘的输入，回车后即可取得密码字符串。</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>读取密码时添加提示信息</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">System.console().readPassword(<span class="hljs-string">&quot;[%s]&quot;</span>, <span class="hljs-string">&quot;请输入密码：&quot;</span>);<br><br><span class="hljs-comment">// 字符串“请输入密码：”将作为提示信息显示在控制台窗口中。</span><br></code></pre></td></tr></table></figure>
+
+
+
+<br>
+<br>
+<br>
+
+<p style="text-align:center;font-size:13px;color:#666666"> - <i>end</i> - </p>
+
+<hr>
+<p style="font-size:13px;color:#666666">🔖 笔记来自：<a href="https://book.douban.com/subject/3609215/" target="_blank">《Java高手真经（编程基础卷）》</a></p>
+
+</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/note/Basics/IO/IO/">☕️ java.io</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize({
+    theme: 'neutral',
+    fontFamily: 'Noto Serif SC',
+    startOnLoad: 'true'
+  });
+}</script></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>

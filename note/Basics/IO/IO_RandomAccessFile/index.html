@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="IO - RandomAccessFile 任意访问文件 [ 🍧 Peach ] "><meta name="theme-color"><title>IO - RandomAccessFile 任意访问文件 [ 🍧 Peach ] </title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/mermaid.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=G-5GZQ6P3RMX" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valine/dist/Valine.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  new Valine({
+    el: '#comments',
+    appId: 'MJAdR7lH7cWVJLyn1Tgnw5Sj-gzGzoHsz',
+    appKey: 'de2VP0VpE5bWgR2aA8wkwxn2',
+    notify: false,
+    verify: false,
+    avatar: 'mp',
+    placeholder: 'say something',
+  })
+})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  tocbot.init({
+    // Where to render the table of contents.
+    tocSelector: '.toc__content',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: '.article__content',
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    // For headings inside relative or absolute positioned containers within content.
+    hasInnerContainers: true,
+    orderedList: false,
+    collapseDepth: 2,
+  });
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">IO - RandomAccessFile 任意访问文件</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">IO - RandomAccessFile 任意访问文件</a></h2><span class="post__date">2023-05-04</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><blockquote>
+<p>📌 RandomAccessFile既可以读取文件内容，也可以向文件输出数据，是一个更接近于操作系统API的封装类。</p>
+<ul>
+<li>与普通的输入/输出流不同的是， 它支持“<strong>随机访问</strong>”的方式，程序可以<strong>直接跳转到文件的任意地方来读写数据</strong>。（与InputStream、Reader需要依次向后读取相区分）</li>
+<li>它将文件内容存储在一个大型byte数组中。它存在着指向该隐含byte数组的光标或索引，称为文件指针，该指针位置可以通过seek方法设置</li>
+</ul>
+</blockquote>
+<h2 id="一、使用场景"><a href="#一、使用场景" class="headerlink" title="一、使用场景"></a>一、使用场景</h2><pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+       'fontSize': '13px'
+     }
+  }
+}%%
+graph LR
+T(["RandomAccessFile 的使用场景"]):::p
+T --> A("仅访问文件部分内容"):::lp
+T --> B("向已存在的文件后追加内容"):::lp
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+
+
+<ul>
+<li><strong>只访问文件部分内容</strong>，而不是把文件从头读到尾，使用RandomAccessFile更好。</li>
+<li><strong>向已存在的文件后追加内容</strong>：与OutputStream、Writer等输出流不同的是，RandomAccessFile允许自由定位文件记录指针，所以RandomAccessFile可以不从开始的地方开始输出，所以RandomAccessFile可以向已存在的文件后追加内容。</li>
+</ul>
+<br>
+
+<hr>
+<h2 id="二、方法"><a href="#二、方法" class="headerlink" title="二、方法"></a>二、方法</h2><p><em><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/RandomAccessFile.html">java.io.RandomAccessFile</a></em></p>
+<h3 id="①-操作文件指针"><a href="#①-操作文件指针" class="headerlink" title="① 操作文件指针"></a>① 操作文件指针</h3><p>RandomAccessFile对象的记录指针：指向当前读写的位置，各种read/write操作都会自动更新该指针（移动单位：字节）。</p>
+<!--当程序新创建一个RandomAccessFile对象时，该对象的文件记录指针位于文件头（也就是0处），当读/写了n个字节后，文件记录指针将会向后移动n个字节。-->
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>long <strong>getFilePointer</strong>()</td>
+<td>返回文件记录指针的当前位置。</td>
+</tr>
+<tr>
+<td>void <strong>seek</strong>(long pos)</td>
+<td>将文件记录指针定位到pos位置。</td>
+</tr>
+<tr>
+<td>void skipBytes(int n)</td>
+<td>使文件指针向前移动指定的n个字节。</td>
+</tr>
+</tbody></table>
+<h3 id="②-读写方法"><a href="#②-读写方法" class="headerlink" title="② 读写方法"></a>② 读写方法</h3><p>RandomAccessFile实现了<code>DataInput/DataOutput</code>接口：</p>
+<h4 id="读取："><a href="#读取：" class="headerlink" title="* 读取："></a>* <strong>读取</strong>：</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// ------ 基本读取 --------------------------------------------</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>;                            <span class="hljs-comment">// 从该文件读取一个字节的数据。</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">(<span class="hljs-keyword">byte</span>[] b)</span></span>;                    <span class="hljs-comment">// 从文件中最多读取b.length个字节的数据，并将其存储在字节数组b中。</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">(<span class="hljs-keyword">byte</span>[] b, <span class="hljs-keyword">int</span> off, <span class="hljs-keyword">int</span> len)</span></span>;  <span class="hljs-comment">// 从指定的off位置开始，从文件中最多读取len个字节的数据。</span><br><br><span class="hljs-comment">// ------ 读取指定类型的数值 -----------------------------------</span><br><span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">readBoolean</span><span class="hljs-params">()</span></span>;        <span class="hljs-comment">// 读取一个boolean</span><br><span class="hljs-function"><span class="hljs-keyword">byte</span> <span class="hljs-title">readByte</span><span class="hljs-params">()</span></span>;              <span class="hljs-comment">// 读取一个有符号的8位值</span><br><span class="hljs-function"><span class="hljs-keyword">char</span> <span class="hljs-title">readChar</span><span class="hljs-params">()</span></span>;              <span class="hljs-comment">// 读取一个字符</span><br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">readDouble</span><span class="hljs-params">()</span></span>;          <span class="hljs-comment">// 读取一个double</span><br><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">readFloat</span><span class="hljs-params">()</span></span>;            <span class="hljs-comment">// 读取一个float</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">readInt</span><span class="hljs-params">()</span></span>;                <span class="hljs-comment">// 读取一个有符号的32位整数</span><br><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-title">readLong</span><span class="hljs-params">()</span></span>;              <span class="hljs-comment">// 读取一个有符号的64位整数</span><br><span class="hljs-function"><span class="hljs-keyword">short</span> <span class="hljs-title">readShort</span><span class="hljs-params">()</span></span>;            <span class="hljs-comment">// 读取一个有符号的16位数</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">readUnsignedByte</span><span class="hljs-params">()</span></span>;       <span class="hljs-comment">// 读取一个无符号的8位数</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">readUnsignedShort</span><span class="hljs-params">()</span></span>;      <span class="hljs-comment">// 读取一个无符号的16位数</span><br><br><span class="hljs-comment">// ------ 读取一行字符串 ---------------------------------------</span><br><span class="hljs-function">String <span class="hljs-title">readLine</span><span class="hljs-params">()</span></span><br><span class="hljs-function">  </span><br><span class="hljs-function"><span class="hljs-comment">// ------ 读取中文字符串 ---------------------------------------</span></span><br><span class="hljs-function">String <span class="hljs-title">readUTF</span><span class="hljs-params">()</span>  <span class="hljs-comment">// 以上函数均按照字节码读取的，若有中文出现，readLine()会显示乱码，可使用readUTF()读取。</span></span><br><span class="hljs-function">		  <span class="hljs-comment">// 它从当前文件指针开始读取前两个字节，类似于使用readUnsignedShort。</span></span><br><span class="hljs-function">  </span><br><span class="hljs-function"></span><br></code></pre></td></tr></table></figure>
+
+<h4 id="写入："><a href="#写入：" class="headerlink" title="* 写入："></a>* <strong>写入</strong>：</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// ------ 基本读取 --------------------------------------------</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">()</span>                            <span class="hljs-comment">// 在该文件的当前指针位置写入一个字节，并覆盖原有的字节。</span></span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-keyword">byte</span>[] b)</span>                    <span class="hljs-comment">// 将b.length字节从指定的字节数组写入文件（从当前文件指针开始）</span></span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-keyword">byte</span>[] b, <span class="hljs-keyword">int</span> off, <span class="hljs-keyword">int</span> len)</span>  <span class="hljs-comment">// 从参数off指定的起始位置，将指定字节数组中的len个字节写入文件。</span></span><br><span class="hljs-function">  </span><br><span class="hljs-function"><span class="hljs-comment">// ------ 写入固定类型的数值 -----------------------------------</span></span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeBoolean</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> v)</span></span>;          <span class="hljs-comment">// 按单字节值将boolean写入该文件</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeByte</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span></span>;                 <span class="hljs-comment">// 按单字节值将byte写入该文件</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeBytes</span><span class="hljs-params">(String s)</span></span>;             <span class="hljs-comment">// 按字节序列将该字符串写入该文件</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeChar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span></span>;                 <span class="hljs-comment">// 按双字节值将char写入该文件，先写高字节</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeChars</span><span class="hljs-params">(String s)</span></span>;             <span class="hljs-comment">// 按字符序列将一个字符串写入该文件</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeDouble</span><span class="hljs-params">(<span class="hljs-keyword">double</span> v)</span></span>;            <span class="hljs-comment">/* 使用Double类中的doubleToLongBits方法将双精度参数转换为一个long，</span><br><span class="hljs-comment">					  然后按8字节数量将该long值写入该文件，先写高字节 */</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeFloat</span><span class="hljs-params">(<span class="hljs-keyword">float</span> v)</span></span>;              <span class="hljs-comment">/* 使用Float类中的floatToIntBits方法将浮点参数转换为一个int，</span><br><span class="hljs-comment">					  然后按4字节数量将该int值写入该文件，先写高字节 */</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeInt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span></span>;                  <span class="hljs-comment">// 按4个字节将int写入该文件，先写高字节</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeLong</span><span class="hljs-params">(<span class="hljs-keyword">long</span> v)</span></span>;                <span class="hljs-comment">// 按8个字节将long写入该文件，先写高字节</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeShort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span></span>;                <span class="hljs-comment">// 按2个字节将short写入该文件，先写高字节</span><br><br><span class="hljs-comment">// ------ 写入一个字符串（按字节写入，若中文会乱码）----------------</span><br>writeBytes()  <br>writeChars()    	<span class="hljs-comment">// 按照双字节写入，即一个字符占用2个字节。</span><br>  <br><span class="hljs-comment">// ------ 写入中文字符串 ---------------------------------------</span><br><span class="hljs-function">String <span class="hljs-title">writeUTF</span><span class="hljs-params">()</span>    	<span class="hljs-comment">/* 它把2个字节从文件的当前文件指针写入到此文件，类似于使用writeShort方法</span></span><br><span class="hljs-comment"><span class="hljs-function">        		   并给定要跟随的字节数。此值是实际写出的字节数，而不是该字符串的长度。 */</span></span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="③-构造方法"><a href="#③-构造方法" class="headerlink" title="③ 构造方法"></a>③ 构造方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>RandomAccessFile</strong>(File <strong>file</strong>, String <strong>mode</strong>)</td>
+<td>使用File参数来指定文件本身（打开文件）</td>
+</tr>
+<tr>
+<td><strong>RandomAccessFile</strong>(String <strong>name</strong>, String <strong>mode</strong>)</td>
+<td>使用String参数来指定文件名（打开文件）</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>RandomAccessFile的4种访问模式：</p>
+<table>
+<thead>
+<tr>
+<th>参数值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r</td>
+<td>以<strong>只读</strong>方式打开指定文件。若试图对该RamdomAceessFile执行写入方法，都将执行IOException异常</td>
+</tr>
+<tr>
+<td>rw</td>
+<td>以<strong>读、写</strong>方式打开指定文件。如果该文件尚不存在，则尝试创建该文件。</td>
+</tr>
+<tr>
+<td>rws</td>
+<td>以读、写方式打开指定文件。相对于”rw”模式，还要求对<u>文件的内容或元数据</u>的每个更新都同步写入到底层存储设备。</td>
+</tr>
+<tr>
+<td>rwd</td>
+<td>以读、写方式打开指定文件。相对于”rw”模式，还要求对<u>文件内容</u>的每个更新都同步写入到底层存储设备。</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<br>
+
+<hr>
+<h2 id="三、实例"><a href="#三、实例" class="headerlink" title="三、实例"></a>三、实例</h2><h3 id="①-访问指定的中间部分数据"><a href="#①-访问指定的中间部分数据" class="headerlink" title="① 访问指定的中间部分数据"></a>① 访问指定的中间部分数据</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RandomAccessFileTest</span> </span>&#123;<br>  <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span>(<br>            RandomAccessFile raf = <span class="hljs-keyword">new</span> RandomAccessFile(<br>                <span class="hljs-string">&quot;RandomAccessFileTest.java&quot;</span> , <span class="hljs-string">&quot;r&quot;</span>)) <span class="hljs-comment">// 以只读方式打开，只能读取</span><br>        &#123;<br>            <span class="hljs-comment">// 🔹 获取RandomAccessFile对象文件指针的位置，初始位置是0</span><br>            System.out.println(<span class="hljs-string">&quot;RandomAccessFile的文件指针的初始位置：&quot;</span><br>                + raf.getFilePointer());<br>            <span class="hljs-comment">// 🔹 移动raf的文件记录指针的位置（将从300字节处开始读、写）</span><br>            raf.seek(<span class="hljs-number">300</span>);<br>            <span class="hljs-keyword">byte</span>[] bbuf = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>];<br>            <span class="hljs-comment">// 用于保存实际读取的字节数</span><br>            <span class="hljs-keyword">int</span> hasRead = <span class="hljs-number">0</span>;<br>            <span class="hljs-comment">// 🔹 使用循环来重复“取水”过程</span><br>            <span class="hljs-keyword">while</span> ((hasRead = raf.read(bbuf)) &gt; <span class="hljs-number">0</span> ) &#123;<br>                <span class="hljs-comment">// 取出“竹筒”中的水滴（字节），将字节数组转换成字符串输入</span><br>                System.out.print(<span class="hljs-keyword">new</span> String(bbuf , <span class="hljs-number">0</span> , hasRead ));<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (IOException ex) &#123;<br>            ex.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 运行上面程序，将看到程序只读取后面部分的效果。</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="②-向指定文件后追加内容"><a href="#②-向指定文件后追加内容" class="headerlink" title="② 向指定文件后追加内容"></a>② 向指定文件后追加内容</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppendContent</span> </span>&#123;<br>  <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span>(<br>            <span class="hljs-comment">// 🔹 以读、写方式打开一个 RandomAccessFile 对象</span><br>            RandomAccessFile raf=<span class="hljs-keyword">new</span> RandomAccessFile(<span class="hljs-string">&quot;out.txt&quot;</span> , <span class="hljs-string">&quot;rw&quot;</span>))<br>        &#123;<br>            <span class="hljs-comment">// 🔹 将 RandomAccessFile 对象的记录指针 移动到out.txt文件的最后</span><br>            raf.seek(raf.length());<br>						<span class="hljs-comment">// 🔹 使用 RandomAccessFile 执行输出</span><br>            raf.write(<span class="hljs-string">&quot;追加的内容！\r\n&quot;</span>.getBytes());<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (IOException ex) &#123;<br>            ex.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 每运行上面程序一次，都可以看到out.txt文件中多一行“追加的内容！”字符串。</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="③-向指定文件、指定位置插入内容"><a href="#③-向指定文件、指定位置插入内容" class="headerlink" title="③ 向指定文件、指定位置插入内容"></a>③ 向指定文件、指定位置插入内容</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** </span><br><span class="hljs-comment"> *  程序先将文件中插入点后的内容读入临时文件中，然后重新定位到插入点，将需要插入的内容添加到文件后面，</span><br><span class="hljs-comment"> *  最后将临时文件的内容添加到文件后面，通过这个过程就可以向指定文件、指定位置插入内容。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertContent</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(String fileName, <span class="hljs-keyword">long</span> pos, String insertContent)</span> </span><br><span class="hljs-function"><span class="hljs-keyword">throws</span> IOException </span>&#123;<br>				<br>	<span class="hljs-comment">// 🔹 创建一个临时文件来保存插入点后的数据（该临时文件将在JVM退出时被删除）</span><br>        File tmp = File.createTempFile(<span class="hljs-string">&quot;tmp&quot;</span> , <span class="hljs-keyword">null</span>);<br>        tmp.deleteOnExit();<br>        <span class="hljs-keyword">try</span>(<br>            RandomAccessFile raf = <span class="hljs-keyword">new</span> RandomAccessFile(fileName , <span class="hljs-string">&quot;rw&quot;</span>);<br>            FileOutputStream tmpOut=<span class="hljs-keyword">new</span> FileOutputStream(tmp);<br>            FileInputStream tmpIn=<span class="hljs-keyword">new</span> FileInputStream(tmp))<br>        &#123;<br>            raf.seek(pos);<br><br>            <span class="hljs-comment">// ------🔹 下面代码将插入点后的内容读入临时文件中保存------</span><br>            <span class="hljs-keyword">byte</span>[] bbuf=<span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">64</span>];<br>            <span class="hljs-comment">// 用于保存实际读取的字节数</span><br>            <span class="hljs-keyword">int</span> hasRead=<span class="hljs-number">0</span>;<br>            <span class="hljs-comment">// 使用循环方式读取插入点后的数据</span><br>            <span class="hljs-keyword">while</span> ((hasRead=raf.read(bbuf)) &gt; <span class="hljs-number">0</span> )&#123;<br>                  <span class="hljs-comment">// 将读取的数据写入临时文件</span><br>                  tmpOut.write(bbuf , <span class="hljs-number">0</span> , hasRead);<br>            &#125;<br><br>            <span class="hljs-comment">// ----------🔹 下面代码用于插入内容----------</span><br>            <span class="hljs-comment">// 把文件记录指针重新定位到pos位置</span><br>            raf.seek(pos);<br>            <span class="hljs-comment">// 追加需要插入的内容</span><br>            raf.write(insertContent.getBytes());<br>            <span class="hljs-comment">// 追加临时文件中的内容</span><br>            <span class="hljs-keyword">while</span> ((hasRead=tmpIn.read(bbuf)) &gt; <span class="hljs-number">0</span> )&#123;<br>                  raf.write(bbuf , <span class="hljs-number">0</span> , hasRead);<br>            &#125;<br>        &#125;<br>    &#125;<br>  <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>        insert(<span class="hljs-string">&quot;InsertContent.java&quot;</span> , <span class="hljs-number">45</span> , <span class="hljs-string">&quot;插入的内容\r\n&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 每次运行上面程序，都会看到向InsertContent.java中插入了一行字符串</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<br>
+
+<hr>
+<h2 id="四、应用"><a href="#四、应用" class="headerlink" title="四、应用"></a>四、应用</h2><ul>
+<li><p><strong>多线程断点的网络下载工具</strong>（如<a href="https://baike.baidu.com/item/Flashget/309100?fr=aladdin">FlashGet</a>等）就可通过RandomAccessFile类来实现：</p>
+<pre class="mermaid">  %%{
+  init: {
+    'themeVariables': {
+       'fontSize': '13px'
+     }
+  }
+}%%
+graph LR 
+subgraph "<b>[ 多线程断点的网络下载工具 ]</b>"
+A[["与被下载文件大<br>小相同的空文件"]]:::lp
+B[["记录文件指针<br>的位置文件"]]:::lb
+end
+net("网络数据"):::info -.->|"<i>写入</i>"| A
+A --> |"<i>每写一些数据</i>：<br><b>记下文件指针位置</b>"|B
+B -.-> |"<i>断网后再次下载</i>：<br><b>根据记录的位置<br>继续向下写数据</b>"|A
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,stroke-dasharray: 3 3, stroke-width: 2px, stroke: #676666</pre>
+
+<p>下载工具用<strong>多条线程</strong>启动输入流来读取网络数据，并使用<em>RandomAccessFile</em>将从网络上读取的数据写入前面建立的空文件中，每写一些数据后，记录文件指针的文件就分别记下每个<em>RandomAccessFile</em>当前的<strong>文件指针位置</strong>。</p>
+<!--所有的下载工具在下载开始时都会建立两个文件：一个是与被下载文件大小相同的空文件，一个是记录文件指针的位置文件，下载工具用多条线程启动输入流来读取网络数据，并使用RandomAccessFile将从网络上读取的数据写入前面建立的空文件中，每写一些数据后，记录文件指针的文件就分别记下每个RandomAccessFile当前的文件指针位置----网络断开后，再次开始下载时，每个RandomAccessFile都根据记录文件指针的文件中记录的位置继续向下写数据。-->
+
+
+
+</li>
+</ul>
+<br>
+<br>
+<br>
+
+<p style="text-align:center;font-size:13px;color:#666666"> - <i>end</i> - </p>
+
+<hr>
+<blockquote>
+<p>🔖 笔记来自：</p>
+<ul>
+<li><a href="https://book.douban.com/subject/30133440/">《Java编程的逻辑》</a></li>
+<li><a href="https://book.douban.com/subject/3246499/">《疯狂Java讲义》</a></li>
+<li><a href="https://book.douban.com/subject/3609215/">《Java高手真经（编程基础卷）》</a></li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><br></code></pre></td></tr></table></figure>
+
+</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button" href="/note/Basics/IO/IO_Object_serialization/">IO - 对象序列化</a><a class="next-button" href="/note/Basics/IO/IO_IO/">IO - 输入/输出流</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize({
+    theme: 'neutral',
+    fontFamily: 'Noto Serif SC',
+    startOnLoad: 'true'
+  });
+}</script></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
