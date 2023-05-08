@@ -25,27 +25,46 @@ gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valin
     collapseDepth: 2,
   });
 })</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">IO - 标准设备输入/输出</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">IO - 标准设备输入/输出</a></h2><span class="post__date">2023-05-06</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><pre class="mermaid">%%{
-    init: {
-        'themeVariables': {
-            'fontSize': '14px'
-        }
+  init: {
+    'themeVariables': {
+      'fontSize': '14px',
+      'clusterBorder': 'none',
+      'clusterBkg': '#f8f8f8'
     }
+  }
 }%%
-graph LR
-T(["标准设备输入/输出"]):::p
-T --> A("<b><i>System</i></b>"):::p
-T --> B("<b><i>Console</i></b>"):::b
-A -.- a("标准输出 <b><i>out</i></b> <br>标准输入 <b><i>in</i></b> <br>标准错误输出 <b><i>err</i></b>"):::lp
-B -.- b("读取一行内容 <b><i>readLine()</i></b> <br>输出信息 <b><i>printf()</i></b> <br>读取密码 <b><i>readPassword()</i></b>"):::lb
-classDef p fill:#ddaebd
-classDef b fill:#aab7d2
-classDef g fill:#9ac5bb
-classDef lp fill:#f4e4e9
-classDef lb fill:#d9dfeb
-classDef lg fill:#ddebe6
+graph 
+subgraph "<b>Java.io - toc</b>"
+T(["<b>Java.io</b>"]):::T
+T --> A(["<b>标准设备输入/输出</b>"]):::p
+T -.- B(["文件基本处理"]):::g
+T -.- C(["输入/输出流"]):::g
+
+A --> 1["<b>① 标准设备输入/输出类：<i>System</i> #12288;#12288;#12288;#12288;<br>—————————————————————<br>② 控制台读写类：<i>Console </i> #12288;#12288;#12288;#12288;#12288;#12288;#12288;</b>"]:::lp
+B -.- 2["① 文件操作类：<i>File</i> #12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
+B -.- b2["② 文件搜索类：<i>FileFilter 与 FileNameFilter</i>"]:::lg
+B -.- b3["③ 文件任意读写类：<i>RandomAccessFile</i> #12288;#12288;"]:::lg
+C -.- c1["① 输入/输出流#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
+C -.- c2["② 对象序列化 #12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
+end
+
+
+click 1 "https://equnee.github.io/note/Basics/IO/IO_StandardIO/"
+click b3 "https://equnee.github.io/note/Basics/IO/IO_RandomAccessFile/"
+click c1 "https://equnee.github.io/note/Basics/IO/IO_IO/"
+click c2 "https://equnee.github.io/note/Basics/IO/IO_Object_serialization/"
+
+classDef T fill:#e5c0cb, stroke: #8b8b8b, stroke-width:1px
+classDef p fill:#e5c0cb, stroke: #cc829a, stroke-width:2px
+classDef lp fill:#f4e4e9, stroke: #cc829a, stroke-width:2px, stroke-dasharray: 4 2
+classDef g fill:#d4ded4
+classDef lg fill:#edf1ed
 classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
 
-<hr>
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+
+
 <h1 id="一、标准设备输入-输出类-System"><a href="#一、标准设备输入-输出类-System" class="headerlink" title="一、标准设备输入/输出类 - System"></a>一、标准设备输入/输出类 - System</h1><p>System是Java系统中一个最常使用的类：Java的系统类。</p>
 <pre class="mermaid">%%{
     init: {
@@ -99,7 +118,8 @@ classDef info color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
 
 <br>
 
-<hr>
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
 <h1 id="二、控制台读写类-Console"><a href="#二、控制台读写类-Console" class="headerlink" title="二、控制台读写类 - Console"></a>二、控制台读写类 - Console</h1><ul>
 <li><p><strong>Console类优点：</strong></p>
 <pre class="mermaid">  %%{
@@ -154,15 +174,15 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 
 </li>
 </ul>
-<h2 id="①-读取信息"><a href="#①-读取信息" class="headerlink" title="① 读取信息"></a>① 读取信息</h2><p><strong>从控制台读取输入的字符串</strong></p>
+<h2 id="①-读取信息-readLine"><a href="#①-读取信息-readLine" class="headerlink" title="① 读取信息 readLine()"></a>① 读取信息 readLine()</h2><p><strong>从控制台读取输入的字符串</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** </span><br><span class="hljs-comment"> * 使用了System.console()函数取得了Console对象，</span><br><span class="hljs-comment"> * 然后使用readLine()函数即可读取一行字符串的输入。该函数在用户执行回车时调用。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestConsole</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>            String str = System.console().readLine();  <span class="hljs-comment">// 取得输入字符串</span><br>            System.out.println(str);                   <span class="hljs-comment">// 输出字符串</span><br>        &#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="②-输出信息"><a href="#②-输出信息" class="headerlink" title="② 输出信息"></a>② 输出信息</h2><p><strong>从控制台输出消息</strong></p>
+<h2 id="②-输出信息-printf"><a href="#②-输出信息-printf" class="headerlink" title="② 输出信息 printf()"></a>② 输出信息 printf()</h2><p><strong>从控制台输出消息</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">System.console().printf(str);<br></code></pre></td></tr></table></figure>
 
 <p style="font-size:13px;color:#666666">注：其读写操作是同步的，以保证关键操作能完整完成。因此调用readLine()、printf()时可能阻塞。</p>
 
-<h2 id="③-读取密码"><a href="#③-读取密码" class="headerlink" title="③ 读取密码"></a>③ 读取密码</h2><blockquote>
+<h2 id="③-读取密码-readPassword"><a href="#③-读取密码-readPassword" class="headerlink" title="③ 读取密码 readPassword()"></a>③ 读取密码 readPassword()</h2><blockquote>
 <p>应用程序需要读取密码或其他安全数据，则应使用 <strong><em>readPassword()</em></strong> 或 <strong><em>readPassword(String, Object…)</em></strong>，并在执行后手工将返回的字符数组归零，以最大限度地缩短内存中敏感数据的生存期。</p>
 </blockquote>
 <p><strong>读取密码</strong></p>
@@ -179,10 +199,16 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 
 <p style="text-align:center;font-size:13px;color:#666666"> - <i>end</i> - </p>
 
-<hr>
-<p style="font-size:13px;color:#666666">🔖 笔记来自：<a href="https://book.douban.com/subject/3609215/" target="_blank">《Java高手真经（编程基础卷）》</a></p>
 
-</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/note/Basics/IO/IO/">☕️ java.io</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+
+<hr style="height:1px;border:none;border-top:1px dashed #d3d3d3;"/>
+<p style="font-size:13px;color:#666666">🔖 笔记来自：<a href="https://book.douban.com/subject/3609215/" target="_blank">《Java高手真经（编程基础卷）》</a>
+<br>
+
+
+
+
+</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/note/Basics/IO/IO/">☕️ java.io 目录</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
   var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
   mermaid.initialize({
     theme: 'neutral',
