@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="IO - 输入/输出流_原理 [ 🍧 Peach ] "><meta name="theme-color"><title>IO - 输入/输出流_原理 [ 🍧 Peach ] </title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/mermaid.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=G-5GZQ6P3RMX" async></script><script>window.dataLayer = window.dataLayer || [];
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="IO - 输入/输出流⑴_分类 [ 🍧 Peach ] "><meta name="theme-color"><title>IO - 输入/输出流⑴_分类 [ 🍧 Peach ] </title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/mermaid.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=G-5GZQ6P3RMX" async></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valine/dist/Valine.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
@@ -24,7 +24,7 @@ gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valin
     orderedList: false,
     collapseDepth: 2,
   });
-})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">IO - 输入/输出流_原理</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">IO - 输入/输出流_原理</a></h2><span class="post__date">2023-03-23</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><pre class="mermaid">%%{
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">IO - 输入/输出流⑴_分类</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">IO - 输入/输出流⑴_分类</a></h2><span class="post__date">2023-05-10</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><pre class="mermaid">%%{
   init: {
     'themeVariables': {
       'fontSize': '14px',
@@ -34,7 +34,7 @@ gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valin
   }
 }%%
 graph 
-subgraph "<b>Java.io - toc</b>"
+subgraph "<b>Java.io - 目录</b>"
 T(["<b>Java.io</b>"]):::T
 T -.- A(["标准设备输入/输出"]):::g
 T -.- B(["文件基本处理"]):::g
@@ -44,7 +44,7 @@ A -.- 1["① 标准设备输入/输出类：<i>System</i> #12288;#12288;#12288;#
 B -.- 2["① 文件操作类：<i>File</i> #12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
 B -.- b2["② 文件搜索类：<i>FileFilter 与 FileFileameFilter</i>"]:::lg
 B -.- b3["③ 文件任意读写类：<i>RandomAccessFile</i> #12288;#12288;"]:::lg
-C --> c1["<b>① 输入/输出流 - 原理</b>#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lp
+C --> c1["<b>① 输入/输出流 - 分类</b>#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lp
 C -.- c2["② 输入/输出流 - 实现类#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
 C -.- c3["③ 对象序列化 #12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
 end
@@ -65,13 +65,13 @@ classDef g fill:#d4ded4
 classDef lg fill:#edf1ed
 classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
 
+<p style="font-size:12px;color:#666666;text-align:right">Java把所有传统的流类型（类或抽象类）都放在 <b><i>java.io</i></b> 包中，以实现输入/输出功能。</p>
+
 <hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
 
-<blockquote>
-<p>Java中把不同的<b>输入/输出源</b>（键盘、文件、网络连接等）抽象表述为“<code>流</code>”（stream），通过流的方式允许Java程序使用相同的方式来<b>访问不同的输入/输出源</b>。</p>
-<p>stream是从起源（source）到接收（sink）的有序数据。</p>
-</blockquote>
-<h2 id="（一）流分类"><a href="#（一）流分类" class="headerlink" title="（一）流分类"></a>（一）流分类</h2><pre class="mermaid">%%{
+<h2 id="（一）流分类"><a href="#（一）流分类" class="headerlink" title="（一）流分类"></a>（一）流分类</h2><ul>
+<li><p>Java中把不同的<b>输入/输出源</b>（键盘、文件、网络连接等）抽象表述为<b>“流”</b>（stream），通过流的方式允许Java程序使用相同的方式来<b>访问不同的输入/输出源</b>。</p>
+<pre class="mermaid">  %%{
   init: {
     'themeVariables': {
        'fontSize': '13px'
@@ -79,7 +79,7 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
   }
 }%%
 graph LR
-T(["<b>IO流分类</b><br>可操作文件中的内容"]):::p
+T(["<b>IO流分类</b>"]):::p
 T --> A(["按照(读/写)<br><b>方向</b>分类"]):::p
 T --> B(["按照(读/写)<br><b>字节数大小</b>分类"]):::b
 T --> C(["按照流的<br><b>角色</b>分类"]):::g
@@ -87,8 +87,8 @@ A -.-> |"<i><b>in</b></i>（读取）"| a("<b>文件输入流</b><br><i>字节�
 A -.-> |"<i><b>out</b></i>（写入）"| a2("<b>文件输出流</b><br><i>字节型文件输出流<br>字符型文件输出流</i>"):::lp
 B -.-> |"<i><b>1字节</b></i>"| b("<b>字节型文件流</b>（二进制内容）<br><i>FileInputStream<br>FileOUtputStream</i>"):::lb
 B -.-> |"<i><b>1字符</b><br>（2字节）</i>"| b2("<b>字符型文件流</b>（文本内容）<br><i>FileReader<br>FileWriter</i>"):::lb
-C -.-> |"<i><b>直接连接</b><br>到数据源</i>"| c("底层节点流（<b>低级流</b>）"):::lg
-C -.-> |"<i><b>封装</b>已存<br>在的流</i>"| c2("上层处理流（<b>高级流</b>）"):::lg
+C -.-> |"<i><b>直接连接</b><br>到数据源</i>"| c("<b>底层节点流</b>（低级流）"):::lg
+C -.-> |"<i><b>封装</b>已存<br>在的流</i>"| c2("<b>上层处理流</b>（高级流）"):::lg
 
 classDef p fill:#ddaebd
 classDef b fill:#aab7d2
@@ -98,8 +98,14 @@ classDef lb fill:#d9dfeb
 classDef lg fill:#ddebe6
 classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
 
+
+
+</li>
+</ul>
 <p><br><hr style="height:2px;border:none;border-top:1px dashed #dedede;"/></p>
-<h2 id="（二）流模型"><a href="#（二）流模型" class="headerlink" title="（二）流模型"></a>（二）流模型</h2><h3 id="①-流的基本概念模型"><a href="#①-流的基本概念模型" class="headerlink" title="① 流的基本概念模型"></a>① 流的基本概念模型</h3><pre class="mermaid">%%{
+<h2 id="（二）流模型"><a href="#（二）流模型" class="headerlink" title="（二）流模型"></a>（二）流模型</h2><h3 id="（1）流的基本概念模型"><a href="#（1）流的基本概念模型" class="headerlink" title="（1）流的基本概念模型"></a>（1）流的基本概念模型</h3><ul>
+<li><p><strong>4个抽象基类</strong>：</p>
+<pre class="mermaid">  %%{
   init: {
     'themeVariables': {
        'fontSize': '13px'
@@ -107,11 +113,12 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
   }
 }%%
 graph TD
-T(["<b>流的模型</b>"]):::p --> t("<b>4个抽象基类</b><br><i>Java IO流40多个类都由它们派生</i>"):::lb
+t(["<b>4个抽象基类</b>"]):::p
 t --> |"输入流"| A("<i><b>InputStrean</b>（字节输入流）<br><b>Reader</b>（字符输入流）</i>"):::lp
 t --> |"输出流"| B("<i><b>OutputStream</b>（字节输出流）<br><b>Writer</b>（字符输出流）</i>"):::lp
 A -.-> a("把输入设备抽象成“水管”，<br>水管里的每个“水滴”依次排列"):::info
 B -.-> b("把输出设备抽象成“水管”，<br>水管里没有任何水滴"):::info
+info("<i>Java IO流40多个类都由它们派生</i>"):::info
 
 classDef p fill:#ddaebd
 classDef b fill:#aab7d2
@@ -119,53 +126,41 @@ classDef g fill:#9ac5bb
 classDef lp fill:#f4e4e9
 classDef lb fill:#d9dfeb
 classDef lg fill:#ddebe6
-classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
-
-<ul>
+classDef info fill:#f6f6f7,color:#56565b,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+</li>
 <li><p><strong>输入流：</strong></p>
 <p>输入流使用隐式的记录指针来表示当前正准备从哪个“水滴”开始读取，每当程序从InputStream或Reader里取出一个或多个“水滴”后，记录指针自动向后移动。</p>
+<blockquote>
 <img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/input.jpg" alt="input" style="zoom: 20%;" />
+</blockquote>
 </li>
 <li><p><strong>输出流：</strong></p>
 <p>当执行输出时，程序相当于依次把“水滴”放入到输出流的水管中，输出流同样采用隐式的记录指针来标识当前水滴即将放入的位置，每当程序向OutputStream或Writer里输出一个或多个水滴后，记录指针自动向后移动。</p>
+<blockquote>
 <img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/output.jpg" alt="output" style="zoom: 20%;" />
-
+</blockquote>
 <p>注：划分输入/输出流时是从<strong><em>程序运行所在内存</em></strong>的角度来考虑的，因此（内存 —&gt; 硬盘）应该是输出流。</p>
 </li>
 </ul>
-<h3 id="②-处理流模型"><a href="#②-处理流模型" class="headerlink" title="② 处理流模型"></a>② 处理流模型</h3><ul>
+<h3 id="（2）处理流模型"><a href="#（2）处理流模型" class="headerlink" title="（2）处理流模型"></a>（2）处理流模型</h3><ul>
 <li><p><strong>节点流和处理流</strong></p>
 <p>使用节点流（低级流）进行输入/输出时，程序直接连接到实际的数据源，和实际的输入/输出节点连接。</p>
 <img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E8%8A%82%E7%82%B9%E6%B5%81.jpg" alt="节点流" style="zoom: 20%;" />
 
-<p>处理流（高级流）则用于对一个已存在的流进行连接或封装，通过封装后的流来实现数据读/写功能。</p>
+<p>处理流（高级流）对已存在的流进行连接或封装，通过封装后的流来实现数据读/写功能。</p>
 <img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E5%A4%84%E7%90%86%E6%B5%81.jpg" alt="处理流" style="zoom:20%;" />
-
-
-
 </li>
-</ul>
-<ul>
-<li><p><strong>处理流的功能</strong></p>
-<pre class="mermaid">  graph LR
-T(["<b>处理流模型</b>"])
-T --> t("<i>体现Java I/O流<br>设计的灵活性</i>")
-t --> A("① 性能提高")
-t --> B("② 操作简单")
-A -.-> a("以<b>增加缓冲</b>的方式来提高输入/输出的效率")
-B -.-> b("处理流可能提供了一系列便捷的方法来<br><b>一次输入/输出大批量的内容</b>，<br>而不是输入/输出一个或多个“水滴”。")</pre>
-</li>
-<li><p><strong>处理流模型图</strong></p>
-<p>使用处理流来包装节点流，程序通过处理流来执行输入/输出功能，让节点流与底层的I/O设备、文件交互。（<em>处理流可以“嫁接”在任何已存在的流的基础之上</em>）</p>
-<img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/buffered.jpg" alt="buffered" style="zoom: 20%" />
-
+<li><p><strong>使用处理流来包装节点流：</strong></p>
 <blockquote>
-<p>💡 Java使用处理流来包装节点流是一种典型的<b>装饰器设计模式</b>，通过使用处理流来包装不同的节点流，既可以消除不同节点流的实现差异，也可以提供更方便的方法来完成输入/输出功能。因此处理流也被称为包装流。</p>
+<p>程序通过<strong><code>处理流</code>（又称高级流、包装流、过滤流）</strong>来执行输入/输出功能，让节点流与底层的I/O设备、文件交互。（处理流可“嫁接”在任何已存在的流的基础之上）</p>
+</blockquote>
+<blockquote>
+<p>📌 Java使用处理流来包装节点流是一种典型的<b><code>装饰器设计模式</code></b>，通过使用处理流来包装不同的节点流，既可以消除不同节点流的实现差异，也可以提供更方便的方法来完成输入/输出功能。因此处理流也被称为包装流。</p>
 </blockquote>
 </li>
 </ul>
 <p><br><hr style="height:2px;border:none;border-top:1px dashed #dedede;"/></p>
-<h2 id="（三）抽象基类"><a href="#（三）抽象基类" class="headerlink" title="（三）抽象基类"></a>（三）抽象基类</h2><h3 id="（1）InputStream-和-Reader"><a href="#（1）InputStream-和-Reader" class="headerlink" title="（1）InputStream 和 Reader"></a>（1）InputStream 和 Reader</h3><ul>
+<h2 id="（三）抽象基类方法"><a href="#（三）抽象基类方法" class="headerlink" title="（三）抽象基类方法"></a>（三）抽象基类方法</h2><h3 id="（1）InputStream-和-Reader"><a href="#（1）InputStream-和-Reader" class="headerlink" title="（1）InputStream 和 Reader"></a>（1）InputStream 和 Reader</h3><ul>
 <li><p><strong>InputStream包含的3个方法：</strong></p>
 <table>
 <thead>
@@ -215,7 +210,7 @@ B -.-> b("处理流可能提供了一系列便捷的方法来<br><b>一次输入
 <p>InputStream 和 Reader 都是将输入数据抽象成如图所示的水管：</p>
 <img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/read.jpg" alt="read" style="zoom:25%;" />
 
-<p>使用<strong>数组</strong>作为 read() 方法的参数时，可以理解为使用一个“竹筒”到水管中取水。直到<strong><em>read(char[] cbuf)</em></strong>或<strong><em>read(byte[] b)</em></strong>方法返回-1，即表明到了输入流的结束点。</p>
+<p>使用<strong>数组</strong>作为 <strong><em>read()</em></strong> 方法的参数时，可理解为使用一个“竹筒”到水管中取水。直到 <strong><em>read(char[] cbuf)</em></strong> 或 <strong><em>read(byte[] b)</em></strong> 方法返回<strong><em>-1</em></strong>，表明到了输入流的结束点。</p>
 </blockquote>
 </li>
 </ul>
@@ -261,160 +256,9 @@ B -.-> b("处理流可能提供了一系列便捷的方法来<br><b>一次输入
 </tr>
 </tbody></table>
 </li>
-<li><p><strong>*Demo</strong>：直接输出字符串内容（FileWriter）*</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileWriterTest</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br><br>          <span class="hljs-keyword">try</span>(FileWriter fw=<span class="hljs-keyword">new</span> FileWriter(<span class="hljs-string">&quot;poem.txt&quot;</span>))&#123;<br>                fw.write(<span class="hljs-string">&quot;锦瑟 - 李商隐\r\n&quot;</span>);<br>                fw.write(<span class="hljs-string">&quot;锦瑟无端五十弦，一弦一柱思华年。\r\n&quot;</span>);<br>                fw.write(<span class="hljs-string">&quot;庄生晓梦迷蝴蝶，望帝春心托杜鹃。\r\n&quot;</span>);<br>                fw.write(<span class="hljs-string">&quot;沧海月明珠有泪，蓝田日暖玉生烟。\r\n&quot;</span>);<br>                fw.write(<span class="hljs-string">&quot;此情可待成追忆，只是当时已惘然。\r\n&quot;</span>);<br>          &#125;<span class="hljs-keyword">catch</span> (IOException ioe)&#123;<br>                ioe.printStackTrace();<br>          &#125;<br><br>    &#125;<br><br>&#125;<br><span class="hljs-comment">// 运行上面程序，将会在当前目录下输出一个poem.txt文件，文件内容就是程序中输出的内容。</span><br></code></pre></td></tr></table></figure>
-
-
-
-</li>
 </ul>
 <p><br><hr style="height:2px;border:none;border-top:1px dashed #dedede;"/></p>
-<h2 id="（四）-流体系"><a href="#（四）-流体系" class="headerlink" title="（四）*流体系"></a>（四）*流体系</h2><p>Java把所有传统的流类型（类或抽象类）都放在 <strong><em>java.io</em></strong> 包中，以实现输入/输出功能。</p>
-<table>
-<thead>
-<tr>
-<th>分类</th>
-<th>字节输入流</th>
-<th>字节输出流</th>
-<th>字符输入流</th>
-<th>字符输出流</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><u>抽象基类</u></strong></td>
-<td><code>InputStream</code></td>
-<td><code>OutputStream</code></td>
-<td><em><code>Reader</code></em></td>
-<td><code>Writer</code></td>
-</tr>
-<tr>
-<td><strong><em>访问文件</em></strong></td>
-<td><strong><em>File-<br/>InputStrean</em></strong></td>
-<td><strong><em>File-<br/>OutputStream</em></strong></td>
-<td><strong><em>File-<br/>Reader</em></strong></td>
-<td><strong><em>File-<br/>Writer</em></strong></td>
-</tr>
-<tr>
-<td><strong><em>访问数组</em></strong></td>
-<td><strong><em>ByteArray-<br>InputStream</em></strong></td>
-<td><strong><em>ByteArray-<br/>OutputStream</em></strong></td>
-<td><strong><em>CharArray-<br/>Reader</em></strong></td>
-<td><strong><em>CharArray-<br/>Writer</em></strong></td>
-</tr>
-<tr>
-<td><strong><em>访问管道</em></strong></td>
-<td><strong><em>Pipe-<br/>InputStream</em></strong></td>
-<td><strong><em>Piped-<br/>OutputStream</em></strong></td>
-<td><strong><em>Piped-<br/>Reader</em></strong></td>
-<td><strong><em>Piped-<br/>Writer</em></strong></td>
-</tr>
-<tr>
-<td><strong><em>访问字符串</em></strong></td>
-<td></td>
-<td></td>
-<td><strong><em>String-<br/>Reader</em></strong></td>
-<td><strong><em>String-<br/>Writer</em></strong></td>
-</tr>
-<tr>
-<td>缓冲流</td>
-<td><em>Buffered-<br/>InputStream</em></td>
-<td><em>Buffered-<br/>OutputStream</em></td>
-<td><em>Buffered-<br/>Reader</em></td>
-<td><em>Buffered-<br/>Writer</em></td>
-</tr>
-<tr>
-<td>转换流</td>
-<td></td>
-<td></td>
-<td><em>InputStream-<br/>Reader</em></td>
-<td><em>OutputStream-<br/>Writer</em></td>
-</tr>
-<tr>
-<td>对象流</td>
-<td><em>Object-<br/>InputStream</em></td>
-<td><em>Object-<br/>OutputStream</em></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><u>抽象基类</u></strong></td>
-<td><code>Filter-</code><br/><code>InputStream</code></td>
-<td><code>Filter-</code><br/><code>OutputStream</code></td>
-<td><code>Filter-</code><br/><code>Reader</code></td>
-<td><code>Filter-</code><br/><code>Writer</code></td>
-</tr>
-<tr>
-<td>打印流</td>
-<td></td>
-<td><em>Print-<br/>Stream</em></td>
-<td></td>
-<td><em>Print-<br/>Writer</em></td>
-</tr>
-<tr>
-<td>推回输入流</td>
-<td><em>Pushback-<br/>InputStream</em></td>
-<td></td>
-<td><em>Pushback-<br/>Reader</em></td>
-<td></td>
-</tr>
-<tr>
-<td>数据流</td>
-<td><em>Data-<br/>InputStream</em></td>
-<td><em>Data-<br/>OutputStream</em></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<ul>
-<li><p><strong>说明：</strong></p>
-<table>
-<thead>
-<tr>
-<th>分类</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><code>抽象基类</code></strong></td>
-<td>无法直接创建实例，必须通过子类创建。</td>
-</tr>
-<tr>
-<td><strong>节点流</strong>（粗体）</td>
-<td>必须与指定的物理节点关联。如，需传入数组或字符串。</td>
-</tr>
-<tr>
-<td><strong>管道流</strong></td>
-<td>用于实现进程之间通信功能。</td>
-</tr>
-<tr>
-<td><strong>缓冲流</strong></td>
-<td>增加缓冲功能，可以提高输入、输出的效率。（对流起缓冲装饰）<br>* <em>需要使用 flush() 才可以将缓冲区的内容写入实际的物理节点。</em></td>
-</tr>
-<tr>
-<td><strong>转换流</strong></td>
-<td>用于实现将字节流转换成字符流。</td>
-</tr>
-<tr>
-<td><strong>对象流</strong></td>
-<td>主要用于实现对象的序列化。</td>
-</tr>
-<tr>
-<td><strong>打印流</strong>（格式化）</td>
-<td>可以将基本类型、对象输出为其字符串表示。</td>
-</tr>
-<tr>
-<td><strong>推回输入流</strong></td>
-<td>将读取内容推回到推回缓冲区里以重复读取。</td>
-</tr>
-<tr>
-<td><strong>数据流</strong></td>
-<td>可以按8种基本类型和字符串对流进行读写。</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<p>输入/输出流列表</p>
-<table>
+<h2 id="（四）-流体系"><a href="#（四）-流体系" class="headerlink" title="（四）*流体系"></a>（四）*流体系</h2><table>
   <tr>
     <th>分类</th>
     <th>字节输入流</th>
@@ -422,152 +266,183 @@ B -.-> b("处理流可能提供了一系列便捷的方法来<br><b>一次输入
     <th>字符输入流</th>
     <th>字符输出流</th>
   </tr>
-
-  <tr>
-    <td>抽象类</td>
-    <td>InputStream</td>
-    <td>OutputStream</td>
-    <td>Reader</td>
-    <td>Writer</td>
+  <tr bgcolor="#fdeff2">
+    <td><i>抽象类</i></td>
+    <td><i>InputStream</i></td>
+    <td><i>OutputStream</i></td>
+    <td><i>Reader</i></td>
+    <td><i>Writer</i></td>
   </tr>
   <tr>
-    <td>转换类</td>
+  <td>转换类</td>
     <td></td>
     <td></td>
-    <td>InputStreamReader</td>
-    <td>OutputStreamWriter</td>
+    <td>InputStream-<br>Reader</td>
+    <td>OutputStream-<br>Writer</td>
   </tr>
-
   <tr>
-    <td colspan="5">第一类：数据源类</td>
+    <td colspan="5" bgcolor="#e9f0e9" style="text-align:center;">第一类：数据源类</td>
   </tr>
-
+  <tr>
+    <td><b>文件</b></td>
+    <td><b>File-<br>InputStream</b></td>
+    <td><b>File-<br>OutputStream</b></td>
+    <td><b>FileReader</b></td>
+    <td><b>FilerWriter</b></td>
+  </tr>
+  <tr>
+    <td>数组</td>
+    <td>ByteArray-<br>InputStream</td>
+    <td>ByteArray-<br>OutputStream</td>
+    <td>CharArray-<br>Reader</td>
+    <td>CharArray-<br>Writer</td>
+  </tr>
+  <tr>
+    <td>对象</td>
+    <td>Object-<br>InputStream</td>
+    <td>Object-<br>OutputStream</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><b>字符串</b></td>
+    <td><b>StringBuffer-<br>InputStream</b></td>
+    <td></td>
+    <td><b>StringReader</b></td>
+    <td><b>StringWriter</b></td>
+  </tr>
+   <tr>
+    <td colspan="5" bgcolor="#e9f0e9" style="text-align:center;">第二类：数据流串联类</td>
+   </tr>
+  <tr>
+    <td>管道</td>
+    <td>Pipe-<br>InputStream</td>
+    <td>Pipe-<br>OutputStream</td>
+    <td>PipeReader</td>
+    <td>PipeWriter</td>
+  </tr>
+  <tr>
+    <td>序列</td>
+    <td>Sequence-<br>InputStream</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="5" bgcolor="#e9f0e9" style="text-align:center;">第三类：数据流过滤类</td>
+  </tr>
+  <tr bgcolor="#fdeff2">
+    <td><i>过滤</i></td>
+    <td><i>Filter-<br>InputStream</i></td>
+    <td><i>Filter-<br>OutputStream</i></td>
+    <td><i>FilterReader</i></td>
+    <td><i>FilterWriter</i></td>
+  </tr>
+    <tr>
+    <td><b>缓冲</b></td>
+    <td><b>Buffered-<br>InputStream</b></td>
+    <td><b>Buffered-<br>OutputStream</b></td>
+    <td><b>Buffered-<br>Reader</b></td>
+    <td><b>Buffered-<br>Writer</b></td>
+  </tr>
+    <tr>
+    <td>数据</td>
+    <td>Data-<br>InputStream</td>
+    <td>Data-<br>OutputStream</td>
+    <td></td>
+    <td></td>
+  </tr>
+    <tr>
+    <td>行号</td>
+    <td>LineNumber-<br>InputStream</td>
+    <td></td>
+    <td>LineNumber-<br>Reader</td>
+    <td></td>
+  </tr>
+    <tr>
+    <td>推回</td>
+    <td>Pushback-<br>InputStream</td>
+    <td></td>
+    <td>Pushback-<br>Reader</td>
+    <td></td>
+  </tr>
+    <tr>
+    <td>格式化</td>
+    <td></td>
+    <td>PrintStream</td>
+    <td></td>
+    <td>PrintWriter</td>
+  </tr>
 </table>
 
 
 
-<table>
-<thead>
-<tr>
-<th>分类</th>
-<th>字节输入流</th>
-<th>字节输出流</th>
-<th>字符输入流</th>
-<th>字符输出流</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><u>抽象类</u></strong></td>
-<td><code>InputStream</code></td>
-<td><code>OutputStream</code></td>
-<td><em><code>Reader</code></em></td>
-<td><code>Writer</code></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>转换类</td>
-<td></td>
-<td></td>
-<td><em>InputStream-<br/>Reader</em></td>
-<td><em>OutputStream-<br/>Writer</em></td>
-</tr>
-<tr>
-<td><strong><em>访问文件</em></strong></td>
-<td><strong><em>File-<br/>InputStrean</em></strong></td>
-<td><strong><em>File-<br/>OutputStream</em></strong></td>
-<td><strong><em>File-<br/>Reader</em></strong></td>
-<td><strong><em>File-<br/>Writer</em></strong></td>
-</tr>
-<tr>
-<td><strong><em>访问数组</em></strong></td>
-<td><strong><em>ByteArray-<br>InputStream</em></strong></td>
-<td><strong><em>ByteArray-<br/>OutputStream</em></strong></td>
-<td><strong><em>CharArray-<br/>Reader</em></strong></td>
-<td><strong><em>CharArray-<br/>Writer</em></strong></td>
-</tr>
-<tr>
-<td><strong><em>访问管道</em></strong></td>
-<td><strong><em>Pipe-<br/>InputStream</em></strong></td>
-<td><strong><em>Piped-<br/>OutputStream</em></strong></td>
-<td><strong><em>Piped-<br/>Reader</em></strong></td>
-<td><strong><em>Piped-<br/>Writer</em></strong></td>
-</tr>
-<tr>
-<td><strong><em>访问字符串</em></strong></td>
-<td></td>
-<td></td>
-<td><strong><em>String-<br/>Reader</em></strong></td>
-<td><strong><em>String-<br/>Writer</em></strong></td>
-</tr>
-<tr>
-<td>缓冲流</td>
-<td><em>Buffered-<br/>InputStream</em></td>
-<td><em>Buffered-<br/>OutputStream</em></td>
-<td><em>Buffered-<br/>Reader</em></td>
-<td><em>Buffered-<br/>Writer</em></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>对象流</td>
-<td><em>Object-<br/>InputStream</em></td>
-<td><em>Object-<br/>OutputStream</em></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><u>抽象基类</u></strong></td>
-<td><code>Filter-</code><br/><code>InputStream</code></td>
-<td><code>Filter-</code><br/><code>OutputStream</code></td>
-<td><code>Filter-</code><br/><code>Reader</code></td>
-<td><code>Filter-</code><br/><code>Writer</code></td>
-</tr>
-<tr>
-<td>打印流</td>
-<td></td>
-<td><em>Print-<br/>Stream</em></td>
-<td></td>
-<td><em>Print-<br/>Writer</em></td>
-</tr>
-<tr>
-<td>推回输入流</td>
-<td><em>Pushback-<br/>InputStream</em></td>
-<td></td>
-<td><em>Pushback-<br/>Reader</em></td>
-<td></td>
-</tr>
-<tr>
-<td>数据流</td>
-<td><em>Data-<br/>InputStream</em></td>
-<td><em>Data-<br/>OutputStream</em></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
+<p><strong>说明</strong>：</p>
+<pre class="mermaid">graph LR
+T(["流体系说明"]):::p
+T -.- 1("<b><i>抽象基类</i></b><br>无法直接创建实例，<br>必须通过子类创建"):::p
+T -.- 2("<b>数据源类</b>（节点流）<br>创建各种流的起始类，<br>必须与指定物理节点关联"):::g
+T -.- 3("<b>数据流串联类<br>数据流过滤类</b><br>是对各种流实例的包装"):::g
+T -.- 4("#12288;#12288;#12288;<b>转换类</b>#12288;#12288;#12288;"):::g
+
+%% 抽象基类
+1 -.- input("InputStream、OutputStream、Reader、Writer
+…………………………………………………………
+&nbsp;FilterInputStream、FilterOutputStream、#12288;#12288;
+FilterReader、FilterWriter#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;
+"):::lp
+%% 数据源类
+2-.- array("&nbsp;<b>文件流</b>：以文件为数据源，可操作文件中的内容
+…………………………………………………………
+&nbsp;<b>数组流</b>：将内存中的内部缓存区作为数据源。#12288;
+…………………………………………………………
+&nbsp;<b>对象流</b>：通过字节流读写对象，实现对象序列化
+…………………………………………………………
+&nbsp;<b>字符串</b>：数据源为字符串的字符流。#12288;#12288;#12288;#12288;#12288;
+"):::lg
+%% 流串联类
+3 -.- pip("&nbsp;<b>管道流</b>：管道(pipe)，实现进程间的通信功能。&nbsp;
+…………………………………………………………
+&nbsp;<b>序列流</b>：表示其他输入流的逻辑串联,可合并流。
+"):::lg
+%% 流过滤类
+3 -.- ft("&nbsp;<b>过滤流</b>：封装其他流，并为它们提供额外功能。
+…………………………………………………………
+&nbsp;<b>缓冲流</b>：增加缓冲功能，对流起缓冲装饰。#12288;#12288;
+…………………………………………………………
+&nbsp;<b>数据流</b>：可按8种基本类型和字符串来读写流。&nbsp;
+…………………………………………………………
+&nbsp;<b>行号流</b>：可跟踪、设置行号，标记以恢复等。#12288;
+…………………………………………………………
+&nbsp;<b>推回流</b>：将内容推回到推回缓冲区以重复读取。
+…………………………………………………………
+&nbsp;<b>打印流</b>：将基本类型、对象输出为字符串表示。
+"):::lg
+%% 转换类
+4 -.- isr("<b>转换流</b>：将字节流转换成字符流#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"):::lg
+
+classDef p fill:#e5c0cb
+classDef b fill:#aab7d2
+classDef g fill:#a6ccc3
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+
+
+
+
 <p><br><br><br><p style="text-align:center;font-size:13px;color:#666666"> - <i>end</i> - </p> </p>
 <hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
 
-<blockquote>
 <p>🔖 笔记来自： </p>
-<ul>
+<ol>
 <li><a href="https://book.douban.com/subject/30133440/">《Java编程的逻辑》</a> </li>
 <li><a href="https://book.douban.com/subject/3609215/">《Java高手真经（编程基础卷）》</a></li>
 <li><a href="https://book.douban.com/subject/3246499/">《疯狂Java讲义》</a> </li>
-<li></li>
-</ul>
-</blockquote>
-</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button" href="/note/Basics/IO/IO_RandomAccessFile/">IO - RandomAccessFile 任意访问文件</a><a class="next-button" href="/note/Data-Structure/data-structure_HashMap/">🦋 HashMap 原理及源码分析</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+</ol>
+</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/note/Basics/IO/IO_IO_2/">IO - 输入/输出流⑵_实现类</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
   var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
   mermaid.initialize({
     theme: 'neutral',
