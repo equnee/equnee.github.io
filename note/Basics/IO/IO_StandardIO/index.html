@@ -44,19 +44,24 @@ A --> 1["<b>① 标准设备输入/输出类：<i>System</i> #12288;#12288;#1228
 B -.- 2["① 文件操作类：<i>File</i> #12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
 B -.- b2["② 文件搜索类：<i>FileFilter 与 FileFileameFilter</i>"]:::lg
 B -.- b3["③ 文件任意读写类：<i>RandomAccessFile</i> #12288;#12288;"]:::lg
-C -.- c1["① 输入/输出流#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
-C -.- c2["② 对象序列化 #12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
+C -.- c1["① 输入/输出流 - 原理#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
+C -.- c2["② 输入/输出流 - 实现类#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
+C -.- c3["③ 对象序列化 #12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
 end
 
+%% 链接
 click T "https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/System.html"
 click 1 "https://equnee.github.io/note/Basics/IO/IO_StandardIO/"
+click b1 "https://equnee.github.io//note/Basics/IO/IO_File/"
+click b2 "https://equnee.github.io//note/Basics/IO/IO_File/"
 click b3 "https://equnee.github.io/note/Basics/IO/IO_RandomAccessFile/"
-click c1 "https://equnee.github.io/note/Basics/IO/IO_IO/"
-click c2 "https://equnee.github.io/note/Basics/IO/IO_Object_serialization/"
-
+click c1 "https://equnee.github.io/note/Basics/IO/IO_IO_1/"
+click c2 "https://equnee.github.io/note/Basics/IO/IO_IO_2/"
+click c3 "https://equnee.github.io/note/Basics/IO/IO_Object_serialization/"
+%% 样式
 classDef T fill:#e5c0cb, stroke: #8b8b8b, stroke-width:1px
 classDef p fill:#e5c0cb, stroke: #cc829a, stroke-width:2px
-classDef lp fill:#f4e4e9, stroke: #cc829a, stroke-width:2px, stroke-dasharray: 4 2
+classDef lp fill:#f4e4e9, stroke: #cc829a, stroke-width:3px, stroke-dasharray: 4 2
 classDef g fill:#d4ded4
 classDef lg fill:#edf1ed
 classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
@@ -175,6 +180,8 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 </li>
 </ul>
 <h2 id="①-读取信息-readLine"><a href="#①-读取信息-readLine" class="headerlink" title="① 读取信息 readLine()"></a>① 读取信息 readLine()</h2><p><strong>从控制台读取输入的字符串</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">System.console().readLine();<br></code></pre></td></tr></table></figure>
+
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** </span><br><span class="hljs-comment"> * 使用了System.console()函数取得了Console对象，</span><br><span class="hljs-comment"> * 然后使用readLine()函数即可读取一行字符串的输入。该函数在用户执行回车时调用。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestConsole</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>            String str = System.console().readLine();  <span class="hljs-comment">// 取得输入字符串</span><br>            System.out.println(str);                   <span class="hljs-comment">// 输出字符串</span><br>        &#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="②-输出信息-printf"><a href="#②-输出信息-printf" class="headerlink" title="② 输出信息 printf()"></a>② 输出信息 printf()</h2><p><strong>从控制台输出消息</strong></p>
@@ -186,6 +193,8 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 <p>应用程序需要读取密码或其他安全数据，则应使用 <strong><em>readPassword()</em></strong> 或 <strong><em>readPassword(String, Object…)</em></strong>，并在执行后手工将返回的字符数组归零，以最大限度地缩短内存中敏感数据的生存期。</p>
 </blockquote>
 <p><strong>读取密码</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">System.console().readPassword()<br></code></pre></td></tr></table></figure>
+
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestConsolePassword</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>            <span class="hljs-keyword">char</span> password[] = System.console().readPassword(); <span class="hljs-comment">// 取得密码</span><br>            System.out.println(password);                    <span class="hljs-comment">// 输出字符串</span><br>        &#125;<br>    &#125;<br><br>&#125;<br><br><span class="hljs-comment">// 它直接监控键盘的输入，回车后即可取得密码字符串。</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>读取密码时添加提示信息</strong></p>
