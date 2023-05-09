@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="IO - File、FileFilter 和 FilenameFilter [ 🍧 Peach ] "><meta name="theme-color"><title>IO - File、FileFilter 和 FilenameFilter [ 🍧 Peach ] </title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/mermaid.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=G-5GZQ6P3RMX" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valine/dist/Valine.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  new Valine({
+    el: '#comments',
+    appId: 'MJAdR7lH7cWVJLyn1Tgnw5Sj-gzGzoHsz',
+    appKey: 'de2VP0VpE5bWgR2aA8wkwxn2',
+    notify: false,
+    verify: false,
+    avatar: 'mp',
+    placeholder: 'say something',
+  })
+})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  tocbot.init({
+    // Where to render the table of contents.
+    tocSelector: '.toc__content',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: '.article__content',
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    // For headings inside relative or absolute positioned containers within content.
+    hasInnerContainers: true,
+    orderedList: false,
+    collapseDepth: 2,
+  });
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">IO - File、FileFilter 和 FilenameFilter</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">IO - File、FileFilter 和 FilenameFilter</a></h2><span class="post__date">2023-05-08</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+      'fontSize': '14px',
+      'clusterBorder': 'none',
+      'clusterBkg': '#f8f8f8'
+    }
+  }
+}%%
+graph 
+subgraph "<b>Java.io - toc</b>"
+T(["<b>Java.io</b>"]):::T
+T --> A(["<b>标准设备输入/输出</b>"]):::g
+T -.- B(["<b>文件基本处理</b>"]):::p
+T -.- C(["输入/输出流"]):::g
+
+A --> 1["① 标准设备输入/输出类：<i>System</i> #12288;#12288;#12288;#12288;<br>—————————————————————<br>② 控制台读写类：<i>Console </i> #12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
+B -.- b1["<b>① 文件操作类：<i>File</i></b> #12288;#12288;#12288;#12288; #12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lp
+B -.- b2["<b>② 文件搜索类：<i>FileFilter 与 FilenameFilter</i></b>"]:::lp
+B -.- b3["③ 文件任意读写类：<i>RandomAccessFile</i> #12288;#12288;"]:::lg
+C -.- c1["① 输入/输出流#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
+C -.- c2["② 对象序列化 #12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
+end
+
+click T "https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/System.html"
+click 1 "https://equnee.github.io/note/Basics/IO/IO_StandardIO/"
+click b1 "https://equnee.github.io//note/Basics/IO/IO_File/"
+click b2 "https://equnee.github.io//note/Basics/IO/IO_File/"
+click b3 "https://equnee.github.io/note/Basics/IO/IO_RandomAccessFile/"
+click c1 "https://equnee.github.io/note/Basics/IO/IO_IO/"
+click c2 "https://equnee.github.io/note/Basics/IO/IO_Object_serialization/"
+
+classDef T fill:#e5c0cb, stroke: #8b8b8b, stroke-width:1px
+classDef p fill:#e5c0cb, stroke: #cc829a, stroke-width:2px
+classDef lp fill:#f4e4e9, stroke: #cc829a, stroke-width:2px, stroke-dasharray: 4 2
+classDef g fill:#d4ded4
+classDef lg fill:#edf1ed
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+
+
+<h2 id="（一）File-文件"><a href="#（一）File-文件" class="headerlink" title="（一）File - 文件"></a>（一）File - 文件</h2><p><code>对文件和目录进行增删改查操作</code></p>
+<pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+         'fontSize': '12px'
+       }
+    }
+}%%
+graph TD
+T(["<b>File 文件对象</b>"]):::p
+T --> A("File类能操作<b>文件本身的属性</b>"):::p
+T -.-x B("File对象不能操作<b>文件中的内容</b>"):::g
+A --> a("* 查看文件属性#12288;#12288;#12288;<br>* 创建新文件、文件夹<br>* 查看父级目录#12288;#12288;#12288;<br>* 遍历、删除文件夹#12288;"):::lp
+B -.-> b("需要通过 <i><b>I/O</b></i> 的方式来完成"):::lg
+info("file对象不是真正的文件，<br>而是堆内存中创建出来的一个对象空间"):::info
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#5a5a5f,stroke-dasharray: 3 3, stroke-width: 1px
+click b "https://equnee.github.io/note/Basics/IO/IO_IO/"</pre>
+
+<h3 id="①-实现的接口"><a href="#①-实现的接口" class="headerlink" title="① 实现的接口"></a>① 实现的接口</h3><p><em>Serializable， Comparable</em></p>
+<h3 id="②-构造方法"><a href="#②-构造方法" class="headerlink" title="② 构造方法"></a>② 构造方法</h3><p>在能够操作目录或文件之前，要先创建一个文件对象，指向目录或文件。</p>
+<table>
+<thead>
+<tr>
+<th>构造方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>（没有无参构造方法）</em></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>File</strong>(String pathname)</td>
+<td>通过将给定<b>路径名字符串</b>转换为<b>抽象路径名</b>来创建一个新File实例。</td>
+</tr>
+<tr>
+<td><strong>File</strong>(File parent, String child)</td>
+<td>根据<strong>parent抽象路径名</strong>和<strong>child路径名字符串</strong>创建一个新File实例。</td>
+</tr>
+<tr>
+<td><strong>File</strong>(String parent, String child)</td>
+<td>根据<strong>parent路径名字符串</strong>和<strong>child路径名字符串</strong>创建一个新File实例。</td>
+</tr>
+<tr>
+<td><strong>File</strong>(URI uri)</td>
+<td>通过将给定的 <strong><u>file:URI</u></strong> 转换为一个<strong>抽象路径名</strong>来创建一个新的File实例。</td>
+</tr>
+</tbody></table>
+<h3 id="③-常用方法"><a href="#③-常用方法" class="headerlink" title="③ 常用方法"></a>③ 常用方法</h3><ul>
+<li><p><strong>文件基本属性</strong></p>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>canExecute()</em></td>
+<td>可执行</td>
+</tr>
+<tr>
+<td><em>canRead()</em></td>
+<td>可读</td>
+</tr>
+<tr>
+<td><em>canWrite()</em></td>
+<td>可写</td>
+</tr>
+<tr>
+<td><em>exists()</em></td>
+<td>文件名或路径是否存在</td>
+</tr>
+<tr>
+<td><em>isHidden()</em></td>
+<td>是否隐藏</td>
+</tr>
+<tr>
+<td><strong><u><em>isFile()</em></u></strong></td>
+<td><strong>判断当前file是否是一个文件</strong></td>
+</tr>
+<tr>
+<td><strong><u><em>isDirectory()</em></u></strong></td>
+<td><strong>判断当前file是否是一个目录</strong></td>
+</tr>
+<tr>
+<td><em>isAbsolute()</em></td>
+<td>判断File对象所对应的文件或目录是否是绝对路径</td>
+</tr>
+<tr>
+<td><u><strong><em>length()</em></strong></u></td>
+<td><strong>获取文件中字节的个数</strong></td>
+</tr>
+<tr>
+<td><em>lastModified()</em></td>
+<td>获取文件最后的修改时间<em>（long类型：毫秒值）</em></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<ul>
+<li><p><strong>文件名</strong></p>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+<th>返回值类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><u><strong><em>getName()</em></strong></u></td>
+<td>获取文件名字（<em>Test.txt</em>）</td>
+<td>String name</td>
+</tr>
+<tr>
+<td><u><strong><em>getAbsolutePath()</em></strong></u></td>
+<td>获取文件的绝对路径（<em>D://test//Test.txt</em>）</td>
+<td>String path</td>
+</tr>
+<tr>
+<td><em>getPath()</em></td>
+<td>获取文件的完整路径</td>
+<td>String path</td>
+</tr>
+<tr>
+<td><em>renameTo(File dest)</em></td>
+<td>重命名，命名成功返回true</td>
+<td>Boolean true</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>创建</strong></p>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+<th>返回值类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><u><strong><em>createNewFile()</em></strong></u></td>
+<td>创建一个文件（需要捕捉IOException）</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><u><strong><em>mkdir()</em></strong></u></td>
+<td>创建一个目录</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><em>mkdirs()</em></td>
+<td>创建所有目录（同时创建多层目录）</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><em>createTempFile(String prefix, String suffix, File directory)</em></td>
+<td>在指定目录中创建一个新的空文件，使用给定的前缀和后缀字符串生成其名称。</td>
+<td>File</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>获取对象</strong></p>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+<th>返回值类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>getParent()</em></td>
+<td>获取当前File的父目录的完整路径</td>
+<td>String name</td>
+</tr>
+<tr>
+<td><u><strong><em>getParentFile()</em></strong></u></td>
+<td>获取当前File的父亲file对象</td>
+<td>File file</td>
+</tr>
+<tr>
+<td><strong><u><em>getAbsoluteFile()</em></u></strong></td>
+<td>返回此File对象所对应的绝对路径所对应的File对象</td>
+<td>File file</td>
+</tr>
+<tr>
+<td><em>list()</em></td>
+<td>获取当前File对象的所有儿子名字</td>
+<td>String[] names</td>
+</tr>
+<tr>
+<td><u><strong><em>listFiles()</em></strong></u></td>
+<td>获取当前File对象的所有子对象（目录或文件）</td>
+<td>File[] files</td>
+</tr>
+<tr>
+<td><em>static listRoots()</em></td>
+<td>列出系统所有的根路径。</td>
+<td>File[] files</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>删除</strong></p>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>说明</th>
+<th>返回值类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>delete()</em></td>
+<td>彻底删除文件或空目录，无法删除带元素的文件夹</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><em>deleteOnExit()</em></td>
+<td>删除文件或目录并关闭流操作</td>
+<td>boolean</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h5 id="Demo"><a href="#Demo" class="headerlink" title="- Demo"></a>- <em>Demo</em></h5><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.equne;<br><br><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileTest</span></span><br><span class="hljs-class"></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>        <span class="hljs-comment">// 以当前路径来创建一个File对象</span><br>        File file=<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;.&quot;</span>);<br>        <span class="hljs-comment">// 直接获取文件名，输出一点</span><br>        System.out.println(file.getName());<br>        <span class="hljs-comment">// 获取相对路径的父路径可能出错，下面代码输出null</span><br>        System.out.println(file.getParent());<br>        <span class="hljs-comment">// 获取绝对路径</span><br>        System.out.println(file.getAbsoluteFile());<br>        <span class="hljs-comment">// 获取上一级路径</span><br>        System.out.println(file.getAbsoluteFile().getParent());<br><br>        <span class="hljs-comment">// 在当前路径下创建一个临时文件</span><br>        File tmpFile=File.createTempFile(<span class="hljs-string">&quot;aaa&quot;</span>, <span class="hljs-string">&quot;.txt&quot;</span>, file);<br>        <span class="hljs-comment">// 指定当JVM退出时删除该文件</span><br>        tmpFile.deleteOnExit();<br><br>        <span class="hljs-comment">// 以系统当前时间作为新文件名来创建新文件</span><br>        File newFile=<span class="hljs-keyword">new</span> File(System.currentTimeMillis() + <span class="hljs-string">&quot;&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;newFile对象是否存在：&quot;</span> + newFile.exists());<br>        <span class="hljs-comment">// 以指定newFile对象来创建一个文件</span><br>        newFile.createNewFile();<br>        <span class="hljs-comment">// 以newFile对象来创建一个目录，因为newFile已经存在</span><br>        <span class="hljs-comment">// 所以下面方法返回false，即无法创建该目录</span><br>        newFile.mkdir();<br>        <span class="hljs-comment">// 使用list()方法列出当前路径下的所有文件和路径</span><br>        String[] fileList=file.list();<br>        System.out.println(<span class="hljs-string">&quot;====当前路径下所有文件和路径如下====&quot;</span>);<br>        <span class="hljs-keyword">for</span> (String fileName : fileList)<br>        &#123;<br>            System.out.println(fileName);<br>        &#125;<br>        <span class="hljs-comment">// listRoots()静态方法列出所有的磁盘根路径</span><br>        File[] roots=File.listRoots();<br>        System.out.println(<span class="hljs-string">&quot;====系统所有根路径如下====&quot;</span>);<br>        <span class="hljs-keyword">for</span> (File root : roots)<br>        &#123;<br>            System.out.println(root);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * .</span><br><span class="hljs-comment"> * null</span><br><span class="hljs-comment"> * /Users/equne/Desktop/testJava/Test2/.</span><br><span class="hljs-comment"> * /Users/equne/Desktop/testJava/Test2</span><br><span class="hljs-comment"> * newFile对象是否存在：false</span><br><span class="hljs-comment"> * ====当前路径下所有文件和路径如下====</span><br><span class="hljs-comment"> * Test2.iml</span><br><span class="hljs-comment"> * out</span><br><span class="hljs-comment"> * 1679734377738</span><br><span class="hljs-comment"> * aaa5603141847215609264.txt</span><br><span class="hljs-comment"> * .idea</span><br><span class="hljs-comment"> * src</span><br><span class="hljs-comment"> * ====系统所有根路径如下====</span><br><span class="hljs-comment"> * /</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<p><em>(摘自<a href="https://book.douban.com/subject/3246499/">《疯狂Java讲义》</a>)</em></p>
+<br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="（二）FileFilter-和-FilenameFilter"><a href="#（二）FileFilter-和-FilenameFilter" class="headerlink" title="（二）FileFilter 和 FilenameFilter"></a>（二）FileFilter 和 FilenameFilter</h2><p><code>接口：快速地按照特定要求找出所有文件</code></p>
+<p>FileFilter 与 FilenameFilter 用于检测文件是否存在。它们都是<strong>接口</strong>，只需编写的实现类<strong>实现它们的函数 accept()</strong> 即可 。</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>区别</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>FileFilter</strong></td>
+<td>提供文件对象的访问方法</td>
+<td>boolean accept(File file);</td>
+</tr>
+<tr>
+<td><strong>FilenameFilter</strong></td>
+<td>按照目录和文件名的方式进行</td>
+<td>boolean accept(File directory, String name);</td>
+</tr>
+</tbody></table>
+<h3 id="①-FileFilter"><a href="#①-FileFilter" class="headerlink" title="① FileFilter"></a>① FileFilter</h3><p>Demo：搜索特定的文件扩展名</p>
+<ul>
+<li><p><em>ExtensionFilter</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  扩展名过滤器</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExtensionFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">FileFilter</span> </span>&#123;<br><span class="hljs-comment">// 🔴 一、定义一个扩展名过滤器类：实现接口 FileFilter</span><br>   <br>    <span class="hljs-keyword">private</span> String extension;  <span class="hljs-comment">// 扩展名</span><br>  	<br>  	<span class="hljs-comment">// 🔴 二、构造函数中初始化变量extension：待匹配的文件扩展名</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ExtensionFilter</span><span class="hljs-params">(String extension)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.extension = extension; <br>    &#125;<br>  <br>    <span class="hljs-comment">// 🔴 二、接口函数：实现扩展名过滤</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">accept</span><span class="hljs-params">(File file)</span> </span>&#123;<br>        <span class="hljs-comment">// 🔹 若为目录：返回false</span><br>        <span class="hljs-keyword">if</span> (file.isDirectory()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br>        <span class="hljs-comment">// 取得文件名</span><br>        String name = file.getName();<br>        <span class="hljs-comment">// 取得扩展名前的符号“.”的下标位置</span><br>        <span class="hljs-keyword">int</span> index = name.lastIndexOf(<span class="hljs-string">&quot;.&quot;</span>);<br>      	<span class="hljs-comment">// 🔹 判断扩展名</span><br>        <span class="hljs-keyword">if</span>(index == -<span class="hljs-number">1</span>)&#123;                         <span class="hljs-comment">// 若没有扩展名：返回false</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(index == name.length() - <span class="hljs-number">1</span>)&#123;   <span class="hljs-comment">// 若以点号结尾：返回false</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125; <span class="hljs-keyword">else</span>&#123;                                  <span class="hljs-comment">// 若扩展名相同：返回true</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.extension.equals(name.substring(index + <span class="hljs-number">1</span>));<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><em>TestFile</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  测试类：使用上述的ExtensionFilter类来查找 D:/demo 目录下、扩展名为txt的文件列表。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestFile</span> </span>&#123;<br>  <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>      <br>        File file = <span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D:/demo&quot;</span>);<br>        <span class="hljs-comment">// 创建一个txt过滤器</span><br>        ExtensionFilter txtFilter = <span class="hljs-keyword">new</span> ExtensionFilter(<span class="hljs-string">&quot;txt&quot;</span>);<br>        <span class="hljs-comment">// 使用过滤器查找txt文件</span><br>        File[] files = file.listFiles(txtFilter);<br>        <span class="hljs-comment">// 输出查找的文件列表</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i ＜ files.length; i++) &#123;<br>            System.out.println(files[i].getAbsolutePath());<br>        &#125;<br>    &#125;<br>  <br>&#125;<br><br><span class="hljs-comment">//  D:\demo\test.txt</span><br><span class="hljs-comment">//  D:\demo\test2.txt</span><br></code></pre></td></tr></table></figure>
+
+<p><em>若使用 FilenameFilter，结果会让你很难判断到底是目录还是文件。</em></p>
+</li>
+</ul>
+<h3 id="②-FilenameFilter"><a href="#②-FilenameFilter" class="headerlink" title="② FilenameFilter"></a>② FilenameFilter</h3><p>FilenameFilter 的过滤函数 <code>accept()</code> 直接根据<strong>目录和文件名</strong>进行过滤，与 FileFilter 相比，多了一个<strong>文件名参数</strong>。<em>通常我们都建议使用 FilenameFilter 类进行文件过滤。</em></p>
+<p>Demo：图片过滤器</p>
+<ul>
+<li><p><em>ImageFilter</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 图片过滤器：过滤扩展名为.gif,.jpg,.png的文件</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">FilenameFilter</span> </span>&#123;<br><br>    <span class="hljs-comment">// 🔹 gif类型文件</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isGif</span><span class="hljs-params">(String filename)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (filename.toLowerCase().endsWith(<span class="hljs-string">&quot;.gif&quot;</span>)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 🔹 jpg类型文件</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isJpg</span><span class="hljs-params">(String filename)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (filename.toLowerCase().endsWith(<span class="hljs-string">&quot;.jpg&quot;</span>)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 🔹 png类型文件</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isPng</span><span class="hljs-params">(String filename)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (filename.toLowerCase().endsWith(<span class="hljs-string">&quot;.png&quot;</span>)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 🔴 接口函数：实现扩展名过滤</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">accept</span><span class="hljs-params">(File dir, String filename)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> (isGif(filename) || isJpg(filename) || isPng(filename));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><em>TestFile</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestFile</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>      	<br>      	<span class="hljs-comment">// 目录实例</span><br>        File file = <span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D:/demo&quot;</span>);<br>      <br>      	<span class="hljs-comment">// ---------- FileFilter ------------</span><br>      	<span class="hljs-comment">// 创建一个txt过滤器</span><br>        ExtensionFilter txtFilter = <span class="hljs-keyword">new</span> ExtensionFilter(<span class="hljs-string">&quot;txt&quot;</span>);<br>      	<span class="hljs-comment">// 使用过滤器查找txt文件</span><br>        File[] files = file.listFiles(txtFilter);                    <br>        <span class="hljs-comment">// 输出查找的文件列表</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i ＜ files.length; i++) &#123;<br>            System.out.println(files[i].getAbsolutePath());<br>        &#125;<br>      	<br>      	<span class="hljs-comment">// --------- FilenameFilter -----------</span><br>				<span class="hljs-comment">// 创建一个图片过滤器</span><br>        ImageFilter imageFilter = <span class="hljs-keyword">new</span> ImageFilter();<br>      	<span class="hljs-comment">// 使用过滤器查找图片文件</span><br>        File[] images = file.listFiles(imageFilter);                 <br>        <span class="hljs-comment">// 输出查找的文件列表</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i ＜ images.length; i++)&#123;<br>            System.out.println(images[i].getAbsolutePath());<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//  D:\demo\a.jpg</span><br><span class="hljs-comment">//  D:\demo\b.gif</span><br></code></pre></td></tr></table></figure>
+<p><em>（摘自：<a href="https://book.douban.com/subject/3609215/">《Java高手真经（编程基础卷）》</a>）</em></p>
+</li>
+</ul>
+<br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="（三）-递归-遍历文件夹"><a href="#（三）-递归-遍历文件夹" class="headerlink" title="（三）*递归 - 遍历文件夹"></a>（三）*递归 - 遍历文件夹</h2><h3 id="①-递归"><a href="#①-递归" class="headerlink" title="① 递归"></a>① 递归</h3><p><img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E9%80%92%E5%BD%92.png" alt="递归"></p>
+<p><strong>本质：方法的调用</strong> <em>（即自己调用自己，且每次传的参数都不一样）</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">newTestFile</span></span>&#123;<br>   <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildTower</span><span class="hljs-params">(<span class="hljs-keyword">int</span> floor)</span></span>&#123;    <span class="hljs-comment">// 设计一个方法，描述盖宝塔</span><br>        <span class="hljs-keyword">if</span>(floor&gt;<span class="hljs-number">1</span>)&#123;<br>            <span class="hljs-keyword">this</span>.buildTower(floor-<span class="hljs-number">1</span>);<br>        &#125;<br>        <br>        System.out.println(<span class="hljs-string">&quot;改到第&quot;</span>+ floor + <span class="hljs-string">&quot;层啦&quot;</span>);  <span class="hljs-comment">// 自己执行</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>内存结构图：</strong><br><img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E9%80%92%E5%BD%92%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="递归内存结构图"></p>
+<h3 id="②-遍历文件夹"><a href="#②-遍历文件夹" class="headerlink" title="② 遍历文件夹"></a>② 遍历文件夹</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/* </span><br><span class="hljs-comment"> *  遍历文件夹。参数：file（代表文件或文件夹）</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">newTestFile</span></span>&#123;<br>     <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showFile</span><span class="hljs-params">(File file)</span></span>&#123;<br>        <br>        File[] files = File.listFiles();<br>        <span class="hljs-comment">// 如果在调用前输出，则相反输出</span><br>        <span class="hljs-keyword">if</span> (files != <span class="hljs-keyword">null</span> &amp;&amp; files.length != <span class="hljs-number">0</span>)&#123; <span class="hljs-comment">//  🔹 非文件 &amp;&amp; 非空文件夹</span><br>            <span class="hljs-keyword">for</span>(File f : files)&#123; <span class="hljs-comment">// 遍历</span><br>                <span class="hljs-keyword">this</span>.showFile(); <span class="hljs-comment">// 🔹 递归</span><br>            &#125;<br>        &#125;<br>        System.out.println(file.getAbsolutePath());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>删除文件夹</strong>：<em><code>file.delete();</code>  // 将上面的例子替换</em></li>
+</ul>
+<br>
+<br>
+<br>
+
+<p style="text-align:center;font-size:13px;color:#666666"> - <i>end</i> - </p></div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/note/Basics/IO/IO_StandardIO/">IO - 标准设备输入/输出</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize({
+    theme: 'neutral',
+    fontFamily: 'Noto Serif SC',
+    startOnLoad: 'true'
+  });
+}</script></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
