@@ -24,47 +24,57 @@ gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valin
     orderedList: false,
     collapseDepth: 2,
   });
-})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">IO - 标准设备输入/输出</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">IO - 标准设备输入/输出</a></h2><span class="post__date">2023-05-06</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><pre class="mermaid">%%{
-  init: {
-    'themeVariables': {
-      'fontSize': '14px',
-      'clusterBorder': 'none',
-      'clusterBkg': '#f8f8f8'
-    }
-  }
-}%%
-graph 
-subgraph "<b>Java.io - 目录</b>"
-T(["<b>Java.io</b>"]):::T
-T --> A(["<b>标准设备输入/输出</b>"]):::p
-T -.- B(["文件基本处理"]):::g
-T -.- C(["输入/输出流"]):::g
-
-A --> 1["<b>① 标准设备输入/输出类：<i>System</i> #12288;#12288;#12288;#12288;<br>—————————————————————<br>② 控制台读写类：<i>Console </i> #12288;#12288;#12288;#12288;#12288;#12288;#12288;</b>"]:::lp
-B -.- 2["① 文件操作类：<i>File</i> #12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
-B -.- b2["② 文件搜索类：<i>FileFilter 与 FileFileameFilter</i>"]:::lg
-B -.- b3["③ 文件任意读写类：<i>RandomAccessFile</i> #12288;#12288;"]:::lg
-C -.- c1["① 输入/输出流 - 分类#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
-C -.- c2["② 输入/输出流 - 实现类#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
-C -.- c3["③ 对象序列化 #12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
-end
-
-%% 链接
-click T "https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/System.html"
-click 1 "https://equnee.github.io/note/Basics/IO/IO_StandardIO/"
-click b1 "https://equnee.github.io//note/Basics/IO/IO_File/"
-click b2 "https://equnee.github.io//note/Basics/IO/IO_File/"
-click b3 "https://equnee.github.io/note/Basics/IO/IO_RandomAccessFile/"
-click c1 "https://equnee.github.io/note/Basics/IO/IO_IO_1/"
-click c2 "https://equnee.github.io/note/Basics/IO/IO_IO_2/"
-click c3 "https://equnee.github.io/note/Basics/IO/IO_Object_serialization/"
-%% 样式
-classDef T fill:#e5c0cb, stroke: #8b8b8b, stroke-width:1px
-classDef p fill:#e5c0cb, stroke: #cc829a, stroke-width:2px
-classDef lp fill:#f4e4e9, stroke: #cc829a, stroke-width:3px, stroke-dasharray: 4 2
-classDef g fill:#d4ded4
-classDef lg fill:#edf1ed
-classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">IO - 标准设备输入/输出</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">IO - 标准设备输入/输出</a></h2><span class="post__date">2023-05-06</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><div>
+  <!--  bgcolor="#fdeff2" -->
+    <table style="font-size:11px;width:100%;">
+        <tr>
+            <th colspan="2">java.io - 目录</th>
+        </tr>
+        <tr>
+      <td rowspan="2" style="text-align:center" bgcolor="#fdeff2"><b>标准设备输入/输出</b></td>
+            <td bgcolor="#fdeff2">
+        <a href="https://equnee.github.io/note/Basics/IO/IO_StandardIO/"><b>标准设备输入/输出：System</b></a>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#fdeff2">
+        <a href="https://equnee.github.io/note/Basics/IO/IO_StandardIO/"><b>控制台读写类：Console</b></a>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="3" style="text-align:center">文件基本处理</td>
+            <td>
+                <a href="https://equnee.github.io//note/Basics/IO/IO_File/">文件操作类：File</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://equnee.github.io//note/Basics/IO/IO_File/">文件搜索类：FileFilter、FilenameFilter</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://equnee.github.io/note/Basics/IO/IO_RandomAccessFile/">文件任意读写类：RandomAccessFile</a>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="3" style="text-align:center">输入/输出流</td>
+            <td colspan="2">
+                <a href="https://equnee.github.io/note/Basics/IO/IO_IO_1/">输入/输出流 - 分类</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">        
+                <a href="https://equnee.github.io/note/Basics/IO/IO_IO_2/">输入/输出流 - 实现类</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <a href="https://equnee.github.io/note/Basics/IO/IO_Object_serialization/">对象序列化</a>
+            </td>
+        </tr>
+    </table>
+</div>
 
 <hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
 

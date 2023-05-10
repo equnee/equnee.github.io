@@ -24,50 +24,180 @@ gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valin
     orderedList: false,
     collapseDepth: 2,
   });
-})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">IO - 输入/输出流⑵_实现类</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">IO - 输入/输出流⑵_实现类</a></h2><span class="post__date">2023-05-09</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><pre class="mermaid">%%{
-  init: {
-    'themeVariables': {
-      'fontSize': '14px',
-      'clusterBorder': 'none',
-      'clusterBkg': '#f8f8f8'
-    }
-  }
-}%%
-graph 
-subgraph "<b>Java.io - 目录</b>"
-T(["<b>Java.io</b>"]):::T
-T -.- A(["标准设备输入/输出"]):::g
-T -.- B(["文件基本处理"]):::g
-T --> C(["<b>输入/输出流</b>"]):::p
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">IO - 输入/输出流⑵_实现类</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">IO - 输入/输出流⑵_实现类</a></h2><span class="post__date">2023-05-09</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><div>
+  <!--  bgcolor="#fdeff2" -->
+    <table style="font-size:11px;width:100%;">
+        <tr>
+            <th colspan="2">java.io - 目录</th>
+        </tr>
+        <tr>
+            <td rowspan="2" style="text-align:center">标准设备输入/输出</td>
+            <td>
+                <a href="https://equnee.github.io/note/Basics/IO/IO_StandardIO/">标准设备输入/输出：System</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://equnee.github.io/note/Basics/IO/IO_StandardIO/">控制台读写类：Console</a>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="3" style="text-align:center">文件基本处理</td>
+            <td>
+                <a href="https://equnee.github.io//note/Basics/IO/IO_File/">文件操作类：File</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://equnee.github.io//note/Basics/IO/IO_File/">文件搜索类：FileFilter、FilenameFilter</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://equnee.github.io/note/Basics/IO/IO_RandomAccessFile/">文件任意读写类：RandomAccessFile</a>
+            </td>
+        </tr>
+        <tr>
+      <td rowspan="3" style="text-align:center" bgcolor="#fdeff2"><b>输入/输出流</b></td>
+            <td colspan="2">
+                <a href="https://equnee.github.io/note/Basics/IO/IO_IO_1/">输入/输出流 - 分类</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" bgcolor="#fdeff2">        
+        <a href="https://equnee.github.io/note/Basics/IO/IO_IO_2/"><b>输入/输出流 - 实现类</b></a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <a href="https://equnee.github.io/note/Basics/IO/IO_Object_serialization/">对象序列化</a>
+            </td>
+        </tr>
+    </table>
+</div>
 
-A -.- 1["① 标准设备输入/输出类：<i>System</i> #12288;#12288;#12288;#12288;<br>—————————————————————<br>② 控制台读写类：<i>Console </i> #12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
-B -.- 2["① 文件操作类：<i>File</i> #12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
-B -.- b2["② 文件搜索类：<i>FileFilter 与 FileFileameFilter</i>"]:::lg
-B -.- b3["③ 文件任意读写类：<i>RandomAccessFile</i> #12288;#12288;"]:::lg
-C -.- c1["① 输入/输出流 - 分类#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
-C --> c2["<b>② 输入/输出流 - 实现类</b>#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lp
-C -.- c3["③ 对象序列化 #12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;#12288;"]:::lg
-end
 
-click T "https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/System.html"
-click 1 "https://equnee.github.io/note/Basics/IO/IO_StandardIO/"
-click b1 "https://equnee.github.io//note/Basics/IO/IO_File/"
-click b2 "https://equnee.github.io//note/Basics/IO/IO_File/"
-click b3 "https://equnee.github.io/note/Basics/IO/IO_RandomAccessFile/"
-click c1 "https://equnee.github.io/note/Basics/IO/IO_IO_1/"
-click c2 "https://equnee.github.io/note/Basics/IO/IO_IO_2/"
-click c3 "https://equnee.github.io/note/Basics/IO/IO_Object_serialization/"
-
-classDef T fill:#e5c0cb, stroke: #8b8b8b, stroke-width:1px
-classDef p fill:#e5c0cb, stroke: #cc829a, stroke-width:2px
-classDef lp fill:#f4e4e9, stroke: #cc829a, stroke-width:3px, stroke-dasharray: 4 2
-classDef g fill:#d4ded4
-classDef lg fill:#edf1ed
-classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+<p><strong>流体系：</strong></p>
+<table>
+  <tr>
+    <th>分类</th>
+    <th>字节输入流</th>
+    <th>字节输出流</th>
+    <th>字符输入流</th>
+    <th>字符输出流</th>
+  </tr>
+  <tr bgcolor="#fdeff2">
+    <td><i>抽象类</i></td>
+    <td><i>InputStream</i></td>
+    <td><i>OutputStream</i></td>
+    <td><i>Reader</i></td>
+    <td><i>Writer</i></td>
+  </tr>
+  <tr>
+  <td>转换类</td>
+    <td></td>
+    <td></td>
+    <td>InputStream-<br>Reader</td>
+    <td>OutputStream-<br>Writer</td>
+  </tr>
+  <tr>
+    <td colspan="5" bgcolor="#e9f0e9" style="text-align:center;">第一类：数据源类</td>
+  </tr>
+  <tr>
+    <td><b>文件</b></td>
+    <td><b>File-<br>InputStream</b></td>
+    <td><b>File-<br>OutputStream</b></td>
+    <td><b>FileReader</b></td>
+    <td><b>FilerWriter</b></td>
+  </tr>
+  <tr>
+    <td>数组</td>
+    <td>ByteArray-<br>InputStream</td>
+    <td>ByteArray-<br>OutputStream</td>
+    <td>CharArray-<br>Reader</td>
+    <td>CharArray-<br>Writer</td>
+  </tr>
+  <tr>
+    <td>对象</td>
+    <td>Object-<br>InputStream</td>
+    <td>Object-<br>OutputStream</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><b>字符串</b></td>
+    <td><b>StringBuffer-<br>InputStream</b></td>
+    <td></td>
+    <td><b>StringReader</b></td>
+    <td><b>StringWriter</b></td>
+  </tr>
+   <tr>
+    <td colspan="5" bgcolor="#e9f0e9" style="text-align:center;">第二类：数据流串联类</td>
+   </tr>
+  <tr>
+    <td>管道</td>
+    <td>Pipe-<br>InputStream</td>
+    <td>Pipe-<br>OutputStream</td>
+    <td>PipeReader</td>
+    <td>PipeWriter</td>
+  </tr>
+  <tr>
+    <td>序列</td>
+    <td>Sequence-<br>InputStream</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="5" bgcolor="#e9f0e9" style="text-align:center;">第三类：数据流过滤类</td>
+  </tr>
+  <tr bgcolor="#fdeff2">
+    <td><i>过滤</i></td>
+    <td><i>Filter-<br>InputStream</i></td>
+    <td><i>Filter-<br>OutputStream</i></td>
+    <td><i>FilterReader</i></td>
+    <td><i>FilterWriter</i></td>
+  </tr>
+    <tr>
+    <td><b>缓冲</b></td>
+    <td><b>Buffered-<br>InputStream</b></td>
+    <td><b>Buffered-<br>OutputStream</b></td>
+    <td><b>Buffered-<br>Reader</b></td>
+    <td><b>Buffered-<br>Writer</b></td>
+  </tr>
+    <tr>
+    <td>数据</td>
+    <td>Data-<br>InputStream</td>
+    <td>Data-<br>OutputStream</td>
+    <td></td>
+    <td></td>
+  </tr>
+    <tr>
+    <td>行号</td>
+    <td>LineNumber-<br>InputStream</td>
+    <td></td>
+    <td>LineNumber-<br>Reader</td>
+    <td></td>
+  </tr>
+    <tr>
+    <td>推回</td>
+    <td>Pushback-<br>InputStream</td>
+    <td></td>
+    <td>Pushback-<br>Reader</td>
+    <td></td>
+  </tr>
+    <tr>
+    <td>格式化</td>
+    <td></td>
+    <td>PrintStream</td>
+    <td></td>
+    <td>PrintWriter</td>
+  </tr>
+</table>
 
 <hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
 
-<h2 id="一-文件流"><a href="#一-文件流" class="headerlink" title="一. 文件流"></a>一. 文件流</h2><pre class="mermaid">graph LR
+<h2 id="（一）文件流"><a href="#（一）文件流" class="headerlink" title="（一）文件流"></a>（一）文件流</h2><pre class="mermaid">graph LR
 T(["<b>文件流</b><br>（低级文件流）"]):::p
 T --> t("<b>可操作文件<br>中的内容</b>"):::info
 t --> A(["按照(读/写)<br><b>方向</b>分类"]):::p
@@ -88,9 +218,8 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 
 
 <h3 id="（1）FileInputStram"><a href="#（1）FileInputStram" class="headerlink" title="（1）FileInputStram"></a>（1）FileInputStram</h3><p><code>字节型文件输入流</code></p>
-<h4 id="所属的包"><a href="#所属的包" class="headerlink" title="+ 所属的包"></a>+ 所属的包</h4><p>Java.io</p>
-<h4 id="继承关系"><a href="#继承关系" class="headerlink" title="+ 继承关系"></a>+ 继承关系</h4><p>继承于 <strong><em>InputStream</em></strong> 类（字节型输入流）</p>
-<h4 id="构造方法"><a href="#构造方法" class="headerlink" title="+ 构造方法"></a>+ 构造方法</h4><table>
+<h4 id="继承关系"><a href="#继承关系" class="headerlink" title="* 继承关系"></a>* 继承关系</h4><p>继承于 <strong><em>InputStream</em></strong> 类（字节型输入流）</p>
+<h4 id="构造方法"><a href="#构造方法" class="headerlink" title="* 构造方法"></a>* 构造方法</h4><table>
 <thead>
 <tr>
 <th>构造方法</th>
@@ -103,14 +232,14 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 </tr>
 <tr>
 <td><em>FileInputStram(File file)</em></td>
-<td>利用File对象构造</td>
+<td>通过File对象构造</td>
 </tr>
 <tr>
 <td><em>FileInputStram(String name)</em></td>
 <td>通过文件路径字符串构造</td>
 </tr>
 </tbody></table>
-<h4 id="常用方法"><a href="#常用方法" class="headerlink" title="+ 常用方法"></a>+ 常用方法</h4><table>
+<h4 id="常用方法"><a href="#常用方法" class="headerlink" title="* 常用方法"></a>* 常用方法</h4><table>
 <thead>
 <tr>
 <th>常用方法</th>
@@ -169,9 +298,8 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 
 
 <h3 id="（2）FileOutputStream"><a href="#（2）FileOutputStream" class="headerlink" title="（2）FileOutputStream"></a>（2）FileOutputStream</h3><p><code>字节型文件输出流</code></p>
-<h4 id="所属的包-1"><a href="#所属的包-1" class="headerlink" title="+ 所属的包"></a>+ 所属的包</h4><p>Java.io</p>
-<h4 id="继承关系-1"><a href="#继承关系-1" class="headerlink" title="+ 继承关系"></a>+ 继承关系</h4><p>继承于 <strong><em>OutputStream</em></strong> 类</p>
-<h4 id="构造方法-1"><a href="#构造方法-1" class="headerlink" title="+ 构造方法"></a>+ 构造方法</h4><table>
+<h4 id="继承关系-1"><a href="#继承关系-1" class="headerlink" title="* 继承关系"></a>* 继承关系</h4><p>继承于 <strong><em>OutputStream</em></strong> 类</p>
+<h4 id="构造方法-1"><a href="#构造方法-1" class="headerlink" title="* 构造方法"></a>* 构造方法</h4><table>
 <thead>
 <tr>
 <th>构造方法</th>
@@ -199,7 +327,7 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 <td>通过文件路径构造、是否追加到文件末尾</td>
 </tr>
 </tbody></table>
-<h4 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="+ 常用方法"></a>+ 常用方法</h4><table>
+<h4 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="* 常用方法"></a>* 常用方法</h4><table>
 <thead>
 <tr>
 <th>常用方法</th>
@@ -231,14 +359,13 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 <td><em>* 注意：在finally中关闭</em></td>
 </tr>
 </tbody></table>
-<h5 id="write"><a href="#write" class="headerlink" title="-write()"></a>-<em>write()</em></h5><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span>&#123;<br>    File file = <span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D://Test//test.txt&quot;</span>);<br>    FileOutStream fos = <span class="hljs-keyword">new</span> FileOutStram(file);<br>    fos.write(<span class="hljs-number">97</span>);	<span class="hljs-comment">// 写入code码</span><br>    fos.flush();	<span class="hljs-comment">// 刷新 将管道中的字节推入文件中</span><br>    &#125;<br>&#125;<span class="hljs-keyword">catch</span>(IOException e)&#123;<br>    e.printStackTrace;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="write"><a href="#write" class="headerlink" title="- write()"></a>- <em>write()</em></h5><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span>&#123;<br>    File file = <span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D://Test//test.txt&quot;</span>);<br>    FileOutStream fos = <span class="hljs-keyword">new</span> FileOutStram(file);<br>    fos.write(<span class="hljs-number">97</span>);	<span class="hljs-comment">// 写入code码</span><br>    fos.flush();	<span class="hljs-comment">// 刷新 将管道中的字节推入文件中</span><br>    &#125;<br>&#125;<span class="hljs-keyword">catch</span>(IOException e)&#123;<br>    e.printStackTrace;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="（3）FileReader"><a href="#（3）FileReader" class="headerlink" title="（3）FileReader"></a>（3）FileReader</h3><p><code>字符型文件输入流</code></p>
-<h4 id="所属的包-2"><a href="#所属的包-2" class="headerlink" title="+ 所属的包"></a>+ 所属的包</h4><p><em>Java.io</em></p>
-<h4 id="继承关系-2"><a href="#继承关系-2" class="headerlink" title="+ 继承关系"></a>+ 继承关系</h4><p>继承于<strong><em>InputStreamReader</em></strong> 类<em>（字节型输入流）</em></p>
-<h4 id="构造方法-2"><a href="#构造方法-2" class="headerlink" title="+ 构造方法"></a>+ 构造方法</h4><table>
+<h4 id="继承关系-2"><a href="#继承关系-2" class="headerlink" title="* 继承关系"></a>* 继承关系</h4><p>继承于<strong><em>InputStreamReader</em></strong> 类<em>（字节型输入流）</em></p>
+<h4 id="构造方法-2"><a href="#构造方法-2" class="headerlink" title="* 构造方法"></a>* 构造方法</h4><table>
 <thead>
 <tr>
 <th>构造方法</th>
@@ -262,7 +389,7 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 <td>通过文件描述符构建<br>（<em>文件描述符的有效范围是 0 到 OPEN_MAX</em>）</td>
 </tr>
 </tbody></table>
-<h4 id="常用方法-2"><a href="#常用方法-2" class="headerlink" title="+ 常用方法"></a>+ 常用方法</h4><table>
+<h4 id="常用方法-2"><a href="#常用方法-2" class="headerlink" title="* 常用方法"></a>* 常用方法</h4><table>
 <thead>
 <tr>
 <th>常用方法</th>
@@ -283,9 +410,8 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 </tr>
 </tbody></table>
 <h3 id="（4）FileWriter"><a href="#（4）FileWriter" class="headerlink" title="（4）FileWriter"></a>（4）FileWriter</h3><p><code>字符型文件输出流</code></p>
-<h4 id="所属的包-3"><a href="#所属的包-3" class="headerlink" title="+ 所属的包"></a>+ 所属的包</h4><p><em>Java.io</em></p>
-<h4 id="继承关系-3"><a href="#继承关系-3" class="headerlink" title="+ 继承关系"></a>+ 继承关系</h4><p>继承于 <strong><em>OutputStreamWriter</em></strong> 类 <em>（字节型输出流）</em></p>
-<h4 id="构造方法-3"><a href="#构造方法-3" class="headerlink" title="+ 构造方法"></a>+ 构造方法</h4><table>
+<h4 id="继承关系-3"><a href="#继承关系-3" class="headerlink" title="* 继承关系"></a>* 继承关系</h4><p>继承于 <strong><em>OutputStreamWriter</em></strong> 类 <em>（字节型输出流）</em></p>
+<h4 id="构造方法-3"><a href="#构造方法-3" class="headerlink" title="* 构造方法"></a>* 构造方法</h4><table>
 <thead>
 <tr>
 <th>构造方法</th>
@@ -313,7 +439,7 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 <td>通过文件路径字符串构造、是否追加到文件末尾</td>
 </tr>
 </tbody></table>
-<h4 id="常用方法-3"><a href="#常用方法-3" class="headerlink" title="+ 常用方法"></a>+ 常用方法</h4><table>
+<h4 id="常用方法-3"><a href="#常用方法-3" class="headerlink" title="* 常用方法"></a>* 常用方法</h4><table>
 <thead>
 <tr>
 <th>常用方法</th>
@@ -337,7 +463,7 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 
 
 
-<h3 id="🔸-Demo"><a href="#🔸-Demo" class="headerlink" title="🔸 Demo"></a>🔸 Demo</h3><h4 id="①-文件的复制"><a href="#①-文件的复制" class="headerlink" title="① 文件的复制"></a>① 文件的复制</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OperateFile</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">copyFile</span><span class="hljs-params">(File file, String path)</span></span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 🔻 0 创建对象</span><br>            FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D://test.txt&quot;</span>));<br>            File newFile = <span class="hljs-keyword">new</span> File(path + <span class="hljs-string">&quot;//&quot;</span> + file.gsetName());<br>            FileOutputStream fos = <span class="hljs-keyword">new</span> FileOutputStream(newFile);<br>            <br>            <span class="hljs-comment">// 🔻 1 读取文件</span><br>            <span class="hljs-keyword">byte</span>[] b = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>]; <span class="hljs-comment">// 通常创建的数组：1kb-8kb之间</span><br>            <span class="hljs-keyword">int</span> count = fis.read(b); <span class="hljs-comment">// count记录读取的有效字节数，读取到byte数组b里</span><br>  <br>            <span class="hljs-comment">// 🔻 2 写入文件</span><br>            <span class="hljs-keyword">while</span>(count!=-<span class="hljs-number">1</span>)&#123; <span class="hljs-comment">// 当能读取到内容时</span><br>                          <br>            	<span class="hljs-comment">// 🔸（做点手脚）</span><br>                fos.write(b, <span class="hljs-number">0</span>, count); <span class="hljs-comment">// 写入有效字节数</span><br>                fos.flush();<br>                count = fis.read(b); <span class="hljs-comment">// 最后再次读取，读取不到内容时，count=-1时退出while循环</span><br>            &#125;<br>            System.out.println(<span class="hljs-string">&quot;复制完毕！&quot;</span>);<br>        <br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">// 关闭</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        OperateFile of = <span class="hljs-keyword">new</span> OperateFile();<br>        of.copyFile(<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D://test.txt&quot;</span>), <span class="hljs-string">&quot;D://test&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="（5）Demo"><a href="#（5）Demo" class="headerlink" title="（5）Demo"></a>（5）Demo</h3><h4 id="①-文件的复制"><a href="#①-文件的复制" class="headerlink" title="① 文件的复制"></a>① 文件的复制</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OperateFile</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">copyFile</span><span class="hljs-params">(File file, String path)</span></span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 🔻 0 创建对象</span><br>            FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D://test.txt&quot;</span>));<br>            File newFile = <span class="hljs-keyword">new</span> File(path + <span class="hljs-string">&quot;//&quot;</span> + file.gsetName());<br>            FileOutputStream fos = <span class="hljs-keyword">new</span> FileOutputStream(newFile);<br>            <br>            <span class="hljs-comment">// 🔻 1 读取文件</span><br>            <span class="hljs-keyword">byte</span>[] b = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>]; <span class="hljs-comment">// 通常创建的数组：1kb-8kb之间</span><br>            <span class="hljs-keyword">int</span> count = fis.read(b); <span class="hljs-comment">// count记录读取的有效字节数，读取到byte数组b里</span><br>  <br>            <span class="hljs-comment">// 🔻 2 写入文件</span><br>            <span class="hljs-keyword">while</span>(count!=-<span class="hljs-number">1</span>)&#123; <span class="hljs-comment">// 当能读取到内容时</span><br>                          <br>            	<span class="hljs-comment">// 🔸（做点手脚）</span><br>                fos.write(b, <span class="hljs-number">0</span>, count); <span class="hljs-comment">// 写入有效字节数</span><br>                fos.flush();<br>                count = fis.read(b); <span class="hljs-comment">// 最后再次读取，读取不到内容时，count=-1时退出while循环</span><br>            &#125;<br>            System.out.println(<span class="hljs-string">&quot;复制完毕！&quot;</span>);<br>        <br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">// 关闭</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        OperateFile of = <span class="hljs-keyword">new</span> OperateFile();<br>        of.copyFile(<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;D://test.txt&quot;</span>), <span class="hljs-string">&quot;D://test&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="②-文件的加密"><a href="#②-文件的加密" class="headerlink" title="② 文件的加密"></a>② 文件的加密</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 读取文件 -&gt; 做点手脚 -&gt; 写入文件</span><br><span class="hljs-keyword">byte</span> temp = b[<span class="hljs-number">0</span>];<br>b[<span class="hljs-number">0</span>] = b[<span class="hljs-number">1</span>];<br>b[<span class="hljs-number">1</span>] = temp;<br></code></pre></td></tr></table></figure>
 
@@ -345,17 +471,106 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 
 
 
-<hr>
-<h2 id="二-缓冲流"><a href="#二-缓冲流" class="headerlink" title="二. 缓冲流"></a>二. 缓冲流</h2><p>缓冲流（高级文件流）</p>
-<p>需要使用 flush() 才可以将缓冲区的内容写入实际的物理节点。</p>
 <br>
 
 <hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
 
-<h2 id="三-转换流"><a href="#三-转换流" class="headerlink" title="三. 转换流"></a>三. 转换流</h2><p>转换流（<strong><em>InputStreamReader</em></strong>、<strong><em>OutputStreamWriter</em></strong>），Reader的子类，可以将 InputStream 包装成 Reader。用于实现将<strong>字节流</strong>转换成<strong>字符流</strong>。—— 可解决文件乱码问题。</p>
+<h2 id="（二）对象流"><a href="#（二）对象流" class="headerlink" title="（二）对象流"></a>（二）对象流</h2><h3 id="（1）对象序列化"><a href="#（1）对象序列化" class="headerlink" title="（1）对象序列化"></a>（1）对象序列化</h3><pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+       'fontSize': '12px'
+     }
+  }
+}%%
+graph LR
+subgraph "应用层1"
+A("<b>对象</b>"):::lb
+end
+
+subgraph "应用层2"
+B("<b>对象</b>"):::lb
+end
+
+subgraph "网络协议"
+C("<b><i>二进制流</i></b>"):::p
+end
+
+A --> |"<i>[ 转换 ]<br><b>ObjectOutputStream<br>FileOutputStream</i></b>"|C 
+C --> |"<i>[ 还原 ]<br><b><u>ObjectInputStream</u><br>FileInputStream</i></b>"|B
+
+
+
+style 网络协议 fill:#f4e4e9, stroke-dasharray: 3 3, stroke-width: 2px
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#3f3f3f,stroke-dasharray: 3 3, stroke-width: 1px</pre>
+
+<ul>
+<li><p><strong>序列化：对象的持久存储</strong></p>
+<blockquote>
+<ul>
+<li><em>ObjectOutputStream</em> 和 <em>ObjectInputStream</em> 分别与 <em>FileOutputStream</em> 和 <em>FileInputStream</em> 一起使用，通过在流中使用文件可以实现<strong>对象的持久存储</strong>。</li>
+<li><strong><em>ObjectInputStream</em></strong>：用于恢复那些已经序列化存储的对象。确保从流创建的图形中所有对象的类型与Java虚拟机中显示的类相匹配。</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>序列化细节：</strong></p>
+<blockquote>
+<ol>
+<li>读写顺序要一致<i>（对象类型转换异常：java.io.OptionalDataException）</i></li>
+<li>要求必须实现 <strong><em>Serializable</em></strong> 或 <strong><em>Externalizable</em></strong> 接口</li>
+<li>在序列化类中添加 <strong><em>SerialVersionUID</em></strong>，提高版本兼容性</li>
+<li>序列化对象时默认所有属性都序列化，除 <strong><em>static</em></strong> 和 <strong><em>transit</em></strong></li>
+<li>序列化<strong>可继承性</strong>，若某类实现序列化，其子类也默认实现序列化</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h3 id="（2）方法"><a href="#（2）方法" class="headerlink" title="（2）方法"></a>（2）方法</h3><ul>
+<li><p><strong><em>readObject()</em></strong></p>
+<blockquote>
+<p><strong><em>readObject()</em></strong>：负责读取通过对应的 <strong><em>writeObject()</em></strong> 方法写入的数据，为特定类读取和恢复对象的状态。</p>
+<p>恢复状态：从 ObjectInputStream 读取数据并将其分配给对象的适当字段。</p>
+</blockquote>
+</li>
+<li><p>读取各种数据类型的函数</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 与 ObjectOutputStream write()相对应</span><br><span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">readBoolean</span><span class="hljs-params">()</span></span>;    <span class="hljs-comment">// 读取一个boolean值</span><br><span class="hljs-function"><span class="hljs-keyword">byte</span> <span class="hljs-title">readByte</span><span class="hljs-params">()</span></span>;          <span class="hljs-comment">// 读取一个8位的字节</span><br><span class="hljs-function"><span class="hljs-keyword">char</span> <span class="hljs-title">readChar</span><span class="hljs-params">()</span></span>;          <span class="hljs-comment">// 读取一个16位的char值</span><br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">readDouble</span><span class="hljs-params">()</span></span>;      <span class="hljs-comment">// 读取一个 64 位的double值</span><br><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">readFloat</span><span class="hljs-params">()</span></span>;        <span class="hljs-comment">// 读取一个 32 位的float值</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">readInt</span><span class="hljs-params">()</span></span>;            <span class="hljs-comment">// 读取一个 32 位的int值</span><br><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-title">readLong</span><span class="hljs-params">()</span></span>;          <span class="hljs-comment">// 读取一个 64 位的long值</span><br><span class="hljs-function"><span class="hljs-keyword">short</span> <span class="hljs-title">readShort</span><span class="hljs-params">()</span></span>;        <span class="hljs-comment">// 读取一个 16 位的short值</span><br><br><span class="hljs-comment">// 从序列化流读取类描述符</span><br><span class="hljs-function"><span class="hljs-keyword">protected</span>  ObjectStreamClass <span class="hljs-title">readClassDescriptor</span><span class="hljs-params">()</span></span>;    <br><span class="hljs-comment">// 按名称从流中读取持久字段并使其可用</span><br>ObjectInputStream.<span class="hljs-function">GetField <span class="hljs-title">readFields</span><span class="hljs-params">()</span></span>;<br><span class="hljs-comment">// 允许子类读取并验证它们自己的流头部</span><br><span class="hljs-function"><span class="hljs-keyword">protected</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">readStreamHeader</span><span class="hljs-params">()</span></span>;<br><span class="hljs-comment">// 从 ObjectInputStream 读取“非共享”对象</span><br><span class="hljs-function">Object <span class="hljs-title">readUnshared</span><span class="hljs-params">()</span></span>;                                 <br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="（3）示例"><a href="#（3）示例" class="headerlink" title="（3）示例"></a>（3）示例</h3><h4 id="①-对象序列化"><a href="#①-对象序列化" class="headerlink" title="① 对象序列化"></a>① 对象序列化</h4><ul>
+<li><p><strong><em>Person</em></strong> 类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">java</span>.<span class="hljs-title">io</span>.<span class="hljs-title">Serializable</span> </span>&#123; <br><span class="hljs-comment">// 🔹 使用Serializable来实现序列化，让目标类实现Serializable标记接口</span><br>  <br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br>    <span class="hljs-comment">// 注意此处没有提供无参数的构造器：🔻反序列化机制无须通过构造器来初始化Java对象</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name , <span class="hljs-keyword">int</span> age)</span> </span>&#123;<br>          System.out.println(<span class="hljs-string">&quot;有参数的构造器&quot;</span>);<br>          <span class="hljs-keyword">this</span>.name=name;<br>          <span class="hljs-keyword">this</span>.age=age;<br>    &#125;<br>    <span class="hljs-comment">// 省略name与age的setter和getter方法</span><br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>使用 <strong><em>ObjectOutputStream</em></strong> 将一个Person对象写入磁盘文件：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WriteObject</span></span>&#123;<br>      <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span>(<br>              <span class="hljs-comment">// 🔹（1）创建一个ObjectOutputStream输出流</span><br>              ObjectOutputStream oos = <span class="hljs-keyword">new</span> ObjectOutputStream(<br>                  <span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-string">&quot;object.txt&quot;</span>))) <span class="hljs-comment">// 这个输出流是一个处理流，所以必须建立在其他节点流（文件输出流）的基础之上</span><br>        &#123;<br>              Person per = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;孙悟空&quot;</span>, <span class="hljs-number">500</span>);<br>              <span class="hljs-comment">// 🔹（2）调用ObjectOutputStream对象的writeObject()方法输出可序列化对象</span><br>              oos.writeObject(per); <span class="hljs-comment">// 将per对象写入输出流</span><br>        &#125;<br>        <span class="hljs-keyword">catch</span> (IOException ex)&#123;<br>              ex.printStackTrace();<br>        &#125;<br>     &#125;<br>  &#125;<br><br><span class="hljs-comment">// 运行上面程序，将会看到生成了一个object.txt文件，该文件的内容就是Person对象。</span><br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="②-对象反序列化"><a href="#②-对象反序列化" class="headerlink" title="② 对象反序列化"></a>② 对象反序列化</h4><ul>
+<li><p>从刚刚生成的object.txt文件中读取Person对象：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReadObject</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span>(<br>              <span class="hljs-comment">// 🔹（1）创建一个ObjectInputStream输入流</span><br>              ObjectInputStream ois=<span class="hljs-keyword">new</span> ObjectInputStream(<br>                  <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;object.txt&quot;</span>))) <span class="hljs-comment">// 这个输入流是一个处理流，所以必须建立在其他节点流的基础之上。</span><br>        &#123;<br>              <span class="hljs-comment">// 🔹（2）从输入流中读取一个Java对象，并将其强制类型转换为Person类</span><br>              Person p = (Person)ois.readObject(); <span class="hljs-comment">// 调用ObjectInputStream对象的readObject()</span><br>              System.out.println(<span class="hljs-string">&quot;名字为：&quot;</span> + p.getName()<br>                  + <span class="hljs-string">&quot;\n年龄为：&quot;</span> + p.getAge());<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception ex) &#123;<br>              ex.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="（三）转换流"><a href="#（三）转换流" class="headerlink" title="（三）转换流"></a>（三）转换流</h2><p>转换流（<strong><em>InputStreamReader</em></strong>、<strong><em>OutputStreamWriter</em></strong>），Reader的子类，可以将 InputStream 包装成 Reader。用于实现将<strong>字节流</strong>转换成<strong>字符流</strong>。—— 可解决文件乱码问题。</p>
 <ul>
 <li><p><strong><em>Demo</em></strong>：获取键盘输入</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/* 该程序将 System.in 包装成 BufferedReader，</span><br><span class="hljs-comment">    BufferedReader流具有缓冲功能，它可以一次读取一行文本：</span><br><span class="hljs-comment">    以换行符为标志，若没有读到换行符，则程序阻塞，等到读到换行符为止。*/</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">KeyinTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>          <span class="hljs-keyword">try</span>&#123;<br>                <span class="hljs-comment">// 将Sytem.in对象转换成Reader对象</span><br>                InputStreamReader reader = <span class="hljs-keyword">new</span> InputStreamReader(System.in);<br>                <span class="hljs-comment">// 将普通的Reader包装成BufferedReader</span><br>                BufferedReader br = <span class="hljs-keyword">new</span> BufferedReader(reader))<br>                String buffer = <span class="hljs-keyword">null</span>;<br>                <span class="hljs-comment">// 采用循环方式来逐行地读取</span><br>                <span class="hljs-keyword">while</span> ((buffer = br.readLine()) !=<span class="hljs-keyword">null</span>) &#123;<br>                    <span class="hljs-comment">//如果读取的字符串为&quot;exit&quot;，则程序退出</span><br>                    <span class="hljs-keyword">if</span> (buffer.equals(<span class="hljs-string">&quot;exit&quot;</span>)) &#123;<br>                          System.exit(<span class="hljs-number">1</span>);<br>                    &#125;<br>                    <span class="hljs-comment">//打印读取的内容</span><br>                    System.out.println(<span class="hljs-string">&quot;输入内容为:&quot;</span> + buffer);<br>                &#125;<br>          &#125; <span class="hljs-keyword">catch</span> (IOException ioe) &#123;<br>          		ioe.printStackTrace();<br>          &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/* 该程序将 System.in 包装成 BufferedReader，</span><br><span class="hljs-comment">    BufferedReader流具有缓冲功能，它可以一次读取一行文本：</span><br><span class="hljs-comment">    以换行符为标志，若没有读到换行符，则程序阻塞，等到读到换行符为止。*/</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">KeyinTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>          <span class="hljs-keyword">try</span>&#123;<br>                <span class="hljs-comment">// 将 Sytem.in 对象转换成 Reader 对象</span><br>                InputStreamReader reader = <span class="hljs-keyword">new</span> InputStreamReader(System.in);<br>                <span class="hljs-comment">// 将普通的Reader包装成BufferedReader</span><br>                BufferedReader br = <span class="hljs-keyword">new</span> BufferedReader(reader))<br>                String buffer = <span class="hljs-keyword">null</span>;<br>                <span class="hljs-comment">// 采用循环方式来逐行地读取</span><br>                <span class="hljs-keyword">while</span> ((buffer = br.readLine()) !=<span class="hljs-keyword">null</span>) &#123;<br>                    <span class="hljs-comment">//如果读取的字符串为&quot;exit&quot;，则程序退出</span><br>                    <span class="hljs-keyword">if</span> (buffer.equals(<span class="hljs-string">&quot;exit&quot;</span>)) &#123;<br>                          System.exit(<span class="hljs-number">1</span>);<br>                    &#125;<br>                    <span class="hljs-comment">//打印读取的内容</span><br>                    System.out.println(<span class="hljs-string">&quot;输入内容为:&quot;</span> + buffer);<br>                &#125;<br>          &#125; <span class="hljs-keyword">catch</span> (IOException ioe) &#123;<br>          		ioe.printStackTrace();<br>          &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <p><code>InputStreamReader</code></p>
 <blockquote>
@@ -372,8 +587,34 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 
 <hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
 
-<h2 id="四-推回输入流"><a href="#四-推回输入流" class="headerlink" title="四. 推回输入流"></a>四. 推回输入流</h2><ul>
-<li><p>PushbackInputStream 和 PushbackReader 的3个方法：</p>
+<h2 id="（四）管道流"><a href="#（四）管道流" class="headerlink" title="（四）管道流"></a>（四）管道流</h2><br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="（五）序列流"><a href="#（五）序列流" class="headerlink" title="（五）序列流"></a>（五）序列流</h2><br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="（六）过滤流"><a href="#（六）过滤流" class="headerlink" title="（六）过滤流"></a>（六）过滤流</h2><br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="（七）缓冲流"><a href="#（七）缓冲流" class="headerlink" title="（七）缓冲流"></a>（七）缓冲流</h2><p>缓冲流主要为输入/输出流做缓存</p>
+<ul>
+<li>由于BufferedOutputStream是缓存数据的，因此需要使用 <strong><em>flush()</em></strong> 方法强制将缓存中的数据真正写入到输出流中。</li>
+</ul>
+<br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="（八）数据流"><a href="#（八）数据流" class="headerlink" title="（八）数据流"></a>（八）数据流</h2><br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="（九）推回输入流"><a href="#（九）推回输入流" class="headerlink" title="（九）推回输入流"></a>（九）推回输入流</h2><p>PushbackInputStream为另一个输入流添加性能，即“<strong><em>推回（pushback）</em></strong>”或“<strong><em>取消读取（unread）</em></strong>”一个字节的能力。</p>
+<p>在读取终止字节后，代码片段可以“取消读取”该字节，这样，输入流上的下一个读取操作将会重新读取被推回的字节。</p>
+<ul>
+<li><p><strong>PushbackInputStream 和 PushbackReader 的3个方法：</strong></p>
 <table>
 <thead>
 <tr>
@@ -395,15 +636,16 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 </tr>
 </tbody></table>
 </li>
-<li><p><strong>推回输入流的处理示意图</strong></p>
+<li><p><strong>处理示意图</strong></p>
 <img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/pushBack.jpg" alt="pushBack" style="zoom:25%;" />
 </li>
-<li><p><strong>异常：</strong></p>
+<li><p><strong>需指定缓冲区大小</strong></p>
 <p>当创建一个 <em>PushbackInputStream</em> 和 <em>PushbackReader</em> 时需要指定推回缓冲区的大小，默认的推回缓冲区的长度为1。</p>
 <p>若程序中推回到推回缓冲区的内容超出了推回缓冲区的大小，将会引发 <strong><em>Pushback buffer overflow</em></strong> 的 <em>IOException</em> 异常。</p>
 </li>
-<li><p>Demo：</p>
+<li><p><strong>Demo</strong>：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestPushbackInputStream</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 创建文件输入流</span><br>            FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;D:/demo/test.txt&quot;</span>);<br>            <span class="hljs-comment">// 创建推回输入流</span><br>            PushbackInputStream pis = <span class="hljs-keyword">new</span> PushbackInputStream(fis);<br><br>            <span class="hljs-comment">// 读取对象数据</span><br>            <span class="hljs-keyword">int</span> c = pis.read();<br>            System.out.print((<span class="hljs-keyword">char</span>)c);<br>            pis.unread(c);  <span class="hljs-comment">// 🔻 推回一个字节</span><br>            c=pis.read();   <span class="hljs-comment">// 再次读取</span><br>            System.out.print((<span class="hljs-keyword">char</span>)c);<br><br>            <span class="hljs-comment">// 关闭输入流</span><br>            pis.close();<br>            fis.close();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 运行该程序将会重复输出第一个字符。</span><br></code></pre></td></tr></table></figure>
+
 
 
 
@@ -413,8 +655,7 @@ classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2p
 
 <hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
 
-<h2 id="五-打印流"><a href="#五-打印流" class="headerlink" title="五. 打印流"></a>五. 打印流</h2><p><em>参考：<a href="https://www.liaoxuefeng.com/wiki/1252599548343744/1302299230076961">《廖雪峰Java教程》</a></em></p>
-<h3 id="（1）PrintStream"><a href="#（1）PrintStream" class="headerlink" title="（1）PrintStream"></a>（1）PrintStream</h3><pre class="mermaid">%%{
+<h2 id="（十）打印流（格式化）"><a href="#（十）打印流（格式化）" class="headerlink" title="（十）打印流（格式化）"></a>（十）打印流（格式化）</h2><h3 id="（1）PrintStream"><a href="#（1）PrintStream" class="headerlink" title="（1）PrintStream"></a>（1）PrintStream</h3><pre class="mermaid">%%{
   init: {
     'themeVariables': {
          'fontSize': '13px'
@@ -524,56 +765,6 @@ classDef lp fill:#f4e4e9</pre>
 <p>运行上面程序，程序不会等待用户输入，而是直接输出了 <em>RedirectIn.java</em> 文件的内容，这表明程序不再使用键盘作为标准输入，而是使用指定文件作为标准输入源。</p>
 </li>
 </ul>
-<br>
-
-<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
-
-<h2 id="六-对象流"><a href="#六-对象流" class="headerlink" title="六. 对象流"></a>六. 对象流</h2><p>对象的序列化（Serialize）指将一个Java对象写入IO流中；对象的反序列化（Deserialize）则指从IO流中恢复该Java对象。只有支持<code>java.io.Serializable</code>或<code>java.io.Externalizable</code>接口的对象才能从流读取。</p>
-<ul>
-<li><p>序列化细节：</p>
-<pre class="mermaid">  %%{
-  init: {
-    'themeVariables': {
-       'fontSize': '13px'
-     }
-  }
-}%%
-graph LR
-T([<b>序列化细节</b>]):::p
-T -.-> 1("① 读写<b>顺序</b>要一致"):::lp
-T -.-> 2("② 要求必须实现 <i><b>Serializable</b></i> 接口"):::lp
-T -.-> 3("③ 在序列化的类中添加 <i><b>SerialVersionUID</b></i>，<br>提高版本兼容性"):::lp
-T -.-> 4("④ 序列化对象时默认<b>所有属性</b>都序列化，<br>除 <i><b>static</b></i> 和 <i><b>transit</b></i>"):::lp
-T -.-> 5("⑤ 序列化<i><b>可继承性</b></i>，若某类实现序列化，<br>其子类也默认实现序列化"):::lp
-
-classDef p fill:#ddaebd
-classDef lp fill:#f4e4e9</pre>
-
-</li>
-</ul>
-<h3 id="（1）对象序列化"><a href="#（1）对象序列化" class="headerlink" title="（1）对象序列化"></a>（1）对象序列化</h3><ul>
-<li><p><strong><em>Person</em></strong> 类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">java</span>.<span class="hljs-title">io</span>.<span class="hljs-title">Serializable</span> </span>&#123; <br><span class="hljs-comment">// 🔹 使用Serializable来实现序列化，让目标类实现Serializable标记接口</span><br>  <br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br>    <span class="hljs-comment">// 注意此处没有提供无参数的构造器：🔻反序列化机制无须通过构造器来初始化Java对象</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name , <span class="hljs-keyword">int</span> age)</span> </span>&#123;<br>          System.out.println(<span class="hljs-string">&quot;有参数的构造器&quot;</span>);<br>          <span class="hljs-keyword">this</span>.name=name;<br>          <span class="hljs-keyword">this</span>.age=age;<br>    &#125;<br>    <span class="hljs-comment">// 省略name与age的setter和getter方法</span><br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>使用 <strong><em>ObjectOutputStream</em></strong> 将一个Person对象写入磁盘文件：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WriteObject</span></span>&#123;<br>      <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span>(<br>              <span class="hljs-comment">// 🔹（1）创建一个ObjectOutputStream输出流</span><br>              ObjectOutputStream oos = <span class="hljs-keyword">new</span> ObjectOutputStream(<br>                  <span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-string">&quot;object.txt&quot;</span>))) <span class="hljs-comment">// 这个输出流是一个处理流，所以必须建立在其他节点流（文件输出流）的基础之上</span><br>        &#123;<br>              Person per = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;孙悟空&quot;</span>, <span class="hljs-number">500</span>);<br>              <span class="hljs-comment">// 🔹（2）调用ObjectOutputStream对象的writeObject()方法输出可序列化对象</span><br>              oos.writeObject(per); <span class="hljs-comment">// 将per对象写入输出流</span><br>        &#125;<br>        <span class="hljs-keyword">catch</span> (IOException ex)&#123;<br>              ex.printStackTrace();<br>        &#125;<br>     &#125;<br>  &#125;<br><br><span class="hljs-comment">// 运行上面程序，将会看到生成了一个object.txt文件，该文件的内容就是Person对象。</span><br></code></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="（2）对象反序列化"><a href="#（2）对象反序列化" class="headerlink" title="（2）对象反序列化"></a>（2）对象反序列化</h3><p>如果希望从二进制流中恢复Java对象，则需要使用反序列化。</p>
-<ul>
-<li><p>从刚刚生成的object.txt文件中读取Person对象：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReadObject</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span>(<br>              <span class="hljs-comment">// 🔹（1）创建一个ObjectInputStream输入流</span><br>              ObjectInputStream ois=<span class="hljs-keyword">new</span> ObjectInputStream(<br>                  <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;object.txt&quot;</span>))) <span class="hljs-comment">// 这个输入流是一个处理流，所以必须建立在其他节点流的基础之上。</span><br>        &#123;<br>              <span class="hljs-comment">// 🔹（2）从输入流中读取一个Java对象，并将其强制类型转换为Person类</span><br>              Person p = (Person)ois.readObject(); <span class="hljs-comment">// 调用ObjectInputStream对象的readObject()</span><br>              System.out.println(<span class="hljs-string">&quot;名字为：&quot;</span> + p.getName()<br>                  + <span class="hljs-string">&quot;\n年龄为：&quot;</span> + p.getAge());<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception ex) &#123;<br>              ex.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-
-
-
-</li>
-</ul>
 <p><br><br><br><p style="text-align:center;font-size:13px;color:#666666"> - <i>end</i> - </p> </p>
 <hr>
 <blockquote>
@@ -582,7 +773,10 @@ classDef lp fill:#f4e4e9</pre>
 <li><a href="https://book.douban.com/subject/30133440/">《Java编程的逻辑》</a> </li>
 <li><a href="https://book.douban.com/subject/3609215/">《Java高手真经（编程基础卷）》</a></li>
 <li><a href="https://book.douban.com/subject/3246499/">《疯狂Java讲义》</a> </li>
-<li></li>
+</ul>
+<p>📎 补充：</p>
+<ul>
+<li><a href="https://equnee.github.io/note/Basics/IO/IO_Object_serialization/">IO - 对象序列化</a></li>
 </ul>
 </blockquote>
 </div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button" href="/note/Basics/IO/IO_IO_1/">IO - 输入/输出流⑴_分类</a><a class="next-button" href="/note/Basics/IO/IO_File/">IO - File、FileFilter 和 FilenameFilter</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
