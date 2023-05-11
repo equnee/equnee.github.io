@@ -587,32 +587,165 @@ classDef info fill:#f6f6f7,color:#3f3f3f,stroke-dasharray: 3 3, stroke-width: 1p
 
 <hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
 
-<h2 id="（四）管道流"><a href="#（四）管道流" class="headerlink" title="（四）管道流"></a>（四）管道流</h2><br>
+<h2 id="（四）管道流☕️"><a href="#（四）管道流☕️" class="headerlink" title="（四）管道流☕️"></a>（四）管道流☕️</h2><br>
 
 <hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
 
-<h2 id="（五）序列流"><a href="#（五）序列流" class="headerlink" title="（五）序列流"></a>（五）序列流</h2><br>
+<h2 id="（五）序列流"><a href="#（五）序列流" class="headerlink" title="（五）序列流"></a>（五）序列流</h2><p>SequenceInputStream 类允许连接多个 InputStream 流，表示其他输入流的<strong>逻辑串联</strong>。</p>
+<pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+       'fontSize': '12px'
+     }
+  }
+}%%
+graph
+A([InputStream s1]):::lp
+B([InputStream s2]):::lp
+C([InputStream s3]):::lp
+D([InputStream s1]):::lb
+E([InputStream s2]):::lb
 
-<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+A --> B --> C
+subgraph "<b><i>（2） SequenceInputStream(e)</i></b>"
+subgraph "<i>Enumeration ⟨? extends InputStream⟩ e</i>"
+A
+B
+C
+end
+end
 
-<h2 id="（六）过滤流"><a href="#（六）过滤流" class="headerlink" title="（六）过滤流"></a>（六）过滤流</h2><br>
+subgraph "<b><i>（1） SequenceInputStream(s1, s2)</i></b>"
+D --> E
+end
 
-<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#3f3f3f,stroke-dasharray: 3 3, stroke-width: 1px</pre>
 
-<h2 id="（七）缓冲流"><a href="#（七）缓冲流" class="headerlink" title="（七）缓冲流"></a>（七）缓冲流</h2><p>缓冲流主要为输入/输出流做缓存</p>
-<ul>
-<li>由于BufferedOutputStream是缓存数据的，因此需要使用 <strong><em>flush()</em></strong> 方法强制将缓存中的数据真正写入到输出流中。</li>
-</ul>
+<blockquote>
+<p><span style="font-size:13px;color:#4b4b4b">串联输入源：它从输入流的有序集合开始，从第一个输入流开始读取，读到文件末尾，接着从第二个输入流读取，依次类推，直到到达包含的最后一个输入流的文件末尾为止。</span></p>
+</blockquote>
+<p><strong>* 构造函数：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//（1）串联数据源</span><br>SequenceInputStream(InputStream s1,InputStream s2);  <span class="hljs-comment">// 将按顺序读取这两个参数，先读取s1，然后读取s2         </span><br><br><span class="hljs-comment">//（2）串联 Enumeration 类型的数据源列表</span><br>SequenceInputStream(Enumeration＜?extends InputStream＞e);  <br></code></pre></td></tr></table></figure>
+
+<p><strong>* Demo</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** 将两个文件数据源串联起来，创建一个SequenceInputStream类型的数据源并输出文件内容到控制台中。 */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestSequenceInputStream</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 🔹 创建输入源数组</span><br>            <span class="hljs-comment">// * 串联的数据源列表中，可以包含各种InputStream实现类的数据流对象。</span><br>            FileInputStream fis1 = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;D:/demo/test.txt&quot;</span>);<br>            FileInputStream fis2 = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;D:/demo/test2.txt&quot;</span>);<br>            Vector＜FileInputStream＞ vector = <span class="hljs-keyword">new</span> Vector＜FileInputStream＞();<br>            vector.add(fis1);<br>            vector.add(fis2);<br>            Enumeration＜FileInputStream＞ e = vector.elements();<br><br>            <span class="hljs-comment">// 🔸 创建序列输入源</span><br>            SequenceInputStream is = <span class="hljs-keyword">new</span> SequenceInputStream(e);<br><br>            <span class="hljs-comment">// 🔹 从输入流读取数据</span><br>            <span class="hljs-keyword">while</span> (is.available() ＞ <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">int</span> c = is.read();<br>                System.out.print((<span class="hljs-keyword">char</span>)c);<br>            &#125;<br><br>            <span class="hljs-comment">// 🔹 关闭输入流</span><br>            is.close();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
 <br>
 
 <hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
 
-<h2 id="（八）数据流"><a href="#（八）数据流" class="headerlink" title="（八）数据流"></a>（八）数据流</h2><br>
+<h2 id="（六）过滤流☕️"><a href="#（六）过滤流☕️" class="headerlink" title="（六）过滤流☕️"></a>（六）过滤流☕️</h2><p>用于读取已过滤的字符流的抽象类。抽象类FilterReader自身提供了一些将所有请求传递给所包含的流的默认方法。FilterReader的子类应重写这些方法中的一些方法，并且还可以提供一些额外的方法和字段。通常并不单独使用它，而是使用它的子类。</p>
+<br>
 
 <hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
 
-<h2 id="（九）推回输入流"><a href="#（九）推回输入流" class="headerlink" title="（九）推回输入流"></a>（九）推回输入流</h2><p>PushbackInputStream为另一个输入流添加性能，即“<strong><em>推回（pushback）</em></strong>”或“<strong><em>取消读取（unread）</em></strong>”一个字节的能力。</p>
-<p>在读取终止字节后，代码片段可以“取消读取”该字节，这样，输入流上的下一个读取操作将会重新读取被推回的字节。</p>
+<h2 id="（七）缓冲流"><a href="#（七）缓冲流" class="headerlink" title="（七）缓冲流"></a>（七）缓冲流</h2><p>缓冲流主要为输入/输出流缓存数据，因此需要使用 <strong><em>flush()</em></strong> 方法强制将缓存中的数据真正写入到输出流中。（输入流对象的关闭顺序必须与其创建的顺序相反，后面的输出流也是如此。）</p>
+<h3 id="（1）BufferedInpuStream"><a href="#（1）BufferedInpuStream" class="headerlink" title="（1）BufferedInpuStream"></a>（1）BufferedInpuStream</h3><p>BufferedInputStream为另一个输入流添加一些功能，即缓存输入的能力。</p>
+<blockquote>
+<p>在创建BufferedInputStream时，会创建一个内部缓存区数组。在读取或跳过流中的字节时，可根据需要从包含的输入流再次填充该内部缓存区，一次填充多个字节。</p>
+</blockquote>
+<p><strong>* Demo：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestBufferedInputStream</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 🔹创建输入流</span><br>            FileInputStream is = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;D:/demo/test.txt&quot;</span>);<br>            BufferedInputStream bis = <span class="hljs-keyword">new</span> BufferedInputStream(is);<br>            <span class="hljs-comment">// 🔹从输入流读取数据</span><br>            <span class="hljs-keyword">while</span> (bis.available() ＞ <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">int</span> c = bis.read();<br>                System.out.print((<span class="hljs-keyword">char</span>)c);<br>            &#125;<br><br>            <span class="hljs-comment">// 🔹关闭输入流</span><br>            bis.close();<br>            is.close();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        &#125;<br>    &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="（2）BufferedOutputStream"><a href="#（2）BufferedOutputStream" class="headerlink" title="（2）BufferedOutputStream"></a>（2）BufferedOutputStream</h3><p>BufferedOutputStream 继承自 FilterOutputStream，它与 BufferedInputStream 相对应，主要为输出流做缓存。</p>
+<p><strong>* demo</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** 将文件输入流对象os转换为缓存输出流 */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestBufferedOutputStream</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 🔹创建输出流</span><br>            FileOutputStream os = <span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-string">&quot;D:/demo/test.txt&quot;</span>);<br>            BufferedOutputStream bos = <span class="hljs-keyword">new</span> BufferedOutputStream(os);<br><br>            <span class="hljs-comment">// 🔹写入数组数据</span><br>            <span class="hljs-keyword">byte</span>[] buf = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">3</span>];<br>            buf[<span class="hljs-number">0</span>] = <span class="hljs-number">100</span>;<br>            buf[<span class="hljs-number">1</span>] = <span class="hljs-number">101</span>;<br>            buf[<span class="hljs-number">2</span>] = <span class="hljs-number">102</span>;<br>            bos.write(buf);<br><br>            <span class="hljs-comment">// 🔹关闭输出流</span><br>            bos.close();<br>            os.close();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 运行该程序，将会往文件中写入3个字符“def”。</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="（3）BufferedReader"><a href="#（3）BufferedReader" class="headerlink" title="（3）BufferedReader"></a>（3）BufferedReader</h3><p><em>BufferedReader</em> 从字符输入流中读取文本，缓存各个字符，以实现字符/数组/行的高效读取。</p>
+<p><strong>* 构造方法：</strong></p>
+<blockquote>
+<p>📌 Reader所做的每个读取请求都会导致<u>对底层字符或字节流进行相应的读取请求</u>。<br>因此，建议用 <strong><em>BufferedReader</em></strong> 包装所有其 <strong><em>read()</em></strong> 操作可能开销很高的Reader（如 <em>FileReader</em> 和<em>InputStreamReader</em>）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">BufferedReader(Reader in);        <span class="hljs-comment">// 创建一个使用默认大小输入缓存区的缓存字符输入流</span><br>BufferedReader(Reader in,<span class="hljs-keyword">int</span> sz); <span class="hljs-comment">// 创建一个使用指定大小输入缓存区的缓存字符输入流</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>* Demo</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 组合使用 FileReader 和 BufferedReader：获得一个具有缓存的文件输入流</span><br><span class="hljs-comment"> */</span> <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestBufferedReader</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 🔹创建输入流</span><br>            FileReader is = <span class="hljs-keyword">new</span> FileReader(<span class="hljs-string">&quot;D:/demo/test.txt&quot;</span>);<br>            BufferedReader bis = <span class="hljs-keyword">new</span> BufferedReader(is);<br><br>            <span class="hljs-comment">// 🔹从输入流读取数据</span><br>            <span class="hljs-keyword">while</span> (bis.ready()) &#123;<br>                <span class="hljs-keyword">int</span> c = bis.read();<br>                System.out.print((<span class="hljs-keyword">char</span>)c);<br>            &#125;<br><br>            <span class="hljs-comment">// 🔹关闭输入流</span><br>            bis.close();<br>            is.close();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 运行该程序，将会输出文件中的内容到控制台中。</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="（4）BufferedWriter"><a href="#（4）BufferedWriter" class="headerlink" title="（4）BufferedWriter"></a>（4）BufferedWriter</h3><p><strong><em>BufferedWriter</em></strong> 将文本写入字符输出流，缓存各个字符，从而提供单个字符、数组和字符串的高效写入。 </p>
+<p><strong>* 使用</strong></p>
+<blockquote>
+<p>📌 通常 Writer 将其输出<u>立即发送到底层字符或字节流</u>。除非要求提示输出，否则建议用 <strong><em>BufferedWriter</em></strong> 包装所有其 <strong><em>write()</em></strong> 操作可能开销很高的 <strong><em>Writer</em></strong>（如FileWriters和OutputStreamWriters）。例如以下案例将缓冲 PrintWriter 对文件的输出。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"> PrintWriter out = <span class="hljs-keyword">new</span> PrintWriter(<br>   <span class="hljs-keyword">new</span> BufferedWriter(<span class="hljs-keyword">new</span> FileWriter(<span class="hljs-string">&quot;foo.out&quot;</span>)));<br><br><span class="hljs-comment">// 若没有缓冲，则每次调用 print() 方法会导致将字符转换为字节，</span><br><span class="hljs-comment">// 然后立即写入到文件，而这是极其低效的。</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>* 输出换行</strong></p>
+<blockquote>
+<p>该类提供了 <strong><em>newLine()</em></strong> 方法，它使用平台自己的行分隔符概念，此概念由系统属性 <strong><em>line.separator</em></strong> 定义。</p>
+<p>并非所有平台都使用新行符（<code>\n</code>）来终止各行。因此调用此方法来终止每个输出行要优于直接写入新行符。</p>
+</blockquote>
+<p><strong>* Demo</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** 将文件输入流对象os转换为缓存输出流。 */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestBufferedWriter</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 🔹 创建输出流</span><br>            FileWriter os = <span class="hljs-keyword">new</span> FileWriter(<span class="hljs-string">&quot;D:/demo/test.txt&quot;</span>);<br>            BufferedWriter bos = <span class="hljs-keyword">new</span> BufferedWriter(os);<br><br>            <span class="hljs-comment">// 🔹 写入数组数据</span><br>            <span class="hljs-keyword">char</span>[] buf = <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[<span class="hljs-number">3</span>];<br>            buf[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;a&#x27;</span>;<br>            buf[<span class="hljs-number">1</span>] = <span class="hljs-string">&#x27;b&#x27;</span>;<br>            buf[<span class="hljs-number">2</span>] = <span class="hljs-string">&#x27;中&#x27;</span>;<br>            bos.write(buf);<br><br>            <span class="hljs-comment">// 🔹 关闭输出流</span><br>            bos.close();<br>            os.close();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 运行该程序，将会在文件中写入“ab中”。</span><br></code></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="（八）数据流☕️"><a href="#（八）数据流☕️" class="headerlink" title="（八）数据流☕️"></a>（八）数据流☕️</h2><br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="（九）行号输入流"><a href="#（九）行号输入流" class="headerlink" title="（九）行号输入流"></a>（九）行号输入流</h2><h3 id="（1）LineNumberInputStream"><a href="#（1）LineNumberInputStream" class="headerlink" title="（1）LineNumberInputStream"></a>（1）LineNumberInputStream</h3><p><strong><em>LineNumberInputStream</em></strong> 可跟踪行号、设置行号、对行做标记以便恢复等功能。  </p>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>行</td>
+<td>以回车符（<code>\r</code>）、换行符（<code>\n</code>）、回车符后紧跟的换行符（<code>\r\n</code>）<br>（三种情况）结尾的字节序列。</td>
+</tr>
+<tr>
+<td>行号</td>
+<td>以0开头，并在read返回换行符时递增1。</td>
+</tr>
+</tbody></table>
+<p><strong>* 方法</strong>：<span style="color:#d63200;font-weight:bold">（Deprecated）</span></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">getLineNumber();   <span class="hljs-comment">// 取得行号</span><br>setLineNumber();   <span class="hljs-comment">// 设置行号</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>* demo</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** </span><br><span class="hljs-comment"> *  按照文件的行读取，输出每一行的行号和内容。</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestLineNumberInputStream</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 🔹 创建文件输入流</span><br>            FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;D:/demo/test.txt&quot;</span>);<br>            <span class="hljs-comment">// 🔹 创建行号输入流</span><br>            LineNumberInputStream lis = <span class="hljs-keyword">new</span> LineNumberInputStream(fis);<br>            <span class="hljs-comment">// 🔹 创建数据输入流：通过DataInputStream 进行输入流过滤，获得readLine()的功能。</span><br>            DataInputStream dis = <span class="hljs-keyword">new</span> DataInputStream(lis);<br><br>            <span class="hljs-comment">// 🔸 读取数据</span><br>            String line;<br>            <span class="hljs-keyword">while</span> ((line = dis.readLine()) != <span class="hljs-keyword">null</span>) &#123;<br>                System.out.println(lis.getLineNumber() + <span class="hljs-string">&quot;:&quot;</span> + line);<br>            &#125;<br><br>            <span class="hljs-comment">// 关闭输入流</span><br>            dis.close();<br>            lis.close();<br>            fis.close();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//  1:hello,World!</span><br><span class="hljs-comment">//  2:hello,China!</span><br><span class="hljs-comment">//  3:Hello,Beijing!</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="（2）LineNumberReader"><a href="#（2）LineNumberReader" class="headerlink" title="（2）LineNumberReader"></a>（2）LineNumberReader</h3><p><strong>* 构造方法</strong>：</p>
+<p>由于该类继承自BufferedReader，因此它拥有与BufferedReader相同的两个构造方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">LineNumberReader(Reader in);           <span class="hljs-comment">// 使用默认输入缓存区的大小创建新的行编号reader</span><br>LineNumberReader(Reader in,<span class="hljs-keyword">int</span> sz);    <span class="hljs-comment">// 创建新的行编号reader，将字符读入给定大小的缓存区</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>* 方法</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">getLineNumber();     <span class="hljs-comment">// 取得行号  </span><br>setLineNumber(<span class="hljs-keyword">int</span>);  <span class="hljs-comment">// 设置行号</span><br><br><span class="hljs-comment">// 注意：setLineNumber(int)不会实际更改流中的当前位置；它只更改由getLineNumber()返回的值</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>* demo</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  根据文件输入流fis创建行号输入流的方法，</span><br><span class="hljs-comment"> *  通过lis的readLine()方法可以读取一行数据，使用getLineNumber()取得行号，并输出行号和该行内容。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestLineNumberReader</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 🔹 创建文件输入流</span><br>            FileReader fis = <span class="hljs-keyword">new</span> FileReader(<span class="hljs-string">&quot;D:/demo/test.txt&quot;</span>);<br>            <span class="hljs-comment">// 🔹 创建行号输入流</span><br>            LineNumberReader lis = <span class="hljs-keyword">new</span> LineNumberReader(fis);<br><br>            <span class="hljs-comment">// 🔸 读取数据</span><br>            String line;<br>            <span class="hljs-keyword">while</span> ((line = lis.readLine()) != <span class="hljs-keyword">null</span>) &#123;<br>                System.out.println(lis.getLineNumber() + <span class="hljs-string">&quot;:&quot;</span> + line);<br>            &#125;<br><br>            <span class="hljs-comment">// 关闭输入流</span><br>            lis.close();<br>            fis.close();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 1:hello,World!</span><br><span class="hljs-comment">// 2:hello,China!</span><br><span class="hljs-comment">// 3:Hello,Beijing!</span><br></code></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="（十）推回输入流"><a href="#（十）推回输入流" class="headerlink" title="（十）推回输入流"></a>（十）推回输入流</h2><p><em>PushbackInputStream</em> 和 <em>PushbackReader</em> 为另一个输入流添加性能，允许将字节(字符)推回到流中：即“<strong>推回（pushback）</strong>”或“<strong>取消读取（unread）</strong>”一个字节(字符)的能力。</p>
 <ul>
 <li><p><strong>PushbackInputStream 和 PushbackReader 的3个方法：</strong></p>
 <table>
@@ -635,16 +768,19 @@ classDef info fill:#f6f6f7,color:#3f3f3f,stroke-dasharray: 3 3, stroke-width: 1p
 <td>将一个字节/字符数组里从off开始，长度为len字节/字符的内容推回到推回缓冲区里，从而允许重复读取刚刚读取的内容。</td>
 </tr>
 </tbody></table>
+<p>  在读取终止字节(字符)后，代码片段可以“取消读取”该字节(字符)，这样，输入流上的下一个读取操作将会重新读取被推回的字节(字符)。</p>
 </li>
+</ul>
+<ul>
 <li><p><strong>处理示意图</strong></p>
 <img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/pushBack.jpg" alt="pushBack" style="zoom:25%;" />
 </li>
 <li><p><strong>需指定缓冲区大小</strong></p>
-<p>当创建一个 <em>PushbackInputStream</em> 和 <em>PushbackReader</em> 时需要指定推回缓冲区的大小，默认的推回缓冲区的长度为1。</p>
+<p>当创建一个 <em>PushbackInputStream</em> 和 <em>PushbackReader</em> 时需要<strong>指定推回缓冲区的大小</strong>，默认的推回缓冲区的长度为1。</p>
 <p>若程序中推回到推回缓冲区的内容超出了推回缓冲区的大小，将会引发 <strong><em>Pushback buffer overflow</em></strong> 的 <em>IOException</em> 异常。</p>
 </li>
 <li><p><strong>Demo</strong>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestPushbackInputStream</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 创建文件输入流</span><br>            FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;D:/demo/test.txt&quot;</span>);<br>            <span class="hljs-comment">// 创建推回输入流</span><br>            PushbackInputStream pis = <span class="hljs-keyword">new</span> PushbackInputStream(fis);<br><br>            <span class="hljs-comment">// 读取对象数据</span><br>            <span class="hljs-keyword">int</span> c = pis.read();<br>            System.out.print((<span class="hljs-keyword">char</span>)c);<br>            pis.unread(c);  <span class="hljs-comment">// 🔻 推回一个字节</span><br>            c=pis.read();   <span class="hljs-comment">// 再次读取</span><br>            System.out.print((<span class="hljs-keyword">char</span>)c);<br><br>            <span class="hljs-comment">// 关闭输入流</span><br>            pis.close();<br>            fis.close();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 运行该程序将会重复输出第一个字符。</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestPushbackInputStream</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 创建文件输入流</span><br>            FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;D:/demo/test.txt&quot;</span>);<br>            <span class="hljs-comment">// 创建推回输入流</span><br>            PushbackInputStream pis = <span class="hljs-keyword">new</span> PushbackInputStream(fis);<br><br>            <span class="hljs-comment">// 读取对象数据</span><br>            <span class="hljs-keyword">int</span> c = pis.read();<br>            System.out.print((<span class="hljs-keyword">char</span>)c);<br>            pis.unread(c);  <span class="hljs-comment">// 🔻 推回一个字节</span><br>            c = pis.read();   <span class="hljs-comment">// 再次读取</span><br>            System.out.print((<span class="hljs-keyword">char</span>)c);<br><br>            <span class="hljs-comment">// 关闭输入流</span><br>            pis.close();<br>            fis.close();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 运行该程序将会重复输出第一个字符。</span><br></code></pre></td></tr></table></figure>
 
 
 
@@ -655,7 +791,7 @@ classDef info fill:#f6f6f7,color:#3f3f3f,stroke-dasharray: 3 3, stroke-width: 1p
 
 <hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
 
-<h2 id="（十）打印流（格式化）"><a href="#（十）打印流（格式化）" class="headerlink" title="（十）打印流（格式化）"></a>（十）打印流（格式化）</h2><h3 id="（1）PrintStream"><a href="#（1）PrintStream" class="headerlink" title="（1）PrintStream"></a>（1）PrintStream</h3><pre class="mermaid">%%{
+<h2 id="（十一）打印流（格式化）"><a href="#（十一）打印流（格式化）" class="headerlink" title="（十一）打印流（格式化）"></a>（十一）打印流（格式化）</h2><h3 id="（1）PrintStream"><a href="#（1）PrintStream" class="headerlink" title="（1）PrintStream"></a>（1）PrintStream</h3><pre class="mermaid">%%{
   init: {
     'themeVariables': {
          'fontSize': '13px'
