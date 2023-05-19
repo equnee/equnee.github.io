@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="IO - 对象序列化 [ 🍧 Peach ] "><meta name="theme-color"><title>IO - 对象序列化 [ 🍧 Peach ] </title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/mermaid.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=G-5GZQ6P3RMX" async></script><script>window.dataLayer = window.dataLayer || [];
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="IO - 序列化/反序列化 [ 🍧 Peach ] "><meta name="theme-color"><title>IO - 序列化/反序列化 [ 🍧 Peach ] </title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/mermaid.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=G-5GZQ6P3RMX" async></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valine/dist/Valine.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
@@ -24,7 +24,63 @@ gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valin
     orderedList: false,
     collapseDepth: 2,
   });
-})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">IO - 对象序列化</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">IO - 对象序列化</a></h2><span class="post__date">2023-05-05</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><pre class="mermaid">%%{
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">IO - 序列化/反序列化</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">IO - 序列化/反序列化</a></h2><span class="post__date">2023-05-05</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/I-O/"><span class="post__tags">#I/O</span></a></div></div><div class="article__content"><div>
+  <!--  bgcolor="#fdeff2" -->
+    <table style="font-size:11px;width:100%;">
+        <tr>
+            <th colspan="2">java.io - 目录</th>
+        </tr>
+        <tr>
+            <td rowspan="2" style="text-align:center">标准设备输入/输出</td>
+            <td>
+                <a href="https://equnee.github.io/note/Basics/IO/IO_StandardIO/">标准设备输入/输出：System</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://equnee.github.io/note/Basics/IO/IO_StandardIO/">控制台读写类：Console</a>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="3" style="text-align:center">文件基本处理</td>
+            <td>
+                <a href="https://equnee.github.io//note/Basics/IO/IO_File/">文件操作类：File</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://equnee.github.io//note/Basics/IO/IO_File/">文件搜索类：FileFilter、FilenameFilter</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://equnee.github.io/note/Basics/IO/IO_RandomAccessFile/">文件任意读写类：RandomAccessFile</a>
+            </td>
+        </tr>
+        <tr>
+      <td rowspan="3" style="text-align:center" bgcolor="#fdeff2"><b>输入/输出流</b></td>
+            <td colspan="2">
+                <a href="https://equnee.github.io/note/Basics/IO/IO_IO_1/">输入/输出流 - 分类</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">        
+        <a href="https://equnee.github.io/note/Basics/IO/IO_IO_2/"><b>输入/输出流 - 实现类</b></a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" bgcolor="#fdeff2">
+                <a href="https://equnee.github.io/note/Basics/IO/IO_Object_serialization/">序列化/反序列化</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+
+
+<p><strong>序列化</strong>：将程序中的结构体、对象等结构化内存对象转换为扁平的二进制流；<br><strong>反序列化</strong>：将二进制流还原为结构化内存对象。</p>
+<pre class="mermaid">%%{
   init: {
     'themeVariables': {
        'fontSize': '14px'
@@ -53,11 +109,870 @@ classDef lb fill:#d9dfeb
 classDef lg fill:#ddebe6
 classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
 
-</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button" href="/note/Basics/IO/IO_StandardIO/">IO - 标准设备输入/输出</a><a class="next-button" href="/note/Basics/IO/IO_RandomAccessFile/">IO - RandomAccessFile 任意访问文件</a></div><div id="comments"></div></div></div></div><div class="footer"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+
+
+<h2 id="一、实现方式"><a href="#一、实现方式" class="headerlink" title="一、实现方式"></a>一、实现方式</h2><h3 id="（1）Serializable-默认"><a href="#（1）Serializable-默认" class="headerlink" title="（1）Serializable + 默认"></a><span style="color:#c92f5f">（1）Serializable + 默认</span></h3><p>自定义类实现<code>Serializable</code>，<strong>不包含</strong> <em>readObject()</em> 和 <em>writeObject()</em>。使用<strong>默认的</strong>序列化和反序列化的方式进行数据写入和读取操作。</p>
+<p><strong>* Demo：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123;<br><br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;<br>	<span class="hljs-keyword">private</span> String name;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name, <span class="hljs-keyword">int</span> age)</span> </span>&#123;<br>		<span class="hljs-keyword">this</span>.name = name;<br>		<span class="hljs-keyword">this</span>.age = age;<br>	&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="（2）Serializable-自定义"><a href="#（2）Serializable-自定义" class="headerlink" title="（2）Serializable + 自定义"></a><span style="color:#c92f5f">（2）Serializable + 自定义</span></h3><p>自定义类实现<code>Serializable</code>，<strong>包含</strong> <strong><em>readObject()</em></strong> 和 <strong><em>writeObject()</em></strong>，使用<strong>自定义的</strong>序列化和反序列化的方式进行数据写入和读取操作。</p>
+<p><strong>* Demo</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123;<br><br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;<br>	<span class="hljs-keyword">private</span> String name;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name, <span class="hljs-keyword">int</span> age)</span> </span>&#123;<br>		<span class="hljs-keyword">this</span>.name = name;<br>		<span class="hljs-keyword">this</span>.age = age;<br>	&#125;<br><br>  <span class="hljs-comment">// 🔻 readObject() 和 writeObject() 的可见性没有限制：private、protected、default、public</span><br>	<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeObject</span><span class="hljs-params">(ObjectOutputStream outputStream)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>		<span class="hljs-comment">// 省略实现</span><br>	&#125;<br><br>	<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">readObject</span><span class="hljs-params">(ObjectIntputStream inputStream)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>		<span class="hljs-comment">// 省略实现	</span><br>	&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="（3）Externalizable"><a href="#（3）Externalizable" class="headerlink" title="（3）Externalizable"></a><span style="color:#c92f5f">（3）Externalizable</span></h3><p>自定义类实现 <code>Externalizable</code>，<strong>重写 <em>readExternal()</em></strong> 和 <strong><em>writeExternal()</em></strong> 实现序列化/反序列化功能。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Externalizable</span> </span>&#123;<br><br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;<br>	<span class="hljs-keyword">private</span> String name;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br><br>	<span class="hljs-comment">// 🔻 无参构造函数：必不可少的，否则会抛异常</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">()</span> </span>&#123;&#125;<br><br>  <span class="hljs-comment">// 🔻 可见性没有限制：private、protected、default、public</span><br>	<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">readExternal</span><span class="hljs-params">(ObjectInput in)</span> <span class="hljs-keyword">throws</span> IOException, ClassNotFoundException </span>&#123;<br>		<span class="hljs-comment">// 省略实现</span><br>	&#125;<br><br>	<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeExternal</span><span class="hljs-params">(ObjectOutput out)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>		<span class="hljs-comment">// 省略实现</span><br>	&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><br><hr style="height:2px;border:none;border-top:1px dashed #dedede;"/></p>
+<h2 id="二、核心类"><a href="#二、核心类" class="headerlink" title="二、核心类"></a>二、核心类</h2><pre class="mermaid">graph LR
+t([<b>序列化核心类</b>]):::g
+t --> A("⑴ <b><i>Serializable</i></b>"):::lg
+t --> B("⑵ <b><i>Externalizable</i></b>"):::lg
+t --> |"[ 序列化<br>关键类 ]"|C("⑶ <b><i>ObjectOutputStream</i></b><br>将对象转换为二进制流"):::p
+t --> |"[ 反序列化<br>关键类 ]"|D("⑷ <b><i>ObjectInputStream</i></b><br>将二进制流还原为对象"):::p
+C -.- c([内部<br>关键类]):::info
+c -.-> c1(["① <b><i>BolckDataOutputStream</i></b> - 缓冲"]):::lp
+c -.-> c2(["② <b><i>HandleTable</i></b> - 防止重复"]):::lp
+c -.-> c3(["③ <b><i>ReplaceTable</i></b> - 自定义序列化"]):::lp
+c -.-> c4(["④ <b><i>ObjecyStreamClass</i></b> - 记录元数据、反射"]):::lp
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#56565b,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+<h3 id="（1）Serializable"><a href="#（1）Serializable" class="headerlink" title="（1）Serializable"></a><span style="color:#c92f5f">（1）Serializable</span></h3><p><strong><em>Serializable</em></strong> 是一个<strong>空接口</strong>，表明了实现自该接口的子类具有序列化行为特征，所有要支持序列化的类都应该实现这个接口。</p>
+<p><strong>* 源码：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Serializable</span> </span>&#123;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="（2）Externalizable"><a href="#（2）Externalizable" class="headerlink" title="（2）Externalizable"></a><span style="color:#c92f5f">（2）Externalizable</span></h3><p><code>writeExternal</code>的参数：<strong><em>ObjectOutput</em></strong>，表示输出对象的抽象（它继承自<em>DataOutput</em>，能支持基本类型、String、数组、对象的输出。实际应用会使用其实现类 ObjectOutputStream。</p>
+<p><code>readExternal</code>的参数：<strong><em>ObjectInput</em></strong>，表示输入对象的抽象（它继承自<em>DataInput</em>，能支持基本类型、String、数组、对象的输入。实际应用会使用其实现类 ObjectInputStream。</p>
+<p><strong>* 源码</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Externalizable</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Serializable</span> </span>&#123;<br><br>  <span class="hljs-comment">// 🔻 自定义的类必须覆盖 writeExternal 和 readExternal 方法。</span><br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeExternal</span><span class="hljs-params">(ObjectOutput out)</span> <span class="hljs-keyword">throws</span> IOException</span>;<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">readExternal</span><span class="hljs-params">(ObjectInput in)</span> <span class="hljs-keyword">throws</span> IOException, ClassNotFoundException</span>;<br><br>   <span class="hljs-comment">// 🔻 自定义的类必须包含无参构造函数。</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="（3）ObjectOutputStream"><a href="#（3）ObjectOutputStream" class="headerlink" title="（3）ObjectOutputStream"></a><span style="color:#c92f5f">（3）ObjectOutputStream</span></h3><h4 id="①-BlockDataOutputStream"><a href="#①-BlockDataOutputStream" class="headerlink" title="① BlockDataOutputStream"></a>① <em>BlockDataOutputStream</em></h4><p><em>ObjectOutputStream</em> 内置的具有<strong>缓冲作用</strong>的输出功能类，包含<strong>阻塞和非阻塞</strong>两种工作模式。</p>
+<pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+       'fontSize': '14px'
+     }
+  }
+}%%
+graph LR
+T("<b><i>BlockDataOutputStream</i></b> - 缓冲"):::p
+T --> A("<b>阻塞模式</b>"):::lp
+T --> B("<b>非阻塞模式</b>"):::lp
+A -.- t("每次将缓冲区数据写入前会写入一个<br>阻塞标记头部（Block Data Header）"):::info
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#56565b,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+<p style="text-align:right;font-size:12px;font-color:#56565b">* 两种模式的工作流程相同，都是先把待写的数据写到缓冲区，直到缓冲区满后再执行真正的写入操作。</p>
+<br>
+
+<h4 id="②-HandleTable"><a href="#②-HandleTable" class="headerlink" title="② HandleTable"></a>② <em>HandleTable</em></h4><p>当前待序列化的对象(A)，可能包含多个其他对象类型的成员变量，而这些成员变量可能引用同一个对象T：</p>
+<pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+       'fontSize': '14px'
+     }
+  }
+}%%
+classDiagram
+    class A
+    class B
+    class C
+    class T对象
+
+    A: b B
+    A: c C
+    B: t T
+    C: t T
+
+    A *-- B
+    A *-- C
+    C *-- T对象
+    B *-- T对象</pre>
+
+<p><strong>为了使得在序列化A对象时，不重复序列化T对象，引入了对象和句柄的映射关系。</strong></p>
+<blockquote>
+<p>句柄从0开始按递增顺序自增。每当要写入一个Object类型对象时，去 <strong><em>HandleTable</em></strong> 查询其是否已经存在：</p>
+<p>❶ 如果存在，则说明已经写入过，本次只写入句柄即可；<br>❷ 如果不存在，则说明没有被写入过，需要写入该对象。</p>
+</blockquote>
+<br>
+
+<h4 id="③-ReplaceTable"><a href="#③-ReplaceTable" class="headerlink" title="③ ReplaceTable"></a>③ <em>ReplaceTable</em></h4><p>为了支持<strong>用户自定义</strong>的序列化行为（Java序列化支持对序列化和反序列化进行拦截并执行自定义的序列化行为。）</p>
+<blockquote>
+<p><code>ReplaceTable</code> 用来<strong>管理源对象和目标替换对象</strong>，在序列化/反序列化过程中，<u>通过源对象查找目标替换对象</u>：</p>
+<p>❶ 如果存在目标替换对象，则使用目标替换对象；<br>❷ 否则使用源对象。</p>
+</blockquote>
+<br>
+
+<h4 id="④-ObjectStreamClass"><a href="#④-ObjectStreamClass" class="headerlink" title="④ ObjectStreamClass"></a>④ <em>ObjectStreamClass</em></h4><p>记录了和序列化对象相关的<strong>元数据信息</strong>，并负责<strong>相关方法的反射初始化和执行</strong>。</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段</strong></th>
+<th><strong>字段意义</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>name</em></td>
+<td>序列化类的完整类名</td>
+</tr>
+<tr>
+<td><em>cl</em></td>
+<td>序列化类的Class类型</td>
+</tr>
+<tr>
+<td><em>suid</em></td>
+<td>序列化类的serialVersionUID</td>
+</tr>
+<tr>
+<td><em>isProxy</em></td>
+<td>是否为代理类</td>
+</tr>
+<tr>
+<td><em>isEnum</em></td>
+<td>是否为枚举类</td>
+</tr>
+<tr>
+<td><strong><em>serializable</em></strong></td>
+<td>是否实现了Serializable</td>
+</tr>
+<tr>
+<td><strong><em>externalizable</em></strong></td>
+<td>是否实现了Externalizable</td>
+</tr>
+<tr>
+<td><em>primDataSize</em></td>
+<td>基本类型的成员字段个数，不包含static和transient类型字段</td>
+</tr>
+<tr>
+<td><em>numObjFileds</em></td>
+<td>非基本类型的成员字段个数</td>
+</tr>
+<tr>
+<td><strong><em>dataLayout</em></strong></td>
+<td>类层次结构：当前类、父类及所有继承类的类描述</td>
+</tr>
+<tr>
+<td><strong><em>writeObjectMethod</em></strong></td>
+<td>writeObject方法，通过反射获取</td>
+</tr>
+<tr>
+<td><em>readObjectMethod</em></td>
+<td>readObject方法，通过反射获取</td>
+</tr>
+<tr>
+<td><em>writeReplaceMethod</em></td>
+<td>writeReplace方法，通过反射获取</td>
+</tr>
+<tr>
+<td><em>readReplaceMethod</em></td>
+<td>readReplace方法，通过反射获取</td>
+</tr>
+</tbody></table>
+<h3 id="（4）ObjectInputStream"><a href="#（4）ObjectInputStream" class="headerlink" title="（4）ObjectInputStream"></a><span style="color:#c92f5f">（4）ObjectInputStream</span></h3><p><em><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/ObjectInputStream.html">java.io.ObjectInputStream</a></em> 是实现Java反序列化的关键类，和 <em>ObjectOutputStream</em> 是对应的，内部包含了 <strong><em>BlockDataInputStream</em></strong>、<strong><em>HandleTable</em></strong>、<strong><em>ReplaceTable</em></strong>、<strong><em>ObjectStreamClass</em></strong>等</p>
+<p><br><hr style="height:2px;border:none;border-top:1px dashed #dedede;"/></p>
+<h2 id="三、内部原理"><a href="#三、内部原理" class="headerlink" title="三、内部原理"></a>三、内部原理</h2><p>Java序列化的流程、原理，以及各种类型数据进行Java序列化后的格式和占用空间大小等细节。</p>
+<p>Java序列化对整型数据采用固定4字节存储，而Protocol Buffer对整型数据采用变长存储，使得存储空间进一步减小。</p>
+<h3 id="（1）基本类型的序列化流程"><a href="#（1）基本类型的序列化流程" class="headerlink" title="（1）基本类型的序列化流程"></a><span style="color:#c92f5f">（1）基本类型的序列化流程</span></h3><p><strong>Java序列化对基本类型数据的处理，严格按照其内存占用大小来进行。</strong>比如int类型占用4字节，Java序列化按照高位到低位依次放到字节数组，再写入到序列化输出对象：</p>
+<p><strong>写入int类型数据：</strong></p>
+<pre class="mermaid">graph TD
+
+subgraph "<b><i>ObjectOutputStream.java</b></i>"
+A(["<i><b>writeInt()</b></i>"]):::p
+end
+
+subgraph "<b><i>BlockDataOutputStream（内部类）</b></i>"
+A ==> |"调用"|B(["<i><b>writeInt()</b></i>"]):::p
+B --- b["1024字节大小<br>的缓冲区"]:::lb
+b -.-> |"<i>① 缓冲区还可容纳<br>待写入的int类型数据</i>"|b1("把当前数据放入缓冲区"):::lg
+B2(["<b><i>write()</i></b>"]):::p
+B2 --- 2b["缓冲区"]:::lb
+2b -.-> |"<i>① 缓冲区能容纳<br>当前待写入字节</i>"|2b1("把当前字节写入缓冲区"):::lg
+2b -.-> |"<i>② 缓冲区已满<br></i>"|2b2("把缓冲区的数据输出，<br>再把当前待写入字节放到缓冲区"):::lg
+
+end
+
+b -.-> |"<i>② 缓冲区不能容纳<br>待写入的int类型数据</i>"|C
+
+subgraph "<b><i>DataOutputStream.java</b></i>"
+C(["<i><b>writeInt()</b></i>"]):::p
+C --> d("按照从高到低的字节顺序<br>依次写入4个字节"):::lg
+d ==> |"调用"|B2
+end
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+
+
+<ul>
+<li><p>ObjectOutputStream 的 writeInt()：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeInt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> val)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>  <span class="hljs-comment">// 🔻 真正的写入是通过调用 BlockDataOutputStream（bout） </span><br>  <span class="hljs-comment">//    的 writeInt 方法实现的</span><br>  bout.writeInt(val); <br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>BlockDataOutputStream 的 writeInt()：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeInt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>  <br>  <span class="hljs-comment">// 🔻 BlockDataOutputStream内部维护了一个1024字节大小的缓冲区</span><br>  <span class="hljs-keyword">if</span> (pos + <span class="hljs-number">4</span> &lt;= MAX_BLOCK_SIZE) &#123; <span class="hljs-comment">// MAX_BLOCK_SIZE = 1024</span><br>    <span class="hljs-comment">// 🔹 若缓冲区还可以容纳写入的int类型数据：将数据放入缓冲区</span><br>    Bits.putInt(buf, pos, v);<br>    pos += <span class="hljs-number">4</span>;<br>    <br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 🔹 若缓冲区无法容纳：调用 DataOutputStream 的 writeInt()</span><br>    dout.writeInt(v) <br>  &#125;<br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>DataOutputStream 的 writeInt()：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 🔻 int类型是按照从高到低的字节顺序依次写入4个字节的</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeInt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>  <span class="hljs-comment">// out：BlockDataOutputStream</span><br>  out.write((v &gt;&gt;&gt; <span class="hljs-number">24</span>) &amp; <span class="hljs-number">0xFF</span>);  <br>  out.write((v &gt;&gt;&gt; <span class="hljs-number">16</span>) &amp; <span class="hljs-number">0xFF</span>);<br>  out.write((v &gt;&gt;&gt; <span class="hljs-number">8</span>) &amp; <span class="hljs-number">0xFF</span>);<br>  out.write((v &gt;&gt;&gt; <span class="hljs-number">0</span>) &amp; oxFF);<br>  incCount(<span class="hljs-number">4</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>BlockDataOutputStream 的 write() ：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-keyword">int</span> b)</span> <span class="hljs-keyword">throws</span> IOEception </span>&#123;<br>  <span class="hljs-comment">// 🔹 若缓冲区已满：将缓冲区数据推出</span><br>  <span class="hljs-keyword">if</span>(pos &gt;= MAX_BLOCK_SIZE) &#123; <br>    drain();<br>  &#125;<br>  <span class="hljs-comment">// 🔹 将待写入字节写入缓冲区</span><br>  buf[pos++] = (<span class="hljs-keyword">byte</span>) b;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">drain</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>  <span class="hljs-comment">// ..</span><br>  <span class="hljs-comment">// 🔸 将buf缓冲区已有数据输出</span><br>  out.write(buf, <span class="hljs-number">0</span>, pos); <br>  pos = <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><em>（其他基本类型数据的写入流程与此类似）</em></p>
+</li>
+</ul>
+<h3 id="（2）基本类型的序列化大小"><a href="#（2）基本类型的序列化大小" class="headerlink" title="（2）基本类型的序列化大小"></a><span style="color:#c92f5f">（2）基本类型的序列化大小</span></h3><table>
+<thead>
+<tr>
+<th><strong>数据类型</strong></th>
+<th><strong>Java内存中的大小</strong></th>
+<th><strong>序列化后的大小</strong></th>
+<th><strong>序列化操作<br/>（假设变量为V）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><em>boolean</em></strong></td>
+<td>1</td>
+<td>整数1或0的<br/>最低一个字节</td>
+<td>write(v ? 1 : 0)</td>
+</tr>
+<tr>
+<td><strong><em>byte</em></strong></td>
+<td>1</td>
+<td>1</td>
+<td>write(v)</td>
+</tr>
+<tr>
+<td><strong><em>char</em></strong></td>
+<td>2</td>
+<td>2</td>
+<td>高位字节先写入<br>write((v&gt;&gt;&gt;8) &amp; 0xFF) <br/>write((v&gt;&gt;&gt;0) &amp; 0xFF)</td>
+</tr>
+<tr>
+<td><strong><em>short</em></strong></td>
+<td>2</td>
+<td>2</td>
+<td>高位字节先写入<br/> write((v&gt;&gt;&gt;8) &amp; 0xFF) <br/>write((v&gt;&gt;&gt;0) &amp; 0xFF)</td>
+</tr>
+<tr>
+<td><strong><em>int</em></strong></td>
+<td>4</td>
+<td>4</td>
+<td>高位字节先写入<br/> write((v&gt;&gt;&gt;24) &amp; 0xFF) <br/>write((v&gt;&gt;&gt;16) &amp; 0xFF) <br/>write((v&gt;&gt;&gt;8) &amp; 0xFF) <br/>write((v&gt;&gt;&gt;0) &amp; 0xFF)</td>
+</tr>
+<tr>
+<td><strong><em>long</em></strong></td>
+<td>8</td>
+<td>8</td>
+<td>高位字节先写入 <br/>write((v&gt;&gt;&gt;56) &amp; 0xFF) <br/>write((v&gt;&gt;&gt;48) &amp; 0xFF) <br/>write((v&gt;&gt;&gt;40) &amp; 0xFF) <br/>write((v&gt;&gt;&gt;32) &amp; 0xFF) <br/>write((v&gt;&gt;&gt;24) &amp; 0xFF)<br/> write((v&gt;&gt;&gt;16) &amp; 0xFF) <br/>write((v&gt;&gt;&gt;8) &amp; 0xFF) <br/>write((v&gt;&gt;&gt;0) &amp; 0xFF)</td>
+</tr>
+<tr>
+<td><strong><em>float</em></strong></td>
+<td>4</td>
+<td>4</td>
+<td>符合IEEE754标准的4字节</td>
+</tr>
+<tr>
+<td><strong><em>double</em></strong></td>
+<td>8</td>
+<td>8</td>
+<td>符合IEEE754标准的8字节</td>
+</tr>
+</tbody></table>
+<h3 id="（3）对象类型的序列化流程"><a href="#（3）对象类型的序列化流程" class="headerlink" title="（3）对象类型的序列化流程"></a><span style="color:#c92f5f">（3）对象类型的序列化流程</span></h3><p>Java序列化对非基本类型的数据处理比基本类型的数据处理更复杂，这里说的非基本类型包括Object、Enum、Array等 —— 通过 <strong><em>ObjectOutputStream</em></strong> 的 <strong><em>writeObject</em></strong> 方法实现的：</p>
+<h4 id="➊-writeObject"><a href="#➊-writeObject" class="headerlink" title="➊ writeObject()"></a>➊ <em>writeObject()</em></h4><pre class="mermaid">graph TD
+%%subgraph "<b><i>ObjectOutputStream</b></i>"
+A(["<i><b>writeObject()</b></i>"]):::p
+subgraph "<b><i>ObjectOutputStream.java</b></i>"
+A --> |"[ 调用 ]"|B(["<i><b>writeObject0()</b></i>"]):::p
+B --> |"核心实现"|b("if分支：判断obj类型"):::lb
+end
+
+subgraph "<i><b>String / Enum</i></b>"
+b -...- 1t(["<i><b>writeString()</i></b>"]):::lp
+b -...- 3t(["<i><b>writeEnum()</i></b>"]):::lp
+1t -.-> 1a("实现自Serializable，<br>具备支持序列化/反序列化的能力"):::info
+3t -.-> 1a
+end
+
+subgraph "<i><b>Array</b></i>"
+b -.- 2t(["<i><b>writeArray()</i></b>"]):::lp
+2t -.-> |"基本类型"|2a("调用基本类型<br>的序列化方式"):::lg
+2t -.-> |"Object类型"|2b("递归调用<br>执行if分支"):::lb
+%% 2a -.-> b
+end
+
+subgraph "<b><i>自定义的序列化类</i></b>"
+b -.....- 4a(["<i><b>writeOrdinaryObject()</i></b>"]):::lp
+4a -.-> |"<i>Externalizable类型<br>且不是动态代理类</i>"|4a1(["<i><b>writeExternalData()</i></b>"]):::p
+4a -.-> |"<i>Serializable类型</i>"|4a2(["<i><b>writeSerialData()</i></b>"]):::p
+end
+%%end
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+<ul>
+<li><p><strong><em>ObjectOutputStream</em></strong> 的 <strong><em>writeObject</em></strong>() 内部实现核心部分：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeObject</span><span class="hljs-params">(Object obj)</span> <span class="hljs-keyword">throws</span> IOEXception </span>&#123;<br>  <span class="hljs-comment">// 🔹 当前类是否是 ObjectOutputStream 的子类</span><br>  <span class="hljs-keyword">if</span>(enableOverride) &#123; <br>    writeObjectOverride(obj);<br>    <span class="hljs-keyword">return</span>;<br>  &#125;<br>  <br>  <span class="hljs-comment">// 🔹 执行对象写入，false表示共享写入</span><br>  <span class="hljs-keyword">try</span> &#123;<br>    writeObject0(obj, <span class="hljs-keyword">false</span>);  <span class="hljs-comment">// 🔻</span><br>  &#125; <span class="hljs-keyword">catch</span> (IOEception ex) &#123;&#125;<br>  <br>&#125; <br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong><em>writeObject0()</em></strong> 的参数：</p>
+<ol>
+<li>obj：表示自定义的序列化对象或者Array、Enum类型对象。</li>
+<li>第2个参数：表示一个对象被多个对象共同引用时，在序列化的时候是否要共享写入</li>
+</ol>
+<pre class="mermaid">  %%{
+  init: {
+    'themeVariables': {
+       'fontSize': '13px'
+     }
+  }
+}%%
+graph LR
+B(["<i><b>writeObject0() 参数:</b></i>"]):::p
+B -.- b("① 被引用的对象实例obj, <br>② 是否共享写入"):::lp
+subgraph "[ <b>false</b> ]: 共享写入"
+b1
+end
+subgraph "[ <b>true</b> ]: 不共享写入"
+b2
+end
+b --- |"默认"|b1("obj只会被序列化一次，<br>其他引用只会写入引用<b>对象句柄</b>"):::lg
+b -.- b2("obj会被序列化多次，序列<br>化后的数据大小会增加"):::lg
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+</li>
+<li><p><strong><em>writeObject0</em></strong>() 核心实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> String) &#123;<br>  <span class="hljs-comment">// 🔹 String类：实现自Serializable，具备支持序列化/反序列化能力</span><br>  writeString((String) obj, unshared);<br>  <br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cl.isArray()) &#123;<br>  <span class="hljs-comment">// 🔹 Array类：①基本类型：调用基本类型序列化方式 ②Object类型：递归if</span><br>  writeArray(obj, desc, unshared);<br>  <br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> Enum) &#123;<br>  <span class="hljs-comment">// 🔹 Enum类：实现自Serializable，具备支持序列化/反序列化能力</span><br>  writeEnum((Exum&lt;?&gt;) obj, desc, unshared);<br>  <br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> Serializable) &#123; <br>  <span class="hljs-comment">// 🔻 自定义的类实现了 Serializable：执行writeOrdinaryObject方法</span><br>  writeOrdinaryObject(obj, desc, unshared); <br>  <br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  <span class="hljs-keyword">if</span>(extendedDebugInfo) &#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NotSerializableException(cl.getName() + <span class="hljs-string">&quot;\n&quot;</span> + <br>      debugInfoStack.toString());<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>  <span class="hljs-comment">// ⭕️ 要能够被ObjectOutputStream的writeObject方法序列化，对象必须</span><br>  <span class="hljs-comment">// 实现自Serializable，否则会抛NotSerializableException异常</span><br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NotSerializableException(cl.getName());<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong><em>writeOrdinaryObject</em></strong>() 核心实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 自定义的序列化类：</span><br>writeClassDesc(desc, <span class="hljs-keyword">false</span>); <span class="hljs-comment">// 写入类描述信息</span><br>handles.assign(unshared ? <span class="hljs-keyword">null</span> : obj);<br><br><span class="hljs-comment">// 🔻 若自定义的类是Externalizable类型：调用writeExternalData方法</span><br><span class="hljs-keyword">if</span> (desc.isExternalizable() &amp;&amp; !desc.isProxy()) &#123;<br>  writeExternalData((Externalizable) obj); <br>  <br><span class="hljs-comment">// 🔻 若自定义的类是Serializable类型：调用writeSerialData方法</span><br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  writeSerialData(obj, desc);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="➋-writeSerialData"><a href="#➋-writeSerialData" class="headerlink" title="➋ writeSerialData()"></a>➋ writeSerialData()</h4><p>writeOrdinaryObject方法实现中，如果自定义类实现Serializable，则会调用 writSerialData() 实现序列化：</p>
+<pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+       'fontSize': '13px'
+     }
+  }
+}%%
+graph
+subgraph "<b><i>writeSerialData()</i></b>"
+A(["<b><i>desc.getClassDataLayout()</i></b>"]):::lp
+A --> |"返回值"|b(["<b><i>ClassDataSlot类型数组</b></i>"]):::b
+%% 数组元素顺序：从最根部的祖先到当前类。
+b -.- 1("（ObjectStreamClass）<b>desc</b>"):::lb
+b -.- 2("（boolean）<b>hasData</b><br>"):::lb
+b -.- 3("... ..."):::lb
+1 --> |"判断数组元素对应的类<br>是否包含 <b><i>writeObject</i></b> 方法"|t(["<i><b>desc.hasWriteObjectMethod()</b></i>"]):::lp
+end
+
+subgraph "<b><i>ObjectStreamClass.java</i></b>"
+t -.-> |"[ <b>包含</b> ]<br>反射调用"|1a(["<b><i>invokeWriteObject()</i></b>"]):::p
+1a --> 2a(["<b><i>writeObjectMethod.invoke()</b></i> ✔︎"]):::lp
+end
+
+t -.-> |"[ <b>未包含</b> ]"|1b(["<b><i>defaultWriteFields()</i></b><br>"]):::p
+subgraph "<b><i>defaultWriteFiled()</b></i>"
+1b --> |"① 先写入<b>基本类型</b>的字段"|2b(["<i>bout.write()</i>"]):::lp
+2b --> |"② 写入<b>对象类型</b>的字段"|3b(["<b><i>writeObject0()</i></b> ✔︎"]):::lp
+end
+
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+<h5 id="⑴-字段"><a href="#⑴-字段" class="headerlink" title="⑴ 字段"></a>⑴ 字段</h5><ul>
+<li><p><strong>字段说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>getClassDataLayout()</td>
+<td><em>ClassDataSlot[]</em></td>
+<td>获取当前类及继承链路上所有直接或间接实现了 Serializable 的祖先类对应的<strong>序列化元数据信息</strong>。<br><br>* <em>数组元素顺序：从最根部的祖先到当前类。</em></td>
+</tr>
+<tr>
+<td>desc</td>
+<td><em>ObjectStreamClass</em></td>
+<td>记录了序列化和反序列化对象相关的<strong>元数据信息</strong>，并负责相关方法的反射初始化和执行。</td>
+</tr>
+<tr>
+<td>hasData</td>
+<td><em>boolean</em></td>
+<td>表示desc对应的Java对象<strong>是否有数据被序列化</strong>。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>Demo：<em>getClassDataLayout()</em></strong></p>
+<ol>
+<li><p><strong>当序列化 MyPeople 对象时，getClassDataLayout() 返回的数组大小：1</strong></p>
+<ul>
+<li><em>ClassDataSlot[0] = MyPeople 类对应的 ObjecStreamClass</em></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">People</span> </span>&#123; <span class="hljs-comment">// ... &#125;</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPeople</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">People</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123; <span class="hljs-comment">// ... &#125;</span><br></code></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<ol start="2">
+<li><p><strong>当序列化 MyPeople 对象时，getClassDataLayout() 返回的数组大小：2</strong></p>
+<ul>
+<li><em>ClassDataSlot[0] = People 类对应的 ObjectStreamClas</em></li>
+<li><em>ClassDataSlot[1] = MyPeople 类对应的 ObjecStreamClass</em></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">People</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123; <span class="hljs-comment">// ... &#125;</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mypeople</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Prople</span> </span>&#123; <span class="hljs-comment">// ... &#125;</span><br></code></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+</li>
+</ul>
+<h5 id="⑵-源码"><a href="#⑵-源码" class="headerlink" title="⑵ 源码"></a>⑵ 源码</h5><ul>
+<li><p><strong><em>writeSerialData()</em>：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeSerialData</span><span class="hljs-params">(Object obj, ObjectStreamCLass desc)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>  <br>  <span class="hljs-comment">// 🔴 对于ClassDataSlot数组的每一个元素，</span><br>  <span class="hljs-comment">//    如果该元素对应的类包含writeObject方法，则调用writeObjet方法。</span><br>  ObjectStreamClass.ClassDataSlot[] slots = desc.getClassDataLayout();<br>  <span class="hljs-comment">// 获取当前待写入Object类描述信息</span><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; slots.length; i++) &#123;<br>    ObjectStreamClass slotDesc = slots[i].desc;<br>    <span class="hljs-comment">// 🔹 ① 若有 writeObject 方法：反射调用</span><br>    <span class="hljs-keyword">if</span> (slotDesc.hasWriteObjectMethod()) &#123;   <br>      <span class="hljs-comment">// ...</span><br>      <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// ...</span><br>        <span class="hljs-comment">// 🔻 反射调用obj里的 writeObject 方法</span><br>        slotDesc.invokeWriteObject(obj, <span class="hljs-keyword">this</span>);  <br>      &#125; <span class="hljs-keyword">finally</span> &#123;<br>        <span class="hljs-comment">// ...</span><br>      &#125;<br>      <span class="hljs-comment">// 🔹 ② 若无 writeObject 方法：🔻 调用默认方法 </span><br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      defaultWriteFileds(obj, slotDesc); <br>    &#125;<br>  &#125;<br>&#125; <br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong><em>ObjectStreamClass 的 invokeWriteObject() 内部实现</em></strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 🔴 wirteObject 方法以反射方式被调用：</span><br>writeObjectMethod.invoke(obj, <span class="hljs-keyword">new</span> Object[]&#123; out &#125;);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// writeObjectMethod 的初始化通过反射方式实现：（ObjectStreamClass的构造方法）</span><br>writeObjectMethod = getPrivateMethod(cl, <span class="hljs-string">&quot;writeObject&quot;</span>,<br>    <span class="hljs-keyword">new</span> Class&lt;?&gt;[] &#123; ObjectOutputStream.class &#125;,<br>    Void.TYPE);<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p><strong><em>defaultWriteFileds()</em>：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 🔴 若当前待序列化的类没有writeObject方法，则调用defaultWriteFields方法实现序列化：</span><br><br><span class="hljs-comment">// 🔸 先写入基本类型字段</span><br><span class="hljs-keyword">int</span> primDataSize = desc.getPrimDataSize();<br><span class="hljs-keyword">if</span> (primVals == <span class="hljs-keyword">null</span> || primVals.lengnth &lt; primDataSize) &#123;<br>  primVals = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[primDataSize];<br>&#125;<br>desc.getPrimFiledValues(obj, primVals);<br>bout.write(primVals, <span class="hljs-number">0</span>, primDataSize, <span class="hljs-keyword">false</span>); <span class="hljs-comment">// BlockDataOutputStream</span><br><br><span class="hljs-comment">// 🔸 写入对象类型的字段</span><br>ObjectStreamFiled[] fileds = desc.getFileds(<span class="hljs-keyword">false</span>);<br>Object[] objVals = <span class="hljs-keyword">new</span> Object[desc.getNumObjFields()];<br><span class="hljs-keyword">int</span> numPrimFileds = fields.length - objVals.length;<br>desc.getObjectFiledValues(obj, objVals);<br><span class="hljs-keyword">for</span> (intn i = <span class="hljs-number">0</span>; i &lt; objVals.length; i++) &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">// ⭕️ 对象类型字段继续调用writeObject0方法</span><br>    writeObject0(objVals[i], fileds[numPrimFileds + i].isUnshared());<br>  &#125; <span class="hljs-keyword">finally</span> &#123; &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>🦋 从ObjectOutputStream 的 writeObject 执行流程来看，Java序列化以<strong>深度优先遍历</strong>方式使整个对象实现序列化。）</p>
+</li>
+</ul>
+<h4 id="➌-writeExternal"><a href="#➌-writeExternal" class="headerlink" title="➌ writeExternal()"></a>➌ writeExternal()</h4><p>回到 writeOrdinaryObject 方法实现，如果自定义类<strong>实现了 Externalizable 且不是动态代理类</strong>，则会调用 writeExternalData 方法实现序列化：</p>
+<ul>
+<li><p>writeExternalData </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 🔻 最终调用自定义类对象的 writeExternal 方法实现写入</span><br><span class="hljs-keyword">if</span> (protocol == PROTOCOL_VERSION_1) &#123;<br>    obj.writeExternal(<span class="hljs-keyword">this</span>);<br>  <br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    bout.setBlockDataMode(<span class="hljs-keyword">true</span>);<br>    obj.writeExternal(<span class="hljs-keyword">this</span>);<br>    bout.setBlockDataMode(<span class="hljs-keyword">false</span>);<br>    bout.writeByte(TC_ENDBLOCKDATA);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>writeExternalData 方法的实现看起来比 writeSerializable 类更简洁，原因：</p>
+<pre class="mermaid">  %%{
+  init: {
+    'themeVariables': {
+       'fontSize': '13px'
+     }
+  }
+}%%
+graph 
+T(["<i><b>Externalizable 接口</b></i>"]):::p
+T -.- A("接口包含：readExternal() 和 writeExternal()"):::info
+A --> |"（有规范）"|A2("Externalizable 的子类必须覆盖 <br>readExternal() 和 writeExternal()"):::lp
+
+T2(["<i><b>Serializable 接口</b></i>"]):::g
+T2 -.- B("空接口"):::info
+B --> |"（无规范）"|B2("本身是空接口，在具体行为上没有做<br>强制性的约束和规范。(仅是一种特性）"):::lg
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+
+
+</li>
+</ul>
+<h3 id="（4）对象类型的序列化数据成分"><a href="#（4）对象类型的序列化数据成分" class="headerlink" title="（4）对象类型的序列化数据成分"></a><span style="color:#c92f5f">（4）对象类型的序列化数据成分</span></h3><div style="background:#faf1f3;padding:20px;font-size:14px;line-height:25px"><b>序列化过程会写入的数据成分：</b><i>（ObjectOutputStream 的 writeObject 方法执行流程）</i><br>
+&#12288;1. 写入 TC_OBJECT<br>
+&#12288;2. 写入类描述（writeClassDesc）<br>
+&#12288;3. 写入基本类型字段<br>
+&#12288;4. 获取、遍历所有对象类型的字段递归调用 writeObject0() 实现写入
+</div>
+
+<p><strong><span style="font-size:16px">(1）写入 TC_OBJECT，值为0x73，byte类型。</span></strong></p>
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<p><strong><span style="font-size:16px">(2）写入类描述（writeClassDesc），类描述依赖待序列化的对象，占用字节：</span></strong></p>
+<ul>
+<li><p>类描述数据成分：</p>
+<div>
+<table style="font-size:12px">
+<thead>
+<tr>
+<th align="left">类描述取值</th>
+<th>Tag</th>
+<th>Tag Value（byte）</th>
+<th>Tag之后的数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Null</td>
+<td>TC_NULL</td>
+<td>0x70</td>
+<td>无</td>
+</tr>
+<tr>
+  <td align="left">Handle<br><span style="font-size:12px;color:#666666">（已经写入过的Object类型对象）</span></td>
+<td>TC_REFERENCE</td>
+<td>0X71</td>
+<td>4字节的对象</td>
+</tr>
+<tr>
+<td align="left">动态代理类</td>
+<td>TC_<br>PROXYCLASSDESC</td>
+<td>0x7D</td>
+  <td>1）4字节的所有父接口类个数<br>2）循环写入父接口的名字(UTF-8格式)、父接口的类描述</td>
+</tr>
+<tr>
+<td align="left">自定义的 Serializable 或 Externalizable <br>实现类</td>
+<td>TC_CLASSDESC</td>
+<td>0x72</td>
+<td>1）类名字<br>2）serialVersionUID<br>3）类标签<br>4）字段个数<br>5）一次循环写入每个字段的类型码、字段名、字段签名（非基本类型）</td>
+</tr>
+</tbody></table>
+</div>
+</li>
+<li><p>类标签及意义</p>
+<div style="font-size:12px">
+<table>
+<thead>
+<tr>
+<th>枚举值</th>
+<th>整型值</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SC_WRITE_METHOD</td>
+<td>0x01</td>
+<td>Serializable 实现类包含 writeObject 方法</td>
+</tr>
+<tr>
+<td>SC_SERIALIZABLE</td>
+<td>0x02</td>
+<td>Serializable 实现类</td>
+</tr>
+<tr>
+<td>SC_EXTERNALIZABLE</td>
+<td>0x04</td>
+<td>Externalizable 实现类</td>
+</tr>
+<tr>
+<td>SC_BLOCK_DATA</td>
+<td>0x08</td>
+<td>Externalizable 实现类写入数据使用 Block 模式</td>
+</tr>
+<tr>
+<td>SC_ENUM</td>
+<td>0x10</td>
+<td>枚举类</td>
+</tr>
+</tbody></table>
+</div>
+<span style="font-size:13px;color:#444444">类标签可以是上述取值的组合。例如，自定义类实现自 Serializable 且包含了 writeObject 方法，则类标签的取值为：SC_WRITE_METHOD | SC_SERIALIZABLE。</span>
+
+</li>
+</ul>
+<br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<p><strong><span style="font-size:16px">（3）写入基本类型字段</span></strong></p>
+<ul>
+<li><p><strong>将基本类型字段按字段名的字典顺序写入一个字节数组，再把字节数组最终写入到输出流。</strong>通过 ObjectStreamClass 的构造函数初始化调用了 getSerialFields 方法得到验证：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ObjectStreamField[] getSerialFields(Class&lt;?&gt; cl)<br>    <span class="hljs-keyword">throws</span> InvalidClassException<br>&#123;<br>    ObjectStreamField[] fields;<br>    <span class="hljs-keyword">if</span> (Serializable.class.isAssignableFrom(cl) &amp;&amp;<br>        !Externalizable.class.isAssignableFrom(cl) &amp;&amp;<br>        !Proxy.isProxyClass(cl) &amp;&amp;<br>        !cl.isInterface())<br>    &#123;<br>        <span class="hljs-keyword">if</span> ((fields = getDeclaredSerialFields(cl)) == <span class="hljs-keyword">null</span>) &#123;<br>            fields = getDefaultSerialFields(cl);<br>        &#125;<br>        <span class="hljs-comment">// 🔻 ObjectStreamField 排序</span><br>        Arrays.sort(fields);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        fields = NO_FIELDS;<br>    &#125;<br>    <span class="hljs-keyword">return</span> fields;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>ObjectStreamFiled 的 comparTo() 核心实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 🔸 获取字段后会对字段排序，排序逻辑：</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compareTo</span><span class="hljs-params">(Object obj)</span></span>&#123;<br>  ObjectStreamField other = (ObjectStreamField) obj;<br>  <span class="hljs-keyword">boolean</span> isPrim = isPrimitive();<br>  <span class="hljs-keyword">if</span>(isPrim != other.isPrimitive()) &#123;<br>    <span class="hljs-keyword">return</span> isPrim ? -<span class="hljs-number">1</span> : <span class="hljs-number">1</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> name.compareTo(other.name);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>📌 排序规则总结：</strong></p>
+<ul>
+<li>两个字段类型相同，按照字段名的字典顺序进行排序；</li>
+<li>两个字段类型不同，基本类型排在非基本类型之前。</li>
+</ul>
+</li>
+<li><p>回到 ObjectOutputStream 的 defaultWriteFields()，对基本类型字段的处理过程为 —— <strong>先获取所有基本类型字段占用的字节数，再将基本类型字段的值依次放入一个字节数组</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 🔹 获取所有基本类型字段的字节数</span><br><span class="hljs-keyword">int</span> primDataSize = desc.getPrimDataSize();<br><span class="hljs-keyword">if</span> (primVals == <span class="hljs-keyword">null</span> || primVals.length &lt; primDataSize) &#123;<br>    primVals = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[primDataSize];<br>&#125;<br><span class="hljs-comment">// 🔹 将基本类型字段依次写入字节数组</span><br>desc.getPrimFieldValues(obj, primVals);<br><span class="hljs-comment">// 🔸 将字节数组输出</span><br>bout.write(primVals, <span class="hljs-number">0</span>, primDataSize, <span class="hljs-keyword">false</span>);<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<p><strong><span style="font-size:16px">（4）获取所有对象类型的字段，循环遍历每一个字段，递归调用 writeObject0() 实现写入。</span></strong></p>
+<p>（略，上述 writeObject 流程里已涉及）</p>
+<p><br><hr style="height:2px;border:none;border-top:1px dashed #dedede;"/></p>
+<h2 id="四、高级特性"><a href="#四、高级特性" class="headerlink" title="四、高级特性"></a>四、高级特性</h2><h3 id="（1）transient-关键字"><a href="#（1）transient-关键字" class="headerlink" title="（1）transient 关键字"></a>（1）transient 关键字</h3><div style="background:#faf1f3;padding:20px;font-size:14px">transient 关键字在Java序列化中用来<b>控制字段不被序列化。</b></div>
+
+<p><em>ObjectStreamClass</em> 的 <em>getDefaultFields</em>() 内部实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ObjectStreamField[] getDefaultFields(Class&lt;?&gt; cl) &#123;<br>  Field[] clFields = cl.getDeclaredFields();<br>  ArrayList&lt;ObjectStreamField&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>  <span class="hljs-comment">// 🔻 序列化字段不能为 static 且不能为 transient</span><br>  <span class="hljs-keyword">int</span> mask = Modifier.STATIC | Modifier.TRANSIENT;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; clFields.length; i++) &#123;<br>    <span class="hljs-keyword">if</span> ((clFields[i].getModifiers() &amp; mask) == <span class="hljs-number">0</span>) &#123;<br>      list.add(<span class="hljs-keyword">new</span> ObjectStreamField(clFields[i], <span class="hljs-keyword">false</span>, <span class="hljs-keyword">true</span>));<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">int</span> size = list.size();<br>  <span class="hljs-keyword">return</span> (size == <span class="hljs-number">0</span>) ? NO_FIELDS : list.toArray(<span class="hljs-keyword">new</span> ObjectStreamField[size]);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="（2）static-关键字"><a href="#（2）static-关键字" class="headerlink" title="（2）static 关键字"></a>（2）static 关键字</h3><div style="background:#faf1f3;padding:20px;font-size:14px">static 字段属于类<b>全局共有，不会被序列化。</b></div>
+
+<blockquote>
+<p>在反序列化得到的结果里，静态变量的值依赖类对该静态字段的 <u>①初始化操作</u>以及 <u>②是否在同一个JVM进程内</u>。</p>
+</blockquote>
+<pre class="mermaid">%%{
+  init: {
+    'themeVariables': {
+       'fontSize': '13px'
+     }
+  }
+}%%
+graph LR
+subgraph 静态变量
+t("<b>a = 0</b>"):::p
+end
+t --> |"赋值"|1("<b>a = 10</b>"):::lp
+1 -.-> |"<i>反序列化<br>操作 1</i>"|A("<b>a = 10</b>"):::lp
+1 -.-> |"<i>反序列化<br>操作 2</i>"|B("<b>a = 0</b>"):::g
+subgraph "JVM进程 2"
+B
+end
+subgraph "JVM进程 1(同个)"
+A
+end
+B -.-> info("因为类在JVM进程内<br><b>只会被加载一次</b>，<br>………………………<br>相同的类在不同JVM<br>都会<b>被初始化一遍</b>。"):::lg
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+
+
+<h3 id="（3）serialVersionUID"><a href="#（3）serialVersionUID" class="headerlink" title="（3）serialVersionUID"></a>（3）serialVersionUID</h3><div style="background:#faf1f3;padding:20px;font-size:14px">serialVersionUID 用来实现<b>类版本兼容</b>，在实际开发中能<b>满足类字段变化的需求</b>。</div>
+
+<ul>
+<li><p><strong>必须定义 serialVersionUID 字段：</strong></p>
+<blockquote>
+<ul>
+<li>如果不定义serialVersionUID字段，Java序列化会根据类字段和其他上下文计算一个<strong>默认值</strong>。</li>
+<li>当类字段发生变化时，serialVersionUID 值也会跟着变化，就会出现因类字段变化导致反序列化失败的问题。比如增加新字段后，无法再读取增加字段之前的序列化数据。反序列化会报<code>InvalidCastException</code> 异常。</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>serialVersionUID 字段必须是 static + final 类型，才能被序列化。</strong></p>
+<p>ObjectStreamClass 的 getDeclaredSUID()：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Long <span class="hljs-title">getDeclaredSUID</span><span class="hljs-params">(Class&lt;?&gt; cl)</span> </span>&#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    Field f = cl.getDeclaredField(<span class="hljs-string">&quot;serialVersionUID&quot;</span>);<br>    <span class="hljs-comment">// 🔻 serialVersionUID 字段必须是 static + final 类型</span><br>    <span class="hljs-keyword">int</span> mask = Modifier.STATIC | Modifier.FINAL;<br>    <span class="hljs-keyword">if</span> ((f.getModifiers() &amp; mask) == mask) &#123;<br>      f.setAccessible(<span class="hljs-keyword">true</span>);<br>      <span class="hljs-keyword">return</span> Long.valueOf(f.getLong(<span class="hljs-keyword">null</span>));<br>    &#125;<br>  &#125; <span class="hljs-keyword">catch</span> (Exception ex) &#123; &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="（4）序列化-反序列化hook"><a href="#（4）序列化-反序列化hook" class="headerlink" title="（4）序列化/反序列化hook"></a>（4）序列化/反序列化hook</h3><div style="background:#faf1f3;padding:20px;font-size:14px">writeReplace() 和 readResolve() 用于序列化写入 / 反序列化时<b>拦截并替换成一个自定义的对象</b>。</div>
+
+<h4 id="➊-writeReplace方法"><a href="#➊-writeReplace方法" class="headerlink" title="➊ writeReplace方法"></a>➊ writeReplace方法</h4><ul>
+<li><p><strong>方法的完整定义：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span>/<span class="hljs-keyword">default</span>/<span class="hljs-keyword">protected</span>/<span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">writeReplace</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ObjectStreamException</span>;<br><span class="hljs-comment">// 由于基于反射执行，因此作用域限定符不受限制。</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>若定义了 wirteReplace()，就没必要再定义 ❌ writeObject() 了。内部会先调用writeReplace方法将当前序列化对象替换成自定义目标对象。（readObject 同理）</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p><strong>工作原理：</strong></p>
+<p><em>ObjectOutputStream 的 writeObject0()：</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// check for replacement object</span><br>Object orig = obj;<br>Class&lt;?&gt; cl = obj.getClass();<br>ObjectStreamClass desc;<br><span class="hljs-keyword">for</span>(;;) &#123;<br>  <span class="hljs-comment">// REMIND: skip this check for strings/arrays?</span><br>  Class&lt;?&gt; repCL;<br>  <span class="hljs-comment">// 🔻 调用 obj 序列化写入</span><br>  <span class="hljs-keyword">if</span> (!desc.hasWriteReplaceMethod() ||<br>      (obj = desc.invokeWriteReplace(obj)) == <span class="hljs-keyword">null</span> ||<br>      (repCl = obj.getCLass()) == cl) &#123;<br>    <span class="hljs-keyword">break</span>;<br>  &#125;<br>  cl = repCl;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="➋-readResolve方法"><a href="#➋-readResolve方法" class="headerlink" title="➋ readResolve方法"></a>➋ readResolve方法</h4><ul>
+<li><p><strong>方法的完整定义：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span>/<span class="hljs-keyword">default</span>/<span class="hljs-keyword">protected</span>/<span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">readResolve</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ObjectStreamException</span>;<br><span class="hljs-comment">// 由于基于反射执行，因此作用域限定符不受限制。</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>若定义了 readResolve 方法，✅ readObject 方法是允许出现的。</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p><strong>工作原理：</strong></p>
+<pre class="mermaid">  %%{
+  init: {
+    'themeVariables': {
+       'fontSize': '13px'
+     }
+  }
+}%%
+graph LR
+subgraph "<b><i>ObjectInputStream.java</i></b>"
+A(["<b><i>readObject0()</i></b>"]):::p
+A --> |"🔸 返回反序列化结果"|x("判断是否存在 readResolve()"):::lg
+x -.-> |"[ 存在 ]"|B
+B(["<b><i>调用 readResolve()</i></b>"]):::g
+B -.-> |"<b>🔹 返回自定义的对象</b>"|C(["<b><i>readObject</b></i>"]):::p
+
+C
+end
+x --> |"[ 不存在 ]<br><br>🔸 直接返回对象结果"|C
+
+classDef p fill:#ddaebd
+classDef b fill:#aab7d2
+classDef g fill:#9ac5bb
+classDef lp fill:#f4e4e9
+classDef lb fill:#d9dfeb
+classDef lg fill:#ddebe6
+classDef info fill:#f6f6f7,color:#737379,stroke-dasharray: 3 3, stroke-width: 2px</pre>
+
+<ol>
+<li>首先调用 readObject0 方法得到反序列化结果</li>
+<li>若 readResolve 方法存在，则会调用该方法返回自定义的对象。</li>
+<li>将自定义的对象作为 ObjectInputStream 的 readObject 的返回值。</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p><strong>使用场景：</strong></p>
+<p>使用 readResolve() 在反序列化的过程中对枚举对象进行<strong>恢复性保护</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 对于类实现的枚举类型，反序列化出来的枚举对象期望是定义的枚举对象，</span><br><span class="hljs-comment"> * 这也体现了枚举的意义。</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * 但从代码执行情况看，反序列化出来的的枚举对象是一个新建出来的枚举对象，</span><br><span class="hljs-comment"> * 虽然值和枚举值定义的一样，但不是同一个对象。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Brand</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> val;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Brand</span><span class="hljs-params">(<span class="hljs-keyword">int</span> val)</span> </span>&#123;<br>    <span class="hljs-keyword">this</span>.val = val;<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Brand NIKE = <span class="hljs-keyword">new</span> Brand(<span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Brand ADDIDAS = <span class="hljs-keyword">new</span>  Brand(<span class="hljs-number">1</span>);<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>    ObjectOutputStream outputStream = <span class="hljs-keyword">new</span> ObjectOutputStream( <span class="hljs-keyword">new</span><br>      FileOutputStream(<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;out1&quot;</span>)));<br>    outputStream.writeObject(Brand.ADDIDAS);<br>    outputStream.close();<br>    <br>    ObjectInputStream inputStream = <span class="hljs-keyword">new</span> ObjectInputStream( <span class="hljs-keyword">new</span><br>      FileInputSrteam(<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;out1&quot;</span>)));<br>    Brand brand = (Brand) inputStream.readObject();<br>    System.out.println(brand == Brand.ADDIDAS); <span class="hljs-comment">// ❌ false</span><br>  &#125; <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+<ul>
+<li><p><strong>加上 readResolve() 后：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** </span><br><span class="hljs-comment"> * 使用 readResolve() 在反序列化的过程中对枚举对象进行恢复性保护。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Brand</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> val;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Brand</span><span class="hljs-params">(<span class="hljs-keyword">int</span> val)</span> </span>&#123;<br>    <span class="hljs-keyword">this</span>.val = val;<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Brand NIKE = <span class="hljs-keyword">new</span> Brand(<span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Brand ADDIDAS = <span class="hljs-keyword">new</span>  Brand(<span class="hljs-number">1</span>);<br>  <br>  <span class="hljs-comment">// 🔻</span><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">readResolve</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ObjectStreamException </span>&#123;<br>    <span class="hljs-keyword">if</span> (val == <span class="hljs-number">0</span>) &#123;<br>      <span class="hljs-keyword">return</span> NIKE;<br>    &#125; <br>    <span class="hljs-keyword">if</span> (val == <span class="hljs-number">1</span>) &#123;<br>      <span class="hljs-keyword">return</span> ADDIDAS;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span><br>  &#125;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>    <br>    ObjectOutputStream outputStream = <span class="hljs-keyword">new</span> ObjectOutputStream( <span class="hljs-keyword">new</span><br>      FileOutputStream(<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;out1&quot;</span>)));<br>    outputStream.writeObject(Brand.ADDIDAS);<br>    outputStream.close();<br>    <br>    ObjectInputStream inputStream = <span class="hljs-keyword">new</span> ObjectInputStream( <span class="hljs-keyword">new</span><br>      FileInputSrteam(<span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;out1&quot;</span>)));<br>    Brand brand = (Brand) inputStream.readObject();<br>    System.out.println(brand == Brand.ADDIDAS); <span class="hljs-comment">// ⭕️ true</span><br>  <br>  &#125; <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+</li>
+</ul>
+<h3 id="（5）数据校验"><a href="#（5）数据校验" class="headerlink" title="（5）数据校验"></a>（5）数据校验</h3><div style="background:#faf1f3;padding:20px;font-size:14px">Java序列化机制在<b>反序列化</b>时支持对读取到的数据进行<b>校验</b>（默认不校验）。这是因为Java序列化后的数据是明文形式，有可能被修改。</div>
+
+<p>使用数据校验特性需要让自定义的序列化类实现<code>java.io.ObjectInputValidation</code>接口</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span>, <span class="hljs-title">ObjectInputValidation</span></span><br></code></pre></td></tr></table></figure>
+<p>通过调用回调函数 validateObject 来实现数据验证。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">validateObject</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InvalidObjectException </span>&#123;<br>  <span class="hljs-keyword">if</span> (age &lt;= <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> InvalidObjectException(<span class="hljs-string">&quot;age invalid&quot;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="五、序列化方式对比"><a href="#五、序列化方式对比" class="headerlink" title="五、序列化方式对比"></a>五、序列化方式对比</h2><div style="background:#faf1f3;padding:20px;font-size:14px">选择 Serializable 还是 Externalizable ？</div>
+
+<p><strong>* 对比：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Serializable (🟢优先选择)</th>
+<th>Externalizable</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>功能</td>
+<td>java序列化已支持</td>
+<td>java序列化已支持</td>
+</tr>
+<tr>
+<td>易用性</td>
+<td><strong>易用性更好</strong>：Serializable 提供了<u>默认的</u>序列化与反序列化行为，用户无需关注序列化的实现细节即可拿来使用。</td>
+<td>Externalizable 必须实现实现 <em>readExternal</em> 和 <em>writeExternal</em> 接口，且要提供默认构造函数。</td>
+</tr>
+<tr>
+<td>自定义序列化</td>
+<td>也可通过 readObject 和  writeObject 来支持</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>* 终止序列化特性：</strong></p>
+<p>在继承链路上，如果要终止一个子类的 Serializable 或者 Externaizable 特性：</p>
+<blockquote>
+<p>在 <strong><em>readObject / writeObject</em></strong> 方法或 <strong><em>readExternal / writeExternal</em></strong> 方法接口里抛出 <code>UnsupportedOperation-Exception</code> 异常，表示不支持序列化和反序列化功能。</p>
+</blockquote>
+<br>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<h2 id="六、小结"><a href="#六、小结" class="headerlink" title="六、小结"></a>六、小结</h2><p>Java序列化方案成熟度高，但<strong>性能和压缩效果均一般</strong>，只适合JVM系列语言共享数据，不具备完全的跨语言能力。另外，它会带来一些数据安全性和完整性问题。</p>
+<p>在实际项目中，往往会选择具有跨语言能力、性能高效、压缩效果显著的方案，例如 Thrift、Protocol Buffer等。</p>
+<br>
+<br>
+<br>
+
+<p style="text-align:center;font-size:13px;color:#666666"> - <i>end</i> - </p>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+<p style="font-size:13px;color:#666666">🔖 笔记来自：<a href="https://book.douban.com/subject/35303133/" target="_blank">《深入理解序列化与反序列化》</a></p>
+
+<p style="font-size:13px;color:#666666">📚 扩展阅读：<a href="https://gitee.com/openeuler/bishengjdk-11/wikis/FastSerializer?sort_id=2879166#3-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%8E%9F%E7%90%86"  target="_blank">《FastSerializer序列化特性介绍 - 反序列化原理》</a></p>
+
+</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button" href="/note/Basics/IO/IO_StandardIO/">IO - 标准设备输入/输出</a><a class="next-button" href="/note/Basics/IO/IO_RandomAccessFile/">IO - RandomAccessFile 任意访问文件</a></div><div id="comments"></div></div></div></div><div class="footer"><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
   var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
   mermaid.initialize({
     theme: 'neutral',
     fontFamily: 'Noto Serif SC',
     startOnLoad: 'true'
   });
-}</script></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
+}</script></div><l></l><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
