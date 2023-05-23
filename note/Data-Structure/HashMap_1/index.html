@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="🦋 HashMap - 原理 [ 🍧 Peach ] "><meta name="theme-color"><title>🦋 HashMap - 原理 [ 🍧 Peach ] </title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/mermaid.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=G-5GZQ6P3RMX" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5GZQ6P3RMX');</script><script src="https://www.unpkg.com/valine/dist/Valine.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  new Valine({
+    el: '#comments',
+    appId: 'MJAdR7lH7cWVJLyn1Tgnw5Sj-gzGzoHsz',
+    appKey: 'de2VP0VpE5bWgR2aA8wkwxn2',
+    notify: false,
+    verify: false,
+    avatar: 'mp',
+    placeholder: 'say something',
+  })
+})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  tocbot.init({
+    // Where to render the table of contents.
+    tocSelector: '.toc__content',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: '.article__content',
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    // For headings inside relative or absolute positioned containers within content.
+    hasInnerContainers: true,
+    orderedList: false,
+    collapseDepth: 2,
+  });
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&amp;display=swap"><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">🍧 Peach</a></h1><p>蜜桃学代码</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">🦋 HashMap - 原理</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">🦋 HashMap - 原理</a></h2><span class="post__date">2023-03-09</span><a href="/tags/Java/"><span class="post__tags">#Java</span></a><a href="/tags/HashMap/"><span class="post__tags">#HashMap</span></a></div></div><div class="article__content"><div>
+  <!--  bgcolor="#fdeff2" -->
+    <table style="font-size:12px;width:100%;">
+        <tr>
+            <th colspan="2"> - 目录</th>
+        </tr>
+        <tr>
+            <td rowspan="2" style="text-align:center" bgcolor="#fdeff2">HashMap</td>
+            <td bgcolor="#fdeff2">
+                <a href="https://equnee.github.io/note/Data-Structure/HashMap_1/">HashMap 原理</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://equnee.github.io/note/Data-Structure/HashMap_2/">HashMap 源码</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<p style="font-size:13px;">注：本文源码版本均为：JDK 8</p>
+
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;">
+
+<h1 id="一-原理"><a href="#一-原理" class="headerlink" title="一. 原理"></a>一. 原理</h1><h2 id="（1）HashMap怎么存取"><a href="#（1）HashMap怎么存取" class="headerlink" title="（1）HashMap怎么存取"></a>（1）HashMap怎么存取</h2><pre class="mermaid">%%{
+    init: {
+        'themeVariables': {
+            'fontSize': '13px'
+        }
+    }
+}%%
+graph TD
+
+T(("<b>HashMap<br>怎么存取值</b>")):::p
+T --> |"<i><b>数据以键值对形式存储</b></i>"| A["<i>key — value</i>"]
+A --> |"<i><b>包装为Node数组对象</b></i>"| B["<i>Node { key, value }</i>"]
+B --> |"<i><b>通过node数组下标保存对应数据</b></i>"| C["<i>node[0] = new Node { key, value }<br>node[1] = new Node { key, value }<br>node[2] = new Node { key, value }<br> ...</i>"]
+C -.-> |"[ <b>保存</b> ] <br>遍历数组，对应key和value"| D["<i>for (Node node : nodes)</i>"]
+C --> |"<b>[ 获取 ] <br>通过<u> 数组索引 </u>获取<i>（key的hash值）</i></b>"|E["<i><b>node[ <u>hash(key)</u> ] = value</b></i>"]:::lb
+
+classDef p fill:#ddaebd
+style E fill:#d9dfeb, stroke:#657eae,stroke-width:2px,stroke-dasharray: 3 3</pre>
+<ul>
+<li>使用Node数组保存、通过Node数组索引获取。</li>
+</ul>
+<h2 id="（2）Hash算法怎么写"><a href="#（2）Hash算法怎么写" class="headerlink" title="（2）Hash算法怎么写"></a>（2）Hash算法怎么写</h2><pre class="mermaid">%%{
+    init: {
+        'themeVariables': {
+        'fontSize': '13px',
+        'clusterBorder': 'none',
+        'clusterBkg': '#f0f2f7'
+    }
+}
+}%%
+graph TD
+T(("<b>Hash算法<br>怎么写？</b>")):::p
+T --> |"<i><b>如何计算出数组索引？hash(key)</b></i>"| A["* 因为Node数组有固定的初始化默认长度（length）<br>* 索引值需限定在数组长度范围内（0～length-1）<br>* 索引值还要尽可能平衡、分布均匀"]
+A --> B(["取模运算：<i>hash % length</i>"])
+B ==> |"<b>（更好的方案</b>：<br>使用位运算效率更高）"| C(["<b>位运算：<i>hash & (length - 1)</i></b>"])
+C -.- c("<b><i>length必须是2的n次幂</i></b>"):::b
+subgraph "前置条件"
+c -.- c2["<i>假如 key = 20, length = 16, hash & (length-1):</i><br>0001 0100  // 20  <br>0000 1111 // 15<br >0000 0100 // =4"]:::c2
+end
+classDef p fill:#ddaebd
+classDef b fill:#d2d9e7, stroke-width: 0px
+
+style c2 color: #86868b, fill:#ebedf3, stroke-dasharray: 3 3
+%% 取模运算
+style B fill: #f4e4e9
+%% "位运算"
+style C fill:#b8c3d9, stroke:#657eae,stroke-width:2px</pre>
+
+<ul>
+<li><p><strong>为了解决取模的效率问题，采用了位运算的方法：<code>index = hash值 &amp; (length -1)</code></strong><br>此时需要一个前置条件：<strong><em>length的长度必须是2的n次幂</em></strong>。<br>当length的长度是<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mi mathvariant="normal">n</mi></msup></math>时，有以下公式成立： <b><i>num%<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mi mathvariant="normal">n</mi></msup></math> = num&amp;(<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mi mathvariant="normal">n</mi></msup></math>-1) </i>。</b></p>
+<blockquote>
+<p>🦋 因为就像十进制取余数一样，若除以10或10的整次幂数，余数刚好是取低位上的数字。同理，二进制取余数只要除以2的n次幂数，低位上的数字就是我们需要的余数。而(<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mi mathvariant="normal">n</mi></msup></math> - 1)的二进制有效位都是1，和n位的1作与运算相当于取低n位的值。</p>
+</blockquote>
+</li>
+<li><p><strong>length的长度刚好是2的n次幂，扩容也是按原来的2倍容量进行扩容，可以加快hash计算、减少hash冲突。</strong></p>
+<blockquote>
+<p>🦋 <strong>加快hash计算</strong>：</p>
+<ol>
+<li>两倍扩容机制使容量一直保持在2的n次幂数，就可以使用<u>位运算代替取模运算</u>，提升hash计算效率。</li>
+<li>当容量保持为2的n次幂时，每次扩容时位运算计算得出的余数不变，数据存放的<u>索引位置也保持不变</u>。而使用%计算时，结果会因为容量的变化而改变（模运算会产生小数点），每次扩容时数据在数组中存放的位置会发生改变（数据漂移），影响性能。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>🦋 <strong>减少hash冲突</strong>：</p>
+<ul>
+<li>将容量保持为偶数进行hash计算时，经过(length-1)后，计算出的索引值为奇数和偶数的概率相同（取决于随机生成的hash值）；</li>
+<li>而使用<u>奇数容量</u>进行hash计算时，经过(length-1)后，最终结果均为偶数，这样任何 hash 值都只会被散列到数组的<u>偶数下标位置</u>上，这浪费了近一半的空间。</li>
+<li>因此2的n次幂容量、双倍扩容机制可以使容量保持在偶数值，可以使添加的元素在HashMap的数组中均匀分布，减少hash碰撞。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="（3）Hash冲突怎么办"><a href="#（3）Hash冲突怎么办" class="headerlink" title="（3）Hash冲突怎么办"></a>（3）Hash冲突怎么办</h2><pre class="mermaid">%%{
+    init: {
+    'themeVariables': {
+        'fontSize': '13px'
+        %%'edgeLabelBackground': '#ddebe6'
+    }
+}
+}%%
+graph TD
+
+T(("1. <b>Hash冲突<br>怎么优化</b>")):::p
+--> T1("hash表里可以存储元素的位置<br>被称为“<b>桶（bucket）</b>”")
+T1 --> |"<b>通常情况</b>"| A("单个“桶”里存储一个元素，<br>此时性能最佳"):::g
+A -.-> |"<i><b>O(1)</b></i>"| a["hash算法可以根据hashCode值<br>计算出“桶”的存储位置，<br>接着从“桶”中取出元素。"]
+T1 --> |"<b>哈希冲突的情况</b>"| B("单个桶会存储多个元素<i>（hash值相同）</i>"):::g
+B -.-> |"<b><i>O(n)</b></i>"|b(["多个元素以 <b><i>链表</i></b> 形式存储<br>"]):::B
+b --> 2T(("2.<b> Hash冲突<br>很大怎么优化</b>")):::p
+subgraph "<i>（链表必须按顺序搜索，存取性能差）</i>"
+2T --> C(["将链表结构转为<b><i>红黑树</i></b>"]):::B
+C -.- |"<i><b>O(logn)</b></i>"|c["以树的高度为最差查询性能，永远不会出现O(n)的情况。"]:::info
+end
+
+classDef p fill:#ddaebd
+classDef g fill:#f4e4e9
+classDef B fill:#d9dfeb, stroke:#657eae,stroke-width:2px
+classDef info fill:#f6f6f7,color:#737379, stroke-width: 2px, stroke-dasharray: 3 3</pre>
+<ul>
+<li><p><strong>Hash冲突示意图</strong></p>
+  <pre class="mermaid">    %%{
+      init: {
+          'themeVariables': {
+              'clusterBorder': 'none',
+              'clusterBkg': '#ececee'
+          }
+      }
+  }%%
+  %% 链表超过8时树化成红黑树
+  graph TD
+
+  subgraph "Node[]"
+  Entry0["Node0<br><i><b>Node＜K,V></b></i>"] -.- Node1 -.- Node2 -.- Node3 -.- Node4 -.- Node5 -.- Node6
+  end
+
+  subgraph 链表
+  Node1 --> A[Node] --> B[Node] --> C[Node] --> D[Node] --> E[Node] --> F[Node]  
+  end
+
+  subgraph 红黑树
+  Node4 --> a[Node]
+  a[Node] --> b[Node]
+  b --> b1[Node]
+  b --> b2[Node]
+  a --> c[Node]
+  c --> c1[Node]
+  c --> c2[Node]
+  b1 --> d[Node]
+  b1 --> d2[Node]
+  end
+
+  style 链表 fill:#ddebe6
+  style 红黑树 fill:#f4e4e9</pre>
+
+</li>
+</ul>
+<h2 id="（4）内存结构示意图"><a href="#（4）内存结构示意图" class="headerlink" title="（4）内存结构示意图"></a>（4）内存结构示意图</h2><ul>
+<li><p><strong>创建对象</strong>，内存结构示意图：</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">Map&lt;String, Integer&gt; countMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>countMap.put(<span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-number">1</span>);<br>countMap.put(<span class="hljs-string">&quot;world&quot;</span>, <span class="hljs-number">3</span>);<br>countMap.put(<span class="hljs-string">&quot;position&quot;</span>, <span class="hljs-number">4</span>);<br></code></pre></td></tr></table></figure>
+
+  <img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84%E5%9B%BE1.jpg" alt="内存结构图1" style="zoom: 25%;" />
+</li>
+<li><p><strong>保存键值对</strong></p>
+<p>  “hello”的hash值为96207088，模16的结果为0，所以插入table[0]指向的链表头部，内存结构变为：</p>
+  <img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84%E5%9B%BE2.jpg" alt="内存结构图2" style="zoom: 25%;" />
+
+<p>  “world”的hash值为111207038，模16结果为14，所以保存完“world”后，内存结构：</p>
+  <img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84%E5%9B%BE3.jpg" alt="内存结构图3" style="zoom:25%;" />
+
+<p>  “position”的hash值为771782464，模16结果也为0, table[0]已经有节点了，新节点会插到链表头部，内存结构变为如图：</p>
+  <img src="https://equne.oss-cn-hangzhou.aliyuncs.com/typora/%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84%E5%9B%BE4.jpg" alt="内存结构图4" style="zoom:25%;" /> 
+
+
+</li>
+</ul>
+<p><br><hr style="height:2px;border:none;border-top:1px dashed #dedede;"/></p>
+<h1 id="二-使用"><a href="#二-使用" class="headerlink" title="二. 使用"></a>二. 使用</h1><h2 id="（1）常用方法"><a href="#（1）常用方法" class="headerlink" title="（1）常用方法"></a>（1）常用方法</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 返回值            方法                         说明</span><br><span class="hljs-comment">// --------------------------------------------------------------------------------------------</span><br><span class="hljs-function">V                   <span class="hljs-title">put</span><span class="hljs-params">(K key, V value)</span>         <span class="hljs-comment">// 将键（key）/ 值（value）映射存放到 Map 集合中，向 HashMap 中添加元素</span></span><br><span class="hljs-function">V                   <span class="hljs-title">get</span><span class="hljs-params">(Object key)</span>             <span class="hljs-comment">// 返回指定键所映射的值，没有该 key 对应的值则返回 null</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span>                 <span class="hljs-title">size</span><span class="hljs-params">()</span>                      <span class="hljs-comment">// 返回 Map 集合中数据数量</span></span><br><span class="hljs-function"><span class="hljs-keyword">void</span>                <span class="hljs-title">clear</span><span class="hljs-params">()</span>                     <span class="hljs-comment">// 清空 Map 集合</span></span><br><span class="hljs-function"><span class="hljs-keyword">boolean</span>             <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span>                   <span class="hljs-comment">// 判断 Map 集合中是否有数据，如果没有则返回 true，否则返回 false</span></span><br><span class="hljs-function">V                   <span class="hljs-title">remove</span><span class="hljs-params">(Object key)</span>          <span class="hljs-comment">// 删除 Map 集合中键为 key 的数据并返回其所对应 value 值。</span></span><br><span class="hljs-function">Collection&lt;V&gt;       <span class="hljs-title">values</span><span class="hljs-params">()</span>                    <span class="hljs-comment">// 返回 Map 集合中所有 value 组成的以 Collection 数据类型格式数据。</span></span><br><span class="hljs-function"><span class="hljs-keyword">boolean</span>             <span class="hljs-title">containsKey</span><span class="hljs-params">(Object key)</span>     <span class="hljs-comment">// 判断集合中是否包含指定键，包含返回 true，否则返回 false</span></span><br><span class="hljs-function"><span class="hljs-keyword">boolean</span>             <span class="hljs-title">containsValue</span><span class="hljs-params">(Object value)</span> <span class="hljs-comment">// 判断集合中是否包含指定值，包含返回 true，否则返回 false</span></span><br><span class="hljs-function">Set&lt;K&gt;              <span class="hljs-title">keySet</span><span class="hljs-params">()</span>                    <span class="hljs-comment">// 返回 Map 集合中所有 key 组成的 Set 集合</span></span><br><span class="hljs-function">Set&lt;Map.Entry&lt;K,V&gt;&gt; <span class="hljs-title">entrySet</span><span class="hljs-params">()</span>                  <span class="hljs-comment">/* 将 Map 集合每个 key-value 转换为一个 Entry 对象</span></span><br><span class="hljs-comment"><span class="hljs-function">                                                    并返回由所有的 Entry 对象组成的 Set 集合  */</span></span><br><span class="hljs-function"><span class="hljs-comment">// ------------------------------------------------------------------------------------------</span></span><br><span class="hljs-function">Printer.<span class="hljs-title">printHashMapStructures</span><span class="hljs-params">(map)</span></span>; <span class="hljs-comment">// 打印树结构</span><br>getMapFromStringParam();<br></code></pre></td></tr></table></figure>
+
+<h2 id="（2）如何遍历"><a href="#（2）如何遍历" class="headerlink" title="（2）如何遍历"></a>（2）如何遍历</h2><pre class="mermaid">graph LR
+T(("<b>遍历HashMap<br>的5种方法</b>")):::p
+T --> A(["<b>entrySet</b>"]):::lp
+T --> B(["<b>keySet</b>"]):::lp
+T --> C(["<b>forEach</b>"]):::lp
+T --> |"流操作"|D(["<b>StreamApi.forEach</b>"]):::lp
+T -.-> E(["<b>values</b>"])
+
+A -.-> a("<i>（1）entrySet</i>")
+A -.-> a2("<i>（2）entrySet + 迭代器</i>")
+B -.-> |"（效率低）"| b("<i>（3）keySet + get()</i>")
+C -.-> c("<i>（4）forEach + Lambda</i>")
+D -.-> d("<i>（5）Stream().forEach（单线程）</i>")
+D -.-> d2("<i>（6）Stream().forEach（多线程）</i>")
+E -.-> e("<i>（7）仅遍历value</i>")
+
+classDef p fill:#ddaebd
+classDef lp fill:#f4e4e9
+classDef B fill:#d9dfeb, stroke:#657eae,stroke-width:2px</pre>
+<ul>
+<li><p><strong>遍历HashMap代码</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.equne;<br><br><span class="hljs-keyword">import</span> java.util.HashMap;<br><span class="hljs-keyword">import</span> java.util.Iterator;<br><span class="hljs-keyword">import</span> java.util.Map;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br><br>    <span class="hljs-comment">/** （1）entrySet */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">traverse1</span><span class="hljs-params">(Map&lt;String, String&gt; map)</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (Map.Entry&lt;String, String&gt; entry : map.entrySet())&#123;<br>            System.out.println(entry.getKey() + <span class="hljs-string">&quot;, &quot;</span> + entry.getValue());<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/** （2）迭代器（entrySet） */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">traverse2</span><span class="hljs-params">(Map&lt;String, String&gt; map)</span> </span>&#123;<br>        Iterator&lt;Map.Entry&lt;String, String&gt;&gt; iterator = map.entrySet().iterator();<br>        <span class="hljs-keyword">while</span> (iterator.hasNext())&#123;<br>            Map.Entry&lt;String, String&gt; entry = iterator.next();<br>            System.out.println(entry.getKey() + <span class="hljs-string">&quot;, &quot;</span> + entry.getValue());<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/** （3）keySet + get() */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">traverse3</span><span class="hljs-params">(Map&lt;String, String&gt; map)</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (String key : map.keySet())&#123;<br>            System.out.println(key + <span class="hljs-string">&quot;, &quot;</span> + map.get(key));<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/** （4）forEach + Lambda */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">traverse4</span><span class="hljs-params">(Map&lt;String, String&gt; map)</span> </span>&#123;<br>        map.forEach((key, value) -&gt; &#123;<br>            System.out.println(key + <span class="hljs-string">&quot;, &quot;</span> + value);<br>        &#125;);<br>    &#125;<br><br>    <span class="hljs-comment">/** （5）StreamApi（单线程） */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">traverse5</span><span class="hljs-params">(Map&lt;String, String&gt; map)</span> </span>&#123;<br>        map.entrySet().stream().forEach((entry) -&gt; &#123;<br>            System.out.println(entry.getKey() + <span class="hljs-string">&quot;, &quot;</span> +entry.getValue());<br>        &#125;);<br>    &#125;<br><br>    <span class="hljs-comment">/** （6）StreamApi（多线程） */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">traverse6</span><span class="hljs-params">(Map&lt;String, String&gt; map)</span> </span>&#123;<br>        map.entrySet().stream().parallel().forEach((entry) -&gt; &#123;<br>            System.out.println(entry.getKey() + <span class="hljs-string">&quot;, &quot;</span> +entry.getValue());<br>        &#125;);<br>    &#125;<br><br>    <span class="hljs-comment">/** （7）仅遍历value */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">traverse7</span><span class="hljs-params">(Map&lt;String, String&gt; map)</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (String v : map.values())&#123;<br>            System.out.println(v);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br><br>        Map&lt;String, String&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>        map.put(<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>);<br>        map.put(<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>);<br>        traverse1(map);<br>        traverse2(map);<br>        traverse3(map);<br>        traverse4(map);<br>        traverse5(map);<br>        traverse6(map);<br>        traverse7(map);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>entrySet 和 keySet</strong></p>
+<blockquote>
+<ul>
+<li>Map.entrySet 迭代器会生成 EntryIterator，其返回的实例是一个包含 <strong>key/value 键值对</strong>的对象。</li>
+<li>而 keySet 中迭代器返回的只是 key 对象，还需要到 map 中二次取值（多一个get方法的调用）。故 entrySet 要比 keySet 快一倍左右。（keySet适合仅需要操作key时使用）<br>🔗 <em>摘自：<a href="https://book.douban.com/subject/35187133/">《Java修炼指南：高频源码解析》</a></em></li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>foreach + Lambda 表达式</strong>（Java8 的新特性）</p>
+<blockquote>
+<ul>
+<li>forEach()：用于遍历动态数组中每一个元素并执行特定操作。</li>
+<li>Lambda 表达式：箭头符号 <code>-&gt;</code>，其两边连接着<strong>输入参数</strong>和<strong>函数体</strong>。</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>Stream()</strong></p>
+<blockquote>
+<ul>
+<li>其实用Iterable本身的forEach方法即可，没有必要用流式操作。StreamApi适合在对集合进行其他<strong>流式操作</strong>之后使用。</li>
+<li>补充：用流获取映射值的极端案例：<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">Optional&lt;String&gt; value = map<br>    .entrySet()<br>    .stream()<br>    .filter(entry -&gt; entry.getKey().equals(key))<br>    .map(Entry::getValue) <span class="hljs-comment">// 双冒号：引用方法</span><br>    .findFirst();<br></code></pre></td></tr></table></figure>
+🔗 <em>摘自：<a href="https://book.douban.com/subject/36142061/">《好代码，坏代码》</a></em></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p><br><br><br><p style="text-align:center;font-size:13px;color:#666666"> - <i>end</i> - </p>  </p>
+<hr style="height:2px;border:none;border-top:1px dashed #dedede;"/>
+
+
+<p>参考：</p>
+<ul>
+<li>HashMap扩容部分：<a href="https://book.douban.com/subject/35689618/">《Java高并发与集合框架：JCF和JUC源码分析与实现》</a></li>
+<li>内存结构示意图部分：<a href="https://book.douban.com/subject/30133440/">《Java编程的逻辑》</a></li>
+</ul>
+</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a href="https://github.com/equnee">Github</a></li><li><a href="https://codepen.io/equne">Codepen</a></li><li><a href="mailto:equne@qq.com">Mail</a></li></ul></div><h2>Friends</h2><div class="sidebar__friend"></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chain/" rel="tag">Chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/" rel="tag">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mermaid/" rel="tag">Mermaid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/singleton/" rel="tag">singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button" href="/note/Data-Structure/HashMap_2/">🦋 HashMap - 源码分析</a><a class="next-button" href="/note/Design-pattern/design-pattern_Chain_of_Responsibility/">🌷《秒懂设计模式》—— 责任链模式</a></div><div id="comments"></div></div></div></div><div class="footer"><span>©️2019-2023 Author By  <b><a class="link" href="https://github.com/equnee">equne</a></b></span><span>&nbsp;Powered By <b><a class="link" href="https://hexo.io/zh-cn/">hexo  </a></b></span><script type="text/javascript" id="maid-script" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize({
+    theme: 'neutral',
+    fontFamily: 'Noto Serif SC',
+    startOnLoad: 'true'
+  });
+}</script></div><l></l><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
